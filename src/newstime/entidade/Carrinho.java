@@ -1,7 +1,10 @@
 package newstime.entidade;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import newstime.excecao.NegocioException;
+//import newstime.excecao.NegocioException;
 
 /**
  * Classe de entidade que representa o carrinho de compras
@@ -23,13 +26,14 @@ public class Carrinho {
     /**
      * Altera o item do carrinho de compras
      * @param item Item do carrinho de compras
-     * @throws NegocioException Caso haja problema na configuração de quantidade
      */
-    public void alterarItem(ItemPedido item) throws NegocioException {
-        //Busca a posição
-        int p = itens.indexOf(item);
-        //Altera o item
-        itens.get(p).definirItemPedido(item.getLivro(), item.getQuantidade());
+    public void alterarItem(ItemPedido item) {
+        try {
+            //Busca a posição
+            int p = itens.indexOf(item);
+            //Altera o item
+            itens.get(p).definirItemPedido(item.getLivro(), item.getQuantidade());
+        } catch (NegocioException ex) { } //Não é necessário, uma vez que já foi definido
     }
     /**
      * Retira o item do carrinho de compras

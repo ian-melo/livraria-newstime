@@ -1,8 +1,8 @@
-//TODO: definir modelo e validação de senha
 package newstime.entidade;
 
 import newstime.excecao.FormatacaoIncorretaException;
 import java.util.Date;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -58,8 +58,14 @@ public class Cliente {
      * Indica se o cliente que receber mensagens promocionais (ou não)
      */
     private boolean promocional;
-    
-    
+    /**
+     * Identificador do cliente
+     */
+    private int ID;
+    /**
+     * Identificdor do endereço do cliente
+     */
+    private int ID_ENDERECO;
     
     //GETTERS SETTERS
     /**
@@ -84,7 +90,7 @@ public class Cliente {
     }
     /**
      * Retorna a senha do cliente
-     * <br/>---DEFINIR MODELO E SEGURANÇA--
+     * <br/>Deve haver de 8 a 16 caracteres
      * @return Senha do Cliente
      */
     public String getSenha() {
@@ -92,7 +98,7 @@ public class Cliente {
     }
     /**
      * Define a senha do cliente
-     * <br/>---DEFINIR MODELO E SEGURANÇA--
+     * <br/>Deve haver de 8 a 16 caracteres
      * @param senha Senha do cliente
      * @throws FormatacaoIncorretaException Caso não siga o modelo
      */
@@ -100,7 +106,7 @@ public class Cliente {
         if(this.validarSenha(senha))
             this.senha = senha;
         else
-            throw new FormatacaoIncorretaException("");
+            throw new FormatacaoIncorretaException("A senha deve ter entre 8 e 16 caracteres.");
     }
     /**
      * Retorna o nome do cliente
@@ -162,7 +168,7 @@ public class Cliente {
         if(this.validarCpf(cpf))
             this.cpf = cpf;
         else
-            throw new FormatacaoIncorretaException("Modelo de RG incorreto.");
+            throw new FormatacaoIncorretaException("Modelo de CPF incorreto.");
     }
     /**
      * Retorna a data de nascimento do cliente
@@ -268,6 +274,36 @@ public class Cliente {
         this.promocional = promocional;
     }
     
+    //IDENTIFICAORES
+    /**
+     * Retorna o identificador do cliente
+     * @return Identificador do cliente
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador do cliente
+     * @param ID Identificador do cliente
+     */
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    /**
+     * Retorna o identificador do endereço do cliente
+     * @return Identificador do endereço do cliente
+     */
+    public int getID_ENDERECO() {
+        return ID_ENDERECO;
+    }
+    /**
+     * Define o identificador do endereço do cliente
+     * @param ID_ENDERECO Identificador do endereço do cliente
+     */
+    public void setID_ENDERECO(int ID_ENDERECO) {
+        this.ID_ENDERECO = ID_ENDERECO;
+    }
+    
     //VALIDADORES
     /**
      * Valida o CPF do cliente
@@ -285,8 +321,7 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarSenha(String senha) {
-        //IMPLEMENTAR AQUI
-        return false;
+        return (senha.length() >= 8 && senha.length() <= 16);
     }
     /**
      * Valida o e-mail do cliente
@@ -306,5 +341,27 @@ public class Cliente {
      */
     private boolean validarTelefone(String telefone) {
         return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{4})", telefone);
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.email);
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        return true;
     }
 }

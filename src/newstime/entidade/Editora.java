@@ -24,7 +24,10 @@ public class Editora {
      * Telefone para contato da editora
      */
     private String telefone;
-    
+    /**
+     * Identificador da editora
+     */
+    private int ID;
     
     //GETTERS SETTERS
     /**
@@ -94,6 +97,22 @@ public class Editora {
             this.telefone = telefone;
         else
             throw new FormatacaoIncorretaException("Modelo de telefone incorreto.");
+    }
+    
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador da editora
+     * @return Identificador da editora
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador da editora
+     * @param ID Identificador da editora
+     */
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
     //VALIDADORES

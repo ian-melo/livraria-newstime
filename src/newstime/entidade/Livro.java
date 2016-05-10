@@ -11,7 +11,7 @@ public class Livro {
     /**
      * Categorias de livro existentes
      */
-    public enum CategoriaLivro {
+    public static enum CategoriaLivro {
         /** Administração */                ADMINISTRACAO,
         /** Agropecuário */                 AGROPECUARIA,
         /** Artes */                        ARTES,
@@ -100,6 +100,18 @@ public class Livro {
      * Indica se o livro é digital - true (ou não - false)
      */
     private boolean digital;
+    /**
+     * Identificador do livro
+     */
+    private int ID;
+    /**
+     * Identifidador do autor do livro
+     */
+    private int ID_AUTOR;
+    /**
+     * Identificador da editora do livro
+     */
+    private int ID_EDITORA;
     
     //GETTERS SETTERS
     /**
@@ -341,6 +353,51 @@ public class Livro {
         this.digital = digital;
     }
     
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador do livro
+     * @return Identificador do livro
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador do livro
+     * @param ID Identificador do livro
+     */
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    /**
+     * Retorna o identificador do livro do autor
+     * @return Identificador do livro do autor
+     */
+    public int getID_AUTOR() {
+        return ID_AUTOR;
+    }
+    /**
+     * Define o identificador do livro do autor
+     * @param ID_AUTOR Identificador do livro do autor
+     */
+    public void setID_AUTOR(int ID_AUTOR) {
+        this.ID_AUTOR = ID_AUTOR;
+    }
+    /**
+     * Retorna o identificador da editora do autor
+     * @return Identificador da editora do autor
+     */
+    public int getID_EDITORA() {
+        return ID_EDITORA;
+    }
+    /**
+     * Define o identificador da editora do autor
+     * @param ID_EDITORA Identificador da editora do autor
+     */
+    public void setID_EDITORA(int ID_EDITORA) {
+        this.ID_EDITORA = ID_EDITORA;
+    }
+    
+    
     //VALIDADORES
     /**
      * Valida preço em geral do livro
@@ -369,7 +426,7 @@ public class Livro {
     private boolean validarQtdEstoque(int qtdEstoque) {
         return (qtdEstoque >= 0);
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

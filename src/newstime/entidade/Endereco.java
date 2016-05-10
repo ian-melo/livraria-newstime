@@ -40,7 +40,10 @@ public class Endereco {
      * Ponto de referência do endereço
      */
     private String referencia;
-    
+    /**
+     * Identificador do endereço
+     */
+    private int ID;
     
     //GETTERS SETTERS
     /**
@@ -166,6 +169,22 @@ public class Endereco {
      */
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+    
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador do endereço
+     * @return Identificador do endereço
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador do endereço
+     * @param ID Identificador do endereço
+     */
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
     //VALIDADORES

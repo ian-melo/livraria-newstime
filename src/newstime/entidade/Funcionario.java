@@ -17,7 +17,10 @@ public class Funcionario {
      * Senha do funcionário
      */
     private String senha;
-    
+    /**
+     * Identificador do funcionário
+     */
+    private int ID;
     
     //GETTERS SETTERS
     /**
@@ -61,6 +64,22 @@ public class Funcionario {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador do funcionário
+     * @return Identificador do funcionário
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador do funcionário
+     * @param ID Identificador do funcionário
+     */
+    public void setID(int ID) {
+        this.ID = ID;
     }
     
 }

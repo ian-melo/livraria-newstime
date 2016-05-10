@@ -20,6 +20,14 @@ public class ItemPedido {
      * Valor subtotal do item do pedido, gerado a partir do preço escolhido vezes a quantidade
      */
     private float subtotal;
+    /**
+     * Identificador do pedido do item pedido
+     */
+    private int ID_PEDIDO;
+    /**
+     * Identificador do livro do item pedido
+     */
+    private int ID_LIVRO;
     
     /**
      * Cria um item do pedido
@@ -30,17 +38,27 @@ public class ItemPedido {
     public void definirItemPedido(Livro livro, int quantidade) throws NegocioException {
         //Define o livro
         this.setLivro(livro);
-        //Define a quantidade
-        this.setQuantidade(quantidade);
-        
         //Caso não haja quantidade disponível joga exceção e interrompe
-        if(!verificarQtdDisponivel())
+        if(!verificarQtdDisponivel(quantidade))
             throw new NegocioException("Não há quantidade em estoque disponível para este livro.");
-        
+        //Define a quantidade
+        this.definirQuantidade(quantidade);
         //Verifica qual valor do livro será utilizado para definir o subtotal
         float preco_escolhido = verificarPreco();
         //Defina o subtotal (preco_escolhido * quantidade)
         this.setSubtotal(preco_escolhido * this.quantidade);
+    }
+    /**
+     * Define a quantidade do item do pedido, através do processo de definição
+     * <br/>Deve ser acima de 0
+     * @param quantidade Quantidade do livro do item do pedido
+     * @throws newstime.excecao.NegocioException Caso não siga a regra definida
+     */
+    private void definirQuantidade(int quantidade) throws NegocioException {
+        if(this.validarQuantidade(quantidade))
+            this.quantidade = quantidade;
+        else
+            throw new NegocioException("A quantidade do pedido deve ser maior que 0.");
     }
     /**
      * Retorna qual preço do livro é escolhido, podendo ser o de oferta ou o de venda
@@ -57,8 +75,8 @@ public class ItemPedido {
      * @return true, se há a quantidade disponível
      * false, caso contrário
      */
-    private boolean verificarQtdDisponivel() {
-        return (this.quantidade <= this.livro.getQtdEstoque());
+    private boolean verificarQtdDisponivel(int quantidade) {
+        return (quantidade <= this.livro.getQtdEstoque());
     }
 
     //GETTERS SETTERS
@@ -73,7 +91,7 @@ public class ItemPedido {
      * Define o livro do item do pedido
      * @param livro Livro do item do pedido
      */
-    private void setLivro(Livro livro) {
+    public void setLivro(Livro livro) {
         this.livro = livro;
     }
     /**
@@ -85,15 +103,10 @@ public class ItemPedido {
     }
     /**
      * Define a quantidade do item do pedido
-     * <br/>Deve ser acima de 0
      * @param quantidade Quantidade do livro do item do pedido
-     * @throws newstime.excecao.NegocioException Caso não siga a regra definida
      */
-    private void setQuantidade(int quantidade) throws NegocioException {
-        if(this.validarQuantidade(quantidade))
-            this.quantidade = quantidade;
-        else
-            throw new NegocioException("A quantidade do pedido deve ser maior que 0.");
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
     /**
      * Retorna o valor subtotal do item do pedido, gerado a partir do preço escolhido vezes a quantidade
@@ -106,8 +119,38 @@ public class ItemPedido {
      * Define o valor subtotal do item do pedido, gerado a partir do preço escolhido vezes a quantidade
      * @param subtotal Subtotal do item do pedido
      */
-    private void setSubtotal(float subtotal) {
+    public void setSubtotal(float subtotal) {
         this.subtotal = subtotal;
+    }
+    
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador do pedido do item pedido
+     * @return Identificador do pedido do item pedido
+     */
+    public int getID_PEDIDO() {
+        return ID_PEDIDO;
+    }
+    /**
+     * Define o identificador do pedido do item pedido
+     * @param ID_PEDIDO Identificador do pedido do item pedido
+     */
+    public void setID_PEDIDO(int ID_PEDIDO) {
+        this.ID_PEDIDO = ID_PEDIDO;
+    }
+    /**
+     * Retorna o identificador do livro do item pedido
+     * @return Identificador do livro do item pedido
+     */
+    public int getID_LIVRO() {
+        return ID_LIVRO;
+    }
+    /**
+     * Define o identificador do livro do item pedido
+     * @param ID_LIVRO Identificador do livro do item pedido
+     */
+    public void setID_LIVRO(int ID_LIVRO) {
+        this.ID_LIVRO = ID_LIVRO;
     }
     
     //VALIDADORES

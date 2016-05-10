@@ -8,6 +8,10 @@ import java.util.Date;
  */
 public class Autor {
     /**
+     * Código do autor
+     */
+    private String codigo;
+    /**
      * Nome do autor
      */
     private String nome;
@@ -27,9 +31,28 @@ public class Autor {
      * Local de morte do autor (se houver)
      */
     private String localMorte;
-    
+    /**
+     * Identificador do autor
+     */
+    private int ID;
     
     //GETTERS SETTERS
+    /**
+     * Retorna o código do autor
+     * @return Código do autor
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+    /**
+     * Define o código do autor
+     * @param codigo Código do autor
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     /**
      * Retorna o nome do autor
      * @return Nome do autor
@@ -101,4 +124,19 @@ public class Autor {
         this.localMorte = localMorte;
     }
     
+    //IDENTIFICADORES
+    /**
+     * Retorna o identificador do autor
+     * @return Identificador do autor
+     */
+    public int getID() {
+        return ID;
+    }
+    /**
+     * Define o identificador do autor
+     * @param ID Identificador do autor
+     */
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 }

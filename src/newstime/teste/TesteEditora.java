@@ -6,8 +6,8 @@ import newstime.entidade.*;
 import newstime.excecao.*;
 
 /**
- *
- * @author voce
+ * Classe de teste de editora
+ * @author Ian Melo
  */
 public class TesteEditora {
     public static void main(String[] args) {

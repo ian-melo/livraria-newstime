@@ -8,8 +8,8 @@ import newstime.entidade.Livro.CategoriaLivro;
 import newstime.excecao.*;
 
 /**
- *
- * @author voce
+ * Classe de teste de item do carrinho/pedido
+ * @author Ian Melo
  */
 public class TesteItem {
     public static void main(String[] args) {

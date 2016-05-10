@@ -2,7 +2,7 @@ package newstime.excecao;
 
 /**
  * Classe de exceção de formatação incorreta de dado
- * @author voce
+ * @author Ian Melo
  */
 public class FormatacaoIncorretaException extends java.io.IOException {
     /**

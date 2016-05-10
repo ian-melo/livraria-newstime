@@ -1,5 +1,6 @@
 package newstime.teste;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -7,11 +8,14 @@ import newstime.entidade.*;
 import newstime.excecao.*;
 
 /**
- * Classe de teste de carrinho de compras
+ * Classes de teste de pedido
  * @author Ian Melo
  */
-public class TesteCarrinho {
+public class TestePedido {
     public static void main(String[] args) {
+        //Define uma conta
+        Conta.setCliente(new Cliente());
+        
         Autor a = new Autor();
         //Definição do autor
         a.setNome("Floriano Marquendes");
@@ -28,8 +32,8 @@ public class TesteCarrinho {
             e.setNome("Editora Manzollini");
             e.setTelefone("(11)1234-1234");
         } catch (FormatacaoIncorretaException ex) {
-            System.out.println(ex.getMessage());
             Logger.getLogger(TesteEditora.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
         
         Livro l = new Livro();
@@ -52,6 +56,7 @@ public class TesteCarrinho {
             l.setOferta(true);
         } catch (NegocioException ex) {
             Logger.getLogger(TesteLivro.class.getName()).log(Level.SEVERE, null, ex);
+            return;
         }
         
         ItemPedido i = new ItemPedido();
@@ -67,46 +72,21 @@ public class TesteCarrinho {
             return;
         }
         
-        Carrinho c = new Carrinho();
-        //Adição de itens ao carrinho
-        c.adicionarItem(i);
-        c.adicionarItem(i2);
-        c.adicionarItem(i3);
+        //Definição da lista de itens
+        ArrayList<ItemPedido> itens = new ArrayList<>();
+        itens.add(i);
+        itens.add(i2);
+        itens.add(i3);
         
-        //Exibição de quantidade dos itens do carrinho
-        System.out.println("Exibição 1");
-        for(ItemPedido x: c.getItens())
-            System.out.println(x.getQuantidade());
-        
-        //Mudança do item 1
+        //Define pedido
+        Pedido p = new Pedido();
         try {
-            i.definirItemPedido(l, 10);
+            p.abrirPedido();
+            p.setCliente(Conta.getCliente());
+            p.setDataHora(new Date());
+            p.setItensPedido(itens);
         } catch (NegocioException ex) {
-            Logger.getLogger(TesteCarrinho.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestePedido.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        //Alteração do carrinho
-        c.alterarItem(i);
-        
-        //Exibição de quantidade dos itens do carrinho
-        System.out.println("Exibição 2");
-        for(ItemPedido x: c.getItens())
-            System.out.println(x.getQuantidade());
-        
-        //Remoção do item 2 do carrinho
-        c.retirarItem(i2);
-        
-        //Exibição de quantidade dos itens do carrinho
-        System.out.println("Exibição 3");
-        for(ItemPedido x: c.getItens())
-            System.out.println(x.getQuantidade());
-        
-        //Remoção total
-        c.limparCarrinho();
-        
-        //Exibição de quantidade dos itens do carrinho
-        System.out.println("Exibição 4");
-        for(ItemPedido x: c.getItens())
-            System.out.println(x.getQuantidade());
     }
 }

@@ -54,11 +54,8 @@ public class EnderecoDAO implements DAO<Endereco> {
             pst.setString(6, o.getEstado());
             pst.setString(7, o.getCep());
             pst.setString(8, o.getReferencia());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o endereço.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -70,26 +67,13 @@ public class EnderecoDAO implements DAO<Endereco> {
     public void alterar(Endereco o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Endereco SET Logradouro=?, Numero=?, Complemento=?, " +
-                "Bairro=?, Cidade=?, Estado=?, Cep=?, Referencia=? " +
-                "WHERE CodEndereco=?";
+            sql = "UPDATE Endereco SET Logradouro='"+o.getLogradouro()+"', Numero='"+o.getNumero()+"', Complemento='"+o.getComplemento()+"', " +
+                "Bairro='"+o.getBairro()+"', Cidade='"+o.getCidade()+"', Estado='"+o.getEstado()+"', Cep='"+o.getCep()+"', Referencia='"+o.getReferencia()+"' " +
+                "WHERE CodEndereco="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getLogradouro());
-            pst.setString(2, o.getNumero());
-            pst.setString(3, o.getComplemento());
-            pst.setString(4, o.getBairro());
-            pst.setString(5, o.getCidade());
-            pst.setString(6, o.getEstado());
-            pst.setString(7, o.getCep());
-            pst.setString(8, o.getReferencia());
-            pst.setInt(9, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o endereço.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -101,16 +85,11 @@ public class EnderecoDAO implements DAO<Endereco> {
     public void excluir(Endereco o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Endereco SET XDEAD = TRUE WHERE CodEndereco=?";
+            sql = "UPDATE Endereco SET XDEAD = TRUE WHERE CodEndereco="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o endereço.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();

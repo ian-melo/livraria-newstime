@@ -50,7 +50,7 @@ public class EditoraDAO implements DAO<Editora> {
             pst.setString(2, o.getNome());
             pst.setString(3, o.getEndereco());
             pst.setString(4, o.getTelefone());
-            //Executa e verifica se houve erro, jogando execeção caso houver
+            //Executa
             pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
@@ -65,17 +65,11 @@ public class EditoraDAO implements DAO<Editora> {
         rs = null;
         try {
             //Define String
-            sql = "UPDATE Editora SET Cnpj=?, Nome=?, Endereco=?, Telefone=? " +
-                "WHERE CodEditora=?";
+            sql = "UPDATE Editora SET Cnpj='"+o.getCnpj()+"', Nome='"+o.getNome()+"', Endereco='"+o.getEndereco()+"', Telefone='"+o.getTelefone()+"' " +
+                "WHERE CodEditora="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getCnpj());
-            pst.setString(2, o.getNome());
-            pst.setString(3, o.getEndereco());
-            pst.setString(4, o.getTelefone());
-            pst.setInt(5, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
+            //Executa
             pst.executeUpdate(sql);
             bd.fecharConexao();
         } catch (SQLException ex) {
@@ -88,11 +82,9 @@ public class EditoraDAO implements DAO<Editora> {
     public void excluir(Editora o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Editora SET XDEAD = TRUE WHERE CodEditora=?";
+            sql = "UPDATE Editora SET XDEAD = TRUE WHERE CodEditora="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
             //Executa
             pst.executeUpdate(sql);
             bd.fecharConexao();

@@ -49,11 +49,8 @@ public class PagamentoDAO implements DAO<Pagamento> {
             pst.setString(1, o.getForma().toString());
             pst.setInt(2, o.getNumParcelas());
             pst.setInt(3, o.getParcelaRestante());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o pagamento.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -65,20 +62,12 @@ public class PagamentoDAO implements DAO<Pagamento> {
     public void alterar(Pagamento o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Pagamento SET Forma=?, NumParcelas=?, ParcelaRestante=? " +
-                "WHERE CodPagamento=?";
+            sql = "UPDATE Pagamento SET Forma='"+o.getForma().toString()+"', NumParcelas="+o.getNumParcelas()+", ParcelaRestante="+o.getParcelaRestante()+" " +
+                "WHERE CodPagamento="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getForma().toString());
-            pst.setInt(2, o.getNumParcelas());
-            pst.setInt(3, o.getParcelaRestante());
-            pst.setInt(4,o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o pagamento.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -90,16 +79,11 @@ public class PagamentoDAO implements DAO<Pagamento> {
     public void excluir(Pagamento o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Pagamento SET XDEAD = TRUE WHERE CodPagamento=?";
+            sql = "UPDATE Pagamento SET XDEAD = TRUE WHERE CodPagamento="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o pagamento.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();

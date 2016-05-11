@@ -46,16 +46,13 @@ public class PedidoDAO implements DAO<Pedido> {
             pst = bd.abrirConexao().prepareStatement(sql);
             //Atrubui os dados
             pst.setInt(1,o.getCliente().getID());
-            pst.setDate(2, (Date) o.getDataHora());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o pedido.");
-            }
+            pst.setDate(2, new java.sql.Date(o.getDataHora().getTime()));
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
-            throw new BancoException("Houve um problema ao inserir o pedido.");
+            throw new BancoException("Houve um problema ao inserir o pedido."+ex.getMessage());
         }
     }
 
@@ -63,19 +60,12 @@ public class PedidoDAO implements DAO<Pedido> {
     public void alterar(Pedido o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Pedido SET IdCliente=?, Data=? " +
-                "WHERE IdPedido=?";
+            sql = "UPDATE Pedido SET IdCliente="+o.getCliente().getID()+", Data='"+new java.sql.Date(o.getDataHora().getTime())+"' " +
+                "WHERE IdPedido="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1,o.getCliente().getID());
-            pst.setDate(2, (Date) o.getDataHora());
-            pst.setInt(3,o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o pedido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -87,16 +77,11 @@ public class PedidoDAO implements DAO<Pedido> {
     public void excluir(Pedido o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Pedido SET XDEAD = TRUE WHERE IdPedido=?";
+            sql = "UPDATE Pedido SET XDEAD = TRUE WHERE IdPedido="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o pedido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -115,7 +100,7 @@ public class PedidoDAO implements DAO<Pedido> {
             pst = bd.abrirConexao().prepareStatement(sql);
             //Atribui os dados
             pst.setInt(1, o.getID_CLIENTE());
-            pst.setDate(2, (Date) o.getDataHora());
+            pst.setDate(2, new java.sql.Date(o.getDataHora().getTime()));
             //Executa e puxa a busca
             rs = pst.executeQuery();
             //Verifica se houve resultados e atribui valores ao objeto

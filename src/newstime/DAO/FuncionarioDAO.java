@@ -48,11 +48,8 @@ public class FuncionarioDAO implements DAO<Funcionario> {
             pst.setString(1, o.getLogin());
             pst.setString(2, o.getSenha());
             pst.setString(3, o.getNome());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o funcionário.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -64,19 +61,12 @@ public class FuncionarioDAO implements DAO<Funcionario> {
     public void alterar(Funcionario o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Funcionario SET Login=?, Senha=?, Nome=? WHERE IdFuncionario=?";
+            sql = "UPDATE Funcionario SET Login='"+o.getLogin()+"', Senha='"+o.getSenha()+"', Nome='"+o.getNome()+"' " +
+                  "WHERE IdFuncionario="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getLogin());
-            pst.setString(2, o.getSenha());
-            pst.setString(3, o.getNome());
-            pst.setInt(4,o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o funcionário.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -88,16 +78,11 @@ public class FuncionarioDAO implements DAO<Funcionario> {
     public void excluir(Funcionario o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Funcionario SET XDEAD = TRUE WHERE IdFuncionario=?";
+            sql = "UPDATE Funcionario SET XDEAD = TRUE WHERE IdFuncionario="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o funcionário.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();

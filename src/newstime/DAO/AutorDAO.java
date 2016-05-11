@@ -53,8 +53,10 @@ public class AutorDAO implements DAO<Autor> {
             pst.setString(6, o.getLocalMorte());
             //Executa
             pst.executeUpdate();
+            //Fecha
             bd.fecharConexao();
         } catch (SQLException ex) {
+            //Fecha
             bd.fecharConexao();
             throw new BancoException("Houve um problema ao inserir o autor.");
         }
@@ -65,24 +67,19 @@ public class AutorDAO implements DAO<Autor> {
         try {
             //Define String
             sql = "UPDATE Autor SET " +
-                "CodigoAlt = ?, Nome = ?, DataNasci = ?, DataMorte = ?, LocalNasci = ?, LocalMorte = ? " +
-                "WHERE CodAutor = ?";
+                "CodigoAlt='"+o.getCodigo()+"', Nome='"+o.getNome()+"', DataNasci='"+new java.sql.Date(o.getDataNasci().getTime())+"', " +
+                "DataMorte='"+new java.sql.Date(o.getDataMorte().getTime())+"', LocalNasci='"+o.getLocalNasci()+"', LocalMorte='"+o.getLocalMorte()+"' " +
+                "WHERE CodAutor="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getCodigo());
-            pst.setString(2, o.getNome());
-            pst.setDate(3, new java.sql.Date(o.getDataNasci().getTime()));
-            pst.setDate(4, new java.sql.Date(o.getDataMorte().getTime()));
-            pst.setString(5, o.getLocalNasci());
-            pst.setString(6, o.getLocalMorte());
-            pst.setInt(7,o.getID());
             //Executa
             pst.executeUpdate(sql);
+            //Fecha
             bd.fecharConexao();
         } catch (SQLException ex) {
+            //Fecha
             bd.fecharConexao();
-            throw new BancoException("Houve um problema ao alterar o autor." + ex.getMessage());
+            throw new BancoException("Houve um problema ao alterar o autor.");
         }
     }
 
@@ -90,13 +87,12 @@ public class AutorDAO implements DAO<Autor> {
     public void excluir(Autor o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Autor SET XDEAD = TRUE WHERE CodAutor=?";
+            sql = "UPDATE Autor SET XDEAD = TRUE WHERE CodAutor="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
             //Executa
             pst.executeUpdate(sql);
+            //Fecha
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -132,7 +128,7 @@ public class AutorDAO implements DAO<Autor> {
                 bd.fecharConexao();
                 throw new BancoException("Autor não foi encontrado.");
             }
-            //Prossegue procedimento, caso tenha encontrado
+            //Fecha
             bd.fecharConexao();
             return autor;
         } catch (SQLException ex) {
@@ -169,7 +165,7 @@ public class AutorDAO implements DAO<Autor> {
                 bd.fecharConexao();
                 throw new BancoException("Autor não foi encontrado.");
             }
-            //Prossegue procedimento, caso tenha encontrado
+            //Fecha
             bd.fecharConexao();
             return autor;
         } catch (SQLException ex) {
@@ -202,6 +198,7 @@ public class AutorDAO implements DAO<Autor> {
                 //Adiciona à lista
                 autores.add(autor);
             }
+            //Fecha
             bd.fecharConexao();
             return autores;
         } catch (SQLException ex) {

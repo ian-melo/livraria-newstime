@@ -77,28 +77,12 @@ public class LivroDAO implements DAO<Livro> {
         try {
             //Define String
             sql = "UPDATE Livro SET " +
-                "Isbn=?, Titulo=?, CodAutor=?, CodEditora=?, AnoPublicacao=?, Categoria=?, Resumo=?, Sumario=?, " +
-                "QtdEstoque=?, PrecoVenda=?, PrecoOferta=?, PrecoCusto=?, MargemLucro=?, Q_Oferta=?, Q_Digital=? " +
-                "WHERE CodLivro=?";
+                "Isbn='"+o.getIsbn()+"', Titulo='"+o.getTitulo()+"', CodAutor="+o.getAutor().getID()+", " +
+                "CodEditora="+o.getEditora().getID()+", AnoPublicacao="+o.getAnoPublicacao()+", Categoria='"+o.getCategoria().toString()+"', Resumo='"+o.getResumo()+"', Sumario='"+o.getSumario()+"', " +
+                "QtdEstoque="+o.getQtdEstoque()+", PrecoVenda='"+o.getPrecoVenda()+"', PrecoOferta='"+o.getPrecoOferta()+"', PrecoCusto='"+o.getPrecoCusto()+"', MargemLucro='"+o.getMargemLucro()+"', Q_Oferta="+o.isOferta()+", Q_Digital="+o.isDigital()+" " +
+                "WHERE CodLivro="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getIsbn());
-            pst.setString(2,o.getTitulo());
-            pst.setInt(3, o.getAutor().getID());
-            pst.setInt(4, o.getEditora().getID());
-            pst.setInt(5, o.getAnoPublicacao());
-            pst.setString(6, o.getCategoria().toString());
-            pst.setString(7, o.getResumo());
-            pst.setString(8, o.getSumario());
-            pst.setInt(9,o.getQtdEstoque());
-            pst.setFloat(10,o.getPrecoVenda());
-            pst.setFloat(11,o.getPrecoOferta());
-            pst.setFloat(12,o.getPrecoCusto());
-            pst.setFloat(13, o.getMargemLucro());
-            pst.setBoolean(14, o.isOferta());
-            pst.setBoolean(15, o.isDigital());
-            pst.setInt(16, o.getID());
             //Executa
             pst.executeUpdate(sql);
             bd.fecharConexao();
@@ -112,11 +96,9 @@ public class LivroDAO implements DAO<Livro> {
     public void excluir(Livro o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Livro SET XDEAD=TRUE WHERE CodLivro=?";
+            sql = "UPDATE Livro SET XDEAD=TRUE WHERE CodLivro="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
             //Executa
             pst.executeUpdate(sql);
             bd.fecharConexao();

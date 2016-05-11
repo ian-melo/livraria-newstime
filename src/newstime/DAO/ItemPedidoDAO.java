@@ -50,11 +50,8 @@ public class ItemPedidoDAO implements DAO<ItemPedido> {
             pst.setInt(2, o.getID_LIVRO());
             pst.setInt(3,o.getQuantidade());
             pst.setFloat(4,o.getSubtotal());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o item do pedido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -66,20 +63,12 @@ public class ItemPedidoDAO implements DAO<ItemPedido> {
     public void alterar(ItemPedido o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE ItemPedido SET Quantidade=?, Subtotal=? " +
-                "WHERE IdPedido=? AND CodLivro=?";
+            sql = "UPDATE ItemPedido SET Quantidade="+o.getQuantidade()+", Subtotal='"+o.getSubtotal()+"' " +
+                "WHERE IdPedido="+o.getID_PEDIDO()+" AND CodLivro="+o.getID_LIVRO();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1,o.getQuantidade());
-            pst.setFloat(2,o.getSubtotal());
-            pst.setInt(3,o.getID_PEDIDO());
-            pst.setInt(4, o.getID_LIVRO());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o item do pedido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -91,17 +80,11 @@ public class ItemPedidoDAO implements DAO<ItemPedido> {
     public void excluir(ItemPedido o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE ItemPedido SET XDEAD = TRUE WHERE IdPedido=? AND CodLivro=?";
+            sql = "UPDATE ItemPedido SET XDEAD = TRUE WHERE IdPedido="+o.getID_PEDIDO()+" AND CodLivro="+o.getID_LIVRO();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID_PEDIDO());
-            pst.setInt(2, o.getID_LIVRO());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o item do pedido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -250,16 +233,11 @@ public class ItemPedidoDAO implements DAO<ItemPedido> {
     public void excluirPedido(Pedido pedido) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE ItemPedido SET XDEAD = TRUE WHERE IdPedido=?";
+            sql = "UPDATE ItemPedido SET XDEAD = TRUE WHERE IdPedido="+pedido.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, pedido.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir os itens do pedido definido.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();

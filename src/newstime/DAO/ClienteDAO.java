@@ -53,17 +53,14 @@ public class ClienteDAO implements DAO<Cliente> {
             pst.setString(4, o.getSobrenome());
             pst.setString(5, o.getSexo());
             pst.setString(6, o.getCpf());
-            pst.setDate(7, (Date) o.getDataNascimento());
+            pst.setDate(7, new java.sql.Date(o.getDataNascimento().getTime()));
             pst.setString(8, o.getTelefone());
             pst.setString(9, o.getTelefoneAlt());
             pst.setString(10, o.getCelular());
             pst.setBoolean(11, o.isPromocional());
             pst.setInt(12, o.getEndereco().getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate() == 1) {
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao inserir o cliente.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -75,31 +72,14 @@ public class ClienteDAO implements DAO<Cliente> {
     public void alterar(Cliente o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Cliente SET Email=?, Senha=?, Nome=?, " +
-                "Sobrenome=?, Sexo=?, Cpf=?, DataNascimento=?, Telefone=?, " +
-                "TelefoneAlt=?, Celular=?, Q_Promocional=?, CodEndereco=? " +
-                "WHERE IdCliente=?";
+            sql = "UPDATE Cliente SET Email='"+o.getEmail()+"', Senha='"+o.getSenha()+"', Nome='"+o.getNome()+"', " +
+                "Sobrenome='"+o.getSobrenome()+"', Sexo='"+o.getSexo()+"', Cpf='"+o.getCpf()+"', DataNascimento='"+new java.sql.Date(o.getDataNascimento().getTime())+"', Telefone='"+o.getTelefone()+"', " +
+                "TelefoneAlt='"+o.getTelefoneAlt()+"', Celular='"+o.getCelular()+"', Q_Promocional="+o.isPromocional()+", CodEndereco="+o.getEndereco().getID()+" " +
+                "WHERE IdCliente="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setString(1, o.getEmail());
-            pst.setString(2, o.getSenha());
-            pst.setString(3, o.getNome());
-            pst.setString(4, o.getSobrenome());
-            pst.setString(5, o.getSexo());
-            pst.setString(6, o.getCpf());
-            pst.setDate(7, (Date) o.getDataNascimento());
-            pst.setString(8, o.getTelefone());
-            pst.setString(9, o.getTelefoneAlt());
-            pst.setString(10, o.getCelular());
-            pst.setBoolean(11, o.isPromocional());
-            pst.setInt(12, o.getEndereco().getID());
-            pst.setInt(13, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao alterar o cliente.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
@@ -111,16 +91,11 @@ public class ClienteDAO implements DAO<Cliente> {
     public void excluir(Cliente o) throws BancoException {
         try {
             //Define String
-            sql = "UPDATE Cliente SET XDEAD = TRUE WHERE CodEndereco=?";
+            sql = "UPDATE Cliente SET XDEAD = TRUE WHERE CodEndereco="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
-            //Atribui os dados
-            pst.setInt(1, o.getID());
-            //Executa e verifica se houve erro, jogando execeção caso houver
-            if(pst.executeUpdate(sql) == 1){
-                bd.fecharConexao();
-                throw new BancoException("Houve um problema ao excluir o cliente.");
-            }
+            //Executa
+            pst.executeUpdate();
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();

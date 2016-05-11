@@ -1,4 +1,3 @@
-//TODO: Logar
 package newstime.entidade;
 
 import java.util.Date;

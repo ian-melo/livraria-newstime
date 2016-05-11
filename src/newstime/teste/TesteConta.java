@@ -1,6 +1,5 @@
 package newstime.teste;
 
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import newstime.entidade.*;
@@ -42,10 +41,10 @@ public class TesteConta {
         
         try {
             Conta.logar(c);
-            System.out.println(Conta.getCliente().getCpf());
+            System.out.println(Conta.getCliente().getNome() + " " + Conta.getCliente().getSobrenome());
+            System.out.println(Conta.getDataHoraEntrada());
         } catch (NegocioException | BancoException ex) {
-            Logger.getLogger(TesteConta.class.getName()).log(Level.SEVERE, null, ex);
-            return;
+            System.out.println(ex.getMessage());
         }
     }
 }

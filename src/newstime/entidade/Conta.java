@@ -1,4 +1,3 @@
-//TODO: Logar
 package newstime.entidade;
 
 import java.util.Date;
@@ -59,7 +58,7 @@ public class Conta {
     /**
      * Loga o cliente na conta
      * @param cliente Cliente da conta
-     * @throws newstime.excecao.NegocioException Caso cliente não exista na conta
+     * @throws newstime.excecao.NegocioException Caso não bata o usuário e senha
      * @throws newstime.excecao.BancoException Caso dê algum erro na busca
      */
     public static void logar(Cliente cliente) throws NegocioException, BancoException {

@@ -2,6 +2,8 @@
 package newstime.entidade;
 
 import java.util.Date;
+import newstime.DAO.*;
+import newstime.excecao.*;
 
 /**
  * Classe de entidade que representa a conta de um funcionário da livraria
@@ -24,9 +26,27 @@ public class ContaRestrita {
     /**
      * Loga o funcionário na conta
      * @param funcionario Funcionário da conta
+     * @throws newstime.excecao.BancoException Caso dê algum erro no processo de busca
+     * @throws newstime.excecao.NegocioException Caso não bata o login e senha
      */
-    public static void logar(Funcionario funcionario) {
-        
+    public static void logar(Funcionario funcionario) throws BancoException, NegocioException {
+        BancoDados banco = new BancoDados();
+        FuncionarioDAO cDao = new FuncionarioDAO(banco);
+        String senha = funcionario.getSenha();
+        //Busca o funcionário
+        try {
+            funcionario = cDao.buscar(funcionario);
+        } catch(BancoException ex) {
+            //Não foi encontrado o cliente, portanto não poderá logar
+            throw new NegocioException("Acesso negado.");
+        }
+        /*Foi encontrado, prossegue*/
+        //Verifica se senha bate, se não interrompe
+        if(!senha.equals(funcionario.getSenha()))
+            throw new NegocioException("Acesso negado.");
+        //Define funcionário na conta restrita e horário (login)
+        ContaRestrita.setFuncionario(funcionario);
+        ContaRestrita.setDataHoraEntrada(new Date());
     }
     /**
      * Desloga o funcionário da conta

@@ -186,7 +186,7 @@ public class Cliente {
     }
     /**
      * Retorna o telefone do cliente
-     * <br/>Modelo: (00)0000-0000 ou (00)00000-0000
+     * <br/>Modelo: (00)0000-0000 ou (00)00000-0000 ou (00)00000-000
      * @return Telefone do cliente
      */
     public String getTelefone() {
@@ -194,7 +194,7 @@ public class Cliente {
     }
     /**
      * Define o telefone do cliente
-     * <br/>Modelo: (00)0000-0000 ou (00)00000-0000
+     * <br/>Modelo: (00)0000-0000 ou (00)00000-0000 ou (00)00000-000
      * @param telefone Telefone do cliente
      * @throws newstime.excecao.FormatacaoIncorretaException Caso não siga o modelo
      */
@@ -340,7 +340,7 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarTelefone(String telefone) {
-        return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{4})", telefone);
+        return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{3,4})", telefone);
     }
     
     @Override

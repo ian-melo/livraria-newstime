@@ -23,7 +23,7 @@ public class TesteControleAdministracao {
             Editora editora = new Editora();
             
             controleAdm.inserirLivro("111", "titulo", autor, editora , "2222", "categoria", "resumo", "sumario", 33, "44.4", "5.5", "6.6", "7.7", true, true);
-            /* - IMCOMPLETA - */
+            /* - INCOMPLETA - */
             
             
             /* //ERRO(meu)

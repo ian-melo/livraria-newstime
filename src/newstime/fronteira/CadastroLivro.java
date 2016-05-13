@@ -5,6 +5,13 @@
  */
 package newstime.fronteira;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import newstime.controle.ControleAdministracao;
+import newstime.entidade.Autor;
+import newstime.entidade.Editora;
+import newstime.excecao.NegocioException;
+
 /**
  *
  * @author lukin
@@ -14,6 +21,8 @@ public class CadastroLivro extends javax.swing.JFrame {
     /**
      * Creates new form CadastroLivro
      */
+    private boolean oferta, digital;//variaveis para radio buton
+    
     public CadastroLivro() {
         initComponents();
     }
@@ -27,29 +36,31 @@ public class CadastroLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_nomeAutor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txt_titulo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txt_editora = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txt_anoPublicacao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_pais = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmb_categoria = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txt_isbn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_qtd = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_resumo = new javax.swing.JTextArea();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txt_sumario = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -57,17 +68,18 @@ public class CadastroLivro extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txt_precoCusto = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txt_precoRevenda = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txt_precoOferta = new javax.swing.JTextField();
+        cmb_margemLucro = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,9 +90,9 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel2.setText("Nome do Autor");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txt_nomeAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txt_nomeAutorActionPerformed(evt);
             }
         });
 
@@ -96,12 +108,12 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Broadway", 0, 11)); // NOI18N
         jLabel6.setText("País");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione..", "AD - Andorra", "AE - Emirados Árabes Unidos", "AF - Afeganistão", "AG - Antígua e Barbuda", "AI - Anguilla", "AL - Albânia", "AM - Armênia", "AO - Angola", "AQ - Antártica", "AR - Argentina", "AS - Samoa Americana", "AT - Áustria", "AU - Austrália", "AW - Aruba", "AZ - Azerbaijão", "BA - Bósnia e Herzegovina", "BB - Barbados", "BD - Bangladesh", "BE - Bélgica", "BF - Burkina Faso", "BG - Bulgária", "BH - Barém", "BI - Burundi", "BJ - Benin", "BL - São Bartolomeu", "BM - Bermuda", "BN - Brunei", "BO - Bolívia", "BR - Brasil", "BS - Bahamas", "BT - Butão", "BV - Ilha Bouvet", "BW - Botswana", "BY - Belarus", "BZ - Belize", "CA - Canadá", "CC - Ilhas Cocos (Keeling)", "CD - Congo, República Democrática do", "CF - República Centro-Africana", "CG - Congo, República do", "CH - Suíça", "CI - Costa do Marfim", "CK - Ilhas Cook", "CL - Chile", "CM - Camarões", "CN - China", "CO - Colômbia", "CR - Costa Rica", "CU - Cuba", "CV - Cabo Verde", "CW - Curaçao", "CX - Ilha Christmas", "CY - Chipre", "CZ - República Tcheca", "DE - Alemanha", "DJ - Djibuti", "DK - Dinamarca", "DM - Dominica", "DO - República Dominicana", "DZ - Argélia", "EC - Equador", "EE - Estônia", "EG - Egito", "EH - Saara Ocidental", "ER - Eritréia", "ES - Espanha", "ET - Etiópia", "FI - Finlândia", "FJ - Fiji", "FK - Ilhas Falkland (Malvinas)", "FM - Micronésia, Estados Federados da", "FO - Ilhas Feroe", "FR - França", "FX - França Metropolitana", "GA - Gabão", "GB - Reino Unido", "GD - Grenada", "GE - Geórgia", "GF - Guiana Francesa", "GG - Guernsey", "GH - Gana", "GI - Gibraltar", "GL - Greenland", "GM - Gâmbia", "GN - Guiné", "GP - Guadelupe", "GQ - Guiné Equatorial", "GR - Grécia", "GS - Geórgia do Sul e Ilhas", "GT - Guatemala", "GU - Guam", "GW - Guiné-Bissau", "GY - Guiana", "HK - Hong Kong", "HM - Ilhas Heard and McDonald", "HN - Honduras", "HR - Croácia", "HT - Haiti", "HU - Hungria", "ID - Indonésia", "IE - Irlanda", "IL - Israel", "IM - Ilha de Man", "IN - Índia", "IO - Território Britânico do Oceano Índico", "IQ - Iraque", "IR - Irã", "IS - Islândia", "IT - Itália", "JE - Jersey", "JM - Jamaica", "JO - Jordânia", "JP - Japão", "KE - Quênia", "KG - Quirguistão", "KH - Camboja", "KI - Kiribati", "KM - Cômoros", "KN - São Cristóvão e Nevis", "KP - Coreia do Norte", "KR - Coreia do Sul", "KW - Kuwait", "KY - Ilhas Caiman", "KZ - Cazaquistão", "LA - Laos", "LB - Líbano", "LC - Santa Lúcia", "LI - Liechtenstein", "LK - Sri Lanka", "LR - Libéria", "LS - Lesoto", "LT - Lituânia", "LU - Luxemburgo", "LV - Letônia", "LY - Líbia", "MA - Marrocos", "MC - Mônaco", "MD - Moldova", "ME - Montenegro", "MF - Saint Martin", "MG - Madagascar", "MH - Ilhas Marshall", "MK - Macedônia", "ML - Mali", "MM - Birmânia", "MN - Mongólia", "MO - Macao", "MP - Ilhas Marianas do Norte", "MQ - Martinica", "MR - Mauritânia", "MS - Montserrat", "MT - Malta", "mu – Ilhas Maurício", "MV - Maldivas", "MW - Malawi", "MX - México", "MY - Malásia", "MZ - Moçambique", "NA - Namíbia", "NC - Nova Caledônia", "NE - Níger", "NF - Ilha Norfolk", "NG - Nigéria", "NI - Nicarágua", "NL - Holanda", "NO - Noruega", "NP - Nepal", "NR - Nauru", "NU - Niue", "NZ - Nova Zelândia", "OM - Omã", "PA - Panamá", "PE - Peru", "PF - Polinésia Francesa", "PG - Papua Nova Guiné", "PH - Filipinas", "PK - Paquistão", "PL - Polônia", "PM - Saint Pierre e Miquelon", "PN - Ilhas Pitcairn", "PR - Porto Rico", "PS - Faixa de Gaza", "PS - Cisjordânia", "PT - Portugal", "PW - Palau", "PY - Paraguai", "QA - Qatar", "RE - Reunião", "RO - Romênia", "RS - Sérvia", "RU - Rússia", "RW - Ruanda", "SA - Arábia Saudita", "SB - Ilhas Salomão", "SC - Seicheles", "SD - Sudão", "SE - Suécia", "SG - Cingapura", "SH - Santa Helena, Ascensão e Tristão da Cunha", "SI - Eslovênia", "SJ - Svalbard", "SK - Eslováquia", "SL - Serra Leoa", "SM - San Marino", "SN - Senegal", "SO - Somália", "SR - Suriname", "SS - Sudão do Sul", "ST - São Tomé e Príncipe", "SV - El Salvador", "SX - São Martinho", "SY - Síria", "SZ - Suazilândia", "TC - Ilhas Turks e Caicos", "TD - Chad", "TF - Sul da França e Antártica", "TG - Togo", "TH - Tailândia", "TJ - Tadjiquistão", "TK - Toquelau", "TL - Timor-Leste", "TM - Turcomenistão", "TN - Tunísia", "TO - Tonga", "TR - Turquia", "TT - Trinidad e Tobago", "TV - Tuvalu", "TW - Taiwan", "TZ - Tanzânia", "UA - Ucrânia", "UG - Uganda", "UM - Ilhas Menores Distantes dos Estados Unidos", "US - Estados Unidos", "UY - Uruguai", "UZ - Uzbequistão", "VA - Santa Sé (Cidade do Vaticano)", "VC - São Vicente e Granadinas", "VE - Venezuela", "VG - Ilhas Virgens Britânicas", "VI - Ilhas Virgens Americanas", "VN - Vietnã", "VU - Vanuatu", "WF - Ilhas Wallis e Futuna", "WS - Samoa", "XK - Kosovo", "YE - Iêmen", "YT - Maiote", "ZA - África do Sul", "ZM - Zâmbia", "ZW - Zimbábue" }));
+        cmb_pais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "AD - Andorra", "AE - Emirados Árabes Unidos", "AF - Afeganistão", "AG - Antígua e Barbuda", "AI - Anguilla", "AL - Albânia", "AM - Armênia", "AO - Angola", "AQ - Antártica", "AR - Argentina", "AS - Samoa Americana", "AT - Áustria", "AU - Austrália", "AW - Aruba", "AZ - Azerbaijão", "BA - Bósnia e Herzegovina", "BB - Barbados", "BD - Bangladesh", "BE - Bélgica", "BF - Burkina Faso", "BG - Bulgária", "BH - Barém", "BI - Burundi", "BJ - Benin", "BL - São Bartolomeu", "BM - Bermuda", "BN - Brunei", "BO - Bolívia", "BR - Brasil", "BS - Bahamas", "BT - Butão", "BV - Ilha Bouvet", "BW - Botswana", "BY - Belarus", "BZ - Belize", "CA - Canadá", "CC - Ilhas Cocos (Keeling)", "CD - Congo, República Democrática do", "CF - República Centro-Africana", "CG - Congo, República do", "CH - Suíça", "CI - Costa do Marfim", "CK - Ilhas Cook", "CL - Chile", "CM - Camarões", "CN - China", "CO - Colômbia", "CR - Costa Rica", "CU - Cuba", "CV - Cabo Verde", "CW - Curaçao", "CX - Ilha Christmas", "CY - Chipre", "CZ - República Tcheca", "DE - Alemanha", "DJ - Djibuti", "DK - Dinamarca", "DM - Dominica", "DO - República Dominicana", "DZ - Argélia", "EC - Equador", "EE - Estônia", "EG - Egito", "EH - Saara Ocidental", "ER - Eritréia", "ES - Espanha", "ET - Etiópia", "FI - Finlândia", "FJ - Fiji", "FK - Ilhas Falkland (Malvinas)", "FM - Micronésia, Estados Federados da", "FO - Ilhas Feroe", "FR - França", "FX - França Metropolitana", "GA - Gabão", "GB - Reino Unido", "GD - Grenada", "GE - Geórgia", "GF - Guiana Francesa", "GG - Guernsey", "GH - Gana", "GI - Gibraltar", "GL - Greenland", "GM - Gâmbia", "GN - Guiné", "GP - Guadelupe", "GQ - Guiné Equatorial", "GR - Grécia", "GS - Geórgia do Sul e Ilhas", "GT - Guatemala", "GU - Guam", "GW - Guiné-Bissau", "GY - Guiana", "HK - Hong Kong", "HM - Ilhas Heard and McDonald", "HN - Honduras", "HR - Croácia", "HT - Haiti", "HU - Hungria", "ID - Indonésia", "IE - Irlanda", "IL - Israel", "IM - Ilha de Man", "IN - Índia", "IO - Território Britânico do Oceano Índico", "IQ - Iraque", "IR - Irã", "IS - Islândia", "IT - Itália", "JE - Jersey", "JM - Jamaica", "JO - Jordânia", "JP - Japão", "KE - Quênia", "KG - Quirguistão", "KH - Camboja", "KI - Kiribati", "KM - Cômoros", "KN - São Cristóvão e Nevis", "KP - Coreia do Norte", "KR - Coreia do Sul", "KW - Kuwait", "KY - Ilhas Caiman", "KZ - Cazaquistão", "LA - Laos", "LB - Líbano", "LC - Santa Lúcia", "LI - Liechtenstein", "LK - Sri Lanka", "LR - Libéria", "LS - Lesoto", "LT - Lituânia", "LU - Luxemburgo", "LV - Letônia", "LY - Líbia", "MA - Marrocos", "MC - Mônaco", "MD - Moldova", "ME - Montenegro", "MF - Saint Martin", "MG - Madagascar", "MH - Ilhas Marshall", "MK - Macedônia", "ML - Mali", "MM - Birmânia", "MN - Mongólia", "MO - Macao", "MP - Ilhas Marianas do Norte", "MQ - Martinica", "MR - Mauritânia", "MS - Montserrat", "MT - Malta", "mu – Ilhas Maurício", "MV - Maldivas", "MW - Malawi", "MX - México", "MY - Malásia", "MZ - Moçambique", "NA - Namíbia", "NC - Nova Caledônia", "NE - Níger", "NF - Ilha Norfolk", "NG - Nigéria", "NI - Nicarágua", "NL - Holanda", "NO - Noruega", "NP - Nepal", "NR - Nauru", "NU - Niue", "NZ - Nova Zelândia", "OM - Omã", "PA - Panamá", "PE - Peru", "PF - Polinésia Francesa", "PG - Papua Nova Guiné", "PH - Filipinas", "PK - Paquistão", "PL - Polônia", "PM - Saint Pierre e Miquelon", "PN - Ilhas Pitcairn", "PR - Porto Rico", "PS - Faixa de Gaza", "PS - Cisjordânia", "PT - Portugal", "PW - Palau", "PY - Paraguai", "QA - Qatar", "RE - Reunião", "RO - Romênia", "RS - Sérvia", "RU - Rússia", "RW - Ruanda", "SA - Arábia Saudita", "SB - Ilhas Salomão", "SC - Seicheles", "SD - Sudão", "SE - Suécia", "SG - Cingapura", "SH - Santa Helena, Ascensão e Tristão da Cunha", "SI - Eslovênia", "SJ - Svalbard", "SK - Eslováquia", "SL - Serra Leoa", "SM - San Marino", "SN - Senegal", "SO - Somália", "SR - Suriname", "SS - Sudão do Sul", "ST - São Tomé e Príncipe", "SV - El Salvador", "SX - São Martinho", "SY - Síria", "SZ - Suazilândia", "TC - Ilhas Turks e Caicos", "TD - Chad", "TF - Sul da França e Antártica", "TG - Togo", "TH - Tailândia", "TJ - Tadjiquistão", "TK - Toquelau", "TL - Timor-Leste", "TM - Turcomenistão", "TN - Tunísia", "TO - Tonga", "TR - Turquia", "TT - Trinidad e Tobago", "TV - Tuvalu", "TW - Taiwan", "TZ - Tanzânia", "UA - Ucrânia", "UG - Uganda", "UM - Ilhas Menores Distantes dos Estados Unidos", "US - Estados Unidos", "UY - Uruguai", "UZ - Uzbequistão", "VA - Santa Sé (Cidade do Vaticano)", "VC - São Vicente e Granadinas", "VE - Venezuela", "VG - Ilhas Virgens Britânicas", "VI - Ilhas Virgens Americanas", "VN - Vietnã", "VU - Vanuatu", "WF - Ilhas Wallis e Futuna", "WS - Samoa", "XK - Kosovo", "YE - Iêmen", "YT - Maiote", "ZA - África do Sul", "ZM - Zâmbia", "ZW - Zimbábue" }));
 
         jLabel7.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel7.setText("Categoria");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione..", "Auto-Ajuda ", "Ciência ", "Culinária | Gastronomia ", "Esoterismo ", "Fantasia | Ficção ", "Filosofia ", "Guerra ", "História ", "Linguistica ", "Lit. Estrangeira ", "Lit. Infanto-Juvenil ", "Lit. Nacional ", "Medicina ", "Música ", "Política ", "Psicologia ", "Romance ", "Quadrinhos ", "Religião ", "Saúde ", "Sexo ", "Terror ", "Vestibular " }));
+        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "Auto-Ajuda ", "Ciência ", "Culinária | Gastronomia ", "Esoterismo ", "Fantasia | Ficção ", "Filosofia ", "Guerra ", "História ", "Linguistica ", "Lit. Estrangeira ", "Lit. Infanto-Juvenil ", "Lit. Nacional ", "Medicina ", "Música ", "Política ", "Psicologia ", "Romance ", "Quadrinhos ", "Religião ", "Saúde ", "Sexo ", "Terror ", "Vestibular " }));
 
         jLabel8.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel8.setText("ISBN");
@@ -112,20 +124,21 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Broadway", 0, 11)); // NOI18N
         jLabel10.setText("Resumo");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txt_resumo.setColumns(20);
+        txt_resumo.setRows(5);
+        jScrollPane1.setViewportView(txt_resumo);
 
         jLabel11.setFont(new java.awt.Font("Broadway", 0, 11)); // NOI18N
         jLabel11.setText("Sumário");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txt_sumario.setColumns(20);
+        txt_sumario.setRows(5);
+        jScrollPane2.setViewportView(txt_sumario);
 
         jLabel12.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel12.setText("Preço de Custo");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Sim");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +146,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Não");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +157,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel13.setText("Oferta");
 
+        buttonGroup2.add(jRadioButton3);
         jRadioButton3.setText("Sim");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +165,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText("Não");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,21 +185,28 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel17.setText("Preço de Oferta");
 
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        txt_precoOferta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                txt_precoOfertaActionPerformed(evt);
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione..", "10%", "20%", "30%", "40%", "50%", "60%", "70%", "80%", "90%", "100%" }));
+        cmb_margemLucro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" }));
 
         jButton1.setText("Pesquisar");
 
         jButton2.setText("Alterar");
 
         jButton3.setText("Cadastrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Excluir");
+
+        jLabel18.setText("%");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,16 +231,19 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmb_margemLucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel18))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_precoCusto, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_precoOferta, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_precoRevenda, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel17)))
                         .addGap(25, 25, 25))
                     .addGroup(layout.createSequentialGroup()
@@ -235,9 +261,9 @@ public class CadastroLivro extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addGap(6, 6, 6)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_nomeAutor)
+                                    .addComponent(txt_titulo)
+                                    .addComponent(txt_editora, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,21 +277,21 @@ public class CadastroLivro extends javax.swing.JFrame {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(27, 27, 27)
                                             .addComponent(jLabel9)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_anoPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jLabel6)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmb_pais, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
                                             .addComponent(jLabel7)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(23, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,29 +316,29 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_editora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_anoPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmb_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -341,17 +367,18 @@ public class CadastroLivro extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_precoRevenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txt_precoOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmb_margemLucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_precoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)))
@@ -367,28 +394,43 @@ public class CadastroLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+        digital = true;
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
+        digital = false;
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
+        //System.out.println("Sim");
+        oferta = true;
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        // TODO add your handling code here:
+        //System.out.println("Nao");
+        oferta = false;
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txt_nomeAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeAutorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txt_nomeAutorActionPerformed
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void txt_precoOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precoOfertaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_txt_precoOfertaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ControleAdministracao controleAdm = new ControleAdministracao();
+//String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException{
+        Autor autor = new Autor();//temporario
+        Editora editora = new Editora();
+        
+        try {
+            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), autor , editora, txt_anoPublicacao.getText(), cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+        } catch (NegocioException ex) {
+            Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,13 +468,15 @@ public class CadastroLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cmb_categoria;
+    private javax.swing.JComboBox<String> cmb_margemLucro;
+    private javax.swing.JComboBox<String> cmb_pais;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -442,6 +486,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -456,16 +501,16 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txt_anoPublicacao;
+    private javax.swing.JTextField txt_editora;
+    private javax.swing.JTextField txt_isbn;
+    private javax.swing.JTextField txt_nomeAutor;
+    private javax.swing.JTextField txt_precoCusto;
+    private javax.swing.JTextField txt_precoOferta;
+    private javax.swing.JTextField txt_precoRevenda;
+    private javax.swing.JTextField txt_qtd;
+    private javax.swing.JTextArea txt_resumo;
+    private javax.swing.JTextArea txt_sumario;
+    private javax.swing.JTextField txt_titulo;
     // End of variables declaration//GEN-END:variables
 }

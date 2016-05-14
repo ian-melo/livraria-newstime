@@ -1,8 +1,13 @@
 package newstime.controle;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import newstime.DAO.BancoDados;
+import newstime.DAO.LivroDAO;
 import newstime.entidade.Autor;
 import newstime.entidade.Editora;
 import newstime.entidade.Livro;
+import newstime.excecao.BancoException;
 import newstime.excecao.NegocioException;
 
 
@@ -56,9 +61,10 @@ public class ControleAdministracao {
      * @param oferta
      * @param digital
      * @throws newstime.excecao.NegocioException
+     * @throws newstime.excecao.BancoException
 
      */
-    public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException{
+    public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
         //Mudança no diagrama de tipo string autor para tipo Autor autor;
         //Mudança no diagrama de tipo string editora para tipo Editora editora;
       
@@ -82,7 +88,22 @@ public class ControleAdministracao {
         livro.setOferta(oferta);
         livro.setDigital(digital);
         
+       BancoDados bd = new BancoDados();
+        try {
+            //JOptionPane.showMessageDialog(null, bd);
+            //System.out.println(bd);
+            bd.abrirConexao();
+        } catch (BancoException ex) {
+            Logger.getLogger(ControleAdministracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
+        LivroDAO livroDAO = new LivroDAO(bd);
+        
+        livroDAO.inserir(livro);
+        
+        bd.fecharConexao();
+        
+        
     }
     
     

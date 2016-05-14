@@ -21,7 +21,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     /**
      * Creates new form CadastroLivro
      */
-    private boolean oferta, digital;//variaveis para radio buton
+    private boolean oferta = false, digital = false;//variaveis para radio buton
     
     public CadastroLivro() {
         initComponents();
@@ -147,6 +147,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setSelected(true);
         jRadioButton2.setText("Não");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +167,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         });
 
         buttonGroup2.add(jRadioButton4);
+        jRadioButton4.setSelected(true);
         jRadioButton4.setText("Não");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,13 +422,15 @@ public class CadastroLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_precoOfertaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        
         ControleAdministracao controleAdm = new ControleAdministracao();
-//String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException{
         Autor autor = new Autor();//temporario
         Editora editora = new Editora();
         
         try {
             controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), autor , editora, txt_anoPublicacao.getText(), cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            
         } catch (NegocioException ex) {
             Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
         }

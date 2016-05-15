@@ -17,7 +17,7 @@ public class TesteControleAdministracao {
             
             Autor au = new Autor();
             Editora editora = new Editora();
-            
+            /*
             au.setCodigo("TEST2");
             au.setNome("Mendez Souza");
             au.setDataNasci(new Date(1920 - 1900,11,21)); //O Date começa a contar à partir de 1900, portanto sendo necessário a subtração desse valor
@@ -30,14 +30,14 @@ public class TesteControleAdministracao {
             ed.setEndereco("R. dos Lençóis, 142, São Beto, São Paulo, SP");
             ed.setNome("Editora Manzollini");
             ed.setTelefone("(11)1234-1234");
-            
-            //controleAdm.inserirLivro("1234567890122", "titulo2", "Floriano2 Marquendes2", "Editora Manzollini" , "2222", "categoria2", "resumo2", "sumario2", 50, "44.4", "5.5", "6.6", "7.7", true, true);
+            */
+            //controleAdm.inserirLivro("1234567890101", "titulo2", "Floriano2 Marquendes2", "Editora Manzollini" , "2222", "categoria2", "resumo2", "sumario2", 50, "44.4", "5.5", "6.6", "7.7", true, true);
             
             //controleAdm.buscarLivro("1234567890122");
             
-            controleAdm.alterarLivro("1234567890122", "tiffffulo", "Floriano2 Marquendes2", "Editora Manzollini" , "2000", "categoria", "resumoalterado", "sumarialterado", 2500, "99.9", "9.9", "9.9", "9.9", true, true);
+            controleAdm.alterarLivro("1234567890121", "tiffffulo", "Floriano2 Marquendes2", "Editora Manzollini" , "2000", "categoria", "resumoalterado", "sumarialterado", 2500, "99.9", "9.9", "9.9", "9.9", true, true);
             System.out.println("-----------------------------------------------");
-            controleAdm.buscarLivro("1234567890122");
+            //controleAdm.buscarLivro("1234567890121");
             //String teste = null;
             //System.out.println("TESTE: " + teste);
             

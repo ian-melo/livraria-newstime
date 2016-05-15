@@ -344,7 +344,12 @@ public class ControleAdministracao {
     public void alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException{
         BancoDados bd1 = new BancoDados();
         Livro livro = new Livro();
+        
+        LivroDAO livroDAO = new LivroDAO(bd1);
         livro.setIsbn(isbn);
+        livro = livroDAO.buscar(livro);
+        
+        //livro.setID(ID);
         livro.setTitulo(titulo);
         
         Autor au = new Autor();
@@ -373,12 +378,12 @@ public class ControleAdministracao {
         livro.setMargemLucro(Float.parseFloat(margemLucro));
         livro.setOferta(oferta);
         livro.setDigital(digital);
-        
+        //livro.setID(20);
        
 
-        LivroDAO livroDAO = new LivroDAO(bd1);
-        livroDAO.alterar(livro);
         
+        livroDAO.alterar(livro);
+        /*
         //bd.fecharConexao();
         System.out.println("____TESTE____________________________________________________________________1");
         System.out.println("Ano Public. " + anoPublicacao);
@@ -388,15 +393,15 @@ public class ControleAdministracao {
         System.out.println("-5. " + livro.getQtdEstoque());
         System.out.println("Ano Public. " + anoPublicacao);
         System.out.println("Re__sumo: " + livroDAO.listar());
-        System.out.println("Sumario: " + livro.getSumario());
-        System.out.println("-4. " + livro.getMargemLucro());
-        System.out.println("-5. " + livro.getQtdEstoque());
-        System.out.println("____TESTE____________________________________________________________________2");
+
+        */
         
         
     }
     
-    public void removerLivro(){
+    public void removerLivro(String isbn){
+        
+        
         
     }
 }

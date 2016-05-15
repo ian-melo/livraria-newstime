@@ -49,10 +49,10 @@ public class ControleAdministracao {
     /**
      * Cadastra os livros
      * deve ser feito depois dos cadastros de autor e editora
-     * @param isbn
-     * @param autor
-     * @param titulo
-     * @param editora
+     * @param isbn - equivalente ao codigo do livro
+     * @param autor - Objeto autor
+     * @param titulo - o titulo do livro
+     * @param editora - a editora com qual o livro pertence
      * @param anoPublicacao
      * @param categoria
      * @param resumo
@@ -74,7 +74,6 @@ public class ControleAdministracao {
         //Mudança no diagrama de tipo string autor para tipo Autor autor;
         //Mudança no diagrama de tipo string editora para tipo Editora editora;
       
-        
         Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro.setTitulo(titulo);
@@ -148,10 +147,7 @@ public class ControleAdministracao {
         editoraD.inserir(editora);
         
         
-        
     }
-    
-    
     
     public void buscarLivro(String isbn){
         

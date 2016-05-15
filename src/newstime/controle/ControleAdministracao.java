@@ -1,13 +1,17 @@
 package newstime.controle;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import newstime.DAO.AutorDAO;
 import newstime.DAO.BancoDados;
+import newstime.DAO.EditoraDAO;
 import newstime.DAO.LivroDAO;
 import newstime.entidade.Autor;
 import newstime.entidade.Editora;
 import newstime.entidade.Livro;
 import newstime.excecao.BancoException;
+import newstime.excecao.FormatacaoIncorretaException;
 import newstime.excecao.NegocioException;
 
 
@@ -65,9 +69,12 @@ public class ControleAdministracao {
 
      */
     public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
+    //public void inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
+        
         //Mudança no diagrama de tipo string autor para tipo Autor autor;
         //Mudança no diagrama de tipo string editora para tipo Editora editora;
       
+        
         Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro.setTitulo(titulo);
@@ -89,22 +96,61 @@ public class ControleAdministracao {
         livro.setDigital(digital);
         
        BancoDados bd = new BancoDados();
-        try {
+/*      try {
             //JOptionPane.showMessageDialog(null, bd);
             //System.out.println(bd);
             bd.abrirConexao();
         } catch (BancoException ex) {
             Logger.getLogger(ControleAdministracao.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+    */   
         LivroDAO livroDAO = new LivroDAO(bd);
-        
         livroDAO.inserir(livro);
         
-        bd.fecharConexao();
+        //bd.fecharConexao();
         
         
     }
+    
+    public void inserirAutor(String nome, String codigo, String localNasc, String localMorte, String dataNasc, String dataMorte) throws ParseException, BancoException{
+        Autor autor = new Autor();
+        
+        autor.setNome(nome);
+        autor.setCodigo(codigo);
+        autor.setLocalNasci(localNasc);
+        autor.setLocalMorte(localMorte);
+         
+         
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataMort = formato.parse(dataMorte);
+        autor.setDataMorte(dataMort);
+        Date dataNasce = formato.parse(dataNasc);
+        autor.setDataNasci(dataNasce);
+        
+        BancoDados bd = new BancoDados();
+        AutorDAO autorDAO = new AutorDAO(bd);
+        
+        autorDAO.inserir(autor);
+        
+    }
+    
+    public void inserirEditora(String cnpj, String nomeEdi, String endereco, String telefone) throws FormatacaoIncorretaException, BancoException{
+        Editora editora = new Editora();
+        
+        editora.setCnpj(cnpj);
+        editora.setNome(nomeEdi);
+        editora.setEndereco(endereco);
+        editora.setTelefone(telefone);
+        
+        BancoDados bd = new BancoDados();
+        
+        EditoraDAO editoraD = new EditoraDAO(bd);
+        editoraD.inserir(editora);
+        
+        
+        
+    }
+    
     
     
     public void buscarLivro(String isbn){

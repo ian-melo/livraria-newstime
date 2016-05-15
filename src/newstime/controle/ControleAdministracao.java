@@ -25,6 +25,104 @@ public class ControleAdministracao {
      * Atributos
      * @return 
      */
+   
+    private String titulo;
+    private Autor autor;
+    private Editora editora;
+    private int anoPublicacao;
+    private String resumo;
+    private String sumario;
+    private int qtdEstoque;
+    private float precoVenda;
+    private float precoOferta;
+    private float precoCusto;
+    private float margemLucro;
+    private boolean oferta;
+    private boolean digital;
+    private int ID;
+    private int ID_AUTOR;
+    private int ID_EDITORA;
+    private String isbn;
+    private String nomeAutor;
+    private String nomeEditora;
+
+    /* - Para pegar o valor do retorno nos formulario - */
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public int getAnoPublicacao() {
+        return anoPublicacao;
+    }
+
+    public String getResumo() {
+        return resumo;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public int getQtdEstoque() {
+        return qtdEstoque;
+    }
+
+    public float getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public float getPrecoOferta() {
+        return precoOferta;
+    }
+
+    public float getPrecoCusto() {
+        return precoCusto;
+    }
+
+    public float getMargemLucro() {
+        return margemLucro;
+    }
+
+    public boolean isOferta() {
+        return oferta;
+    }
+
+    public boolean isDigital() {
+        return digital;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public int getID_AUTOR() {
+        return ID_AUTOR;
+    }
+
+    public int getID_EDITORA() {
+        return ID_EDITORA;
+    }
+    
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+    
+    public String getNomeEditora() {
+        return nomeEditora;
+    }
+
     
     
     
@@ -149,7 +247,88 @@ public class ControleAdministracao {
         
     }
     
-    public void buscarLivro(String isbn){
+    public void buscarLivro(String isbn) throws BancoException{
+        //CadastroLivro cdl = new CadastroLivro();//Apenas um teste - apagar
+        
+        BancoDados bd = new BancoDados();
+        LivroDAO livroDAO = new LivroDAO(bd);
+        Livro livro = new Livro();
+        Livro livroRetorno = new Livro();
+        
+        livro.setIsbn(isbn);//Envia o isbn do livro
+        
+        livroRetorno = livroDAO.buscar(livro);//Envia objeto livro e retorna um objeto livroRetorno som o livro caso seje encontrado retorna uma exceção se não for
+        
+        /* - Objeto Autor - */
+        System.out.println("Id autor: " + livroRetorno.getID_AUTOR());
+        AutorDAO autorDAO = new AutorDAO(bd);
+        Autor autor = new Autor();
+        autor.setID(livroRetorno.getID_AUTOR());
+        
+        autor = autorDAO.buscarId(autor);
+        
+        System.out.println("______AUTOR_________");
+        System.out.println(autor.getCodigo());
+        System.out.println(autor.getNome());
+        System.out.println(autor.getLocalNasci());
+        System.out.println("____________________");
+        //Para retornar para o form
+        
+        
+        /* - Objeto Editora - */
+         System.out.println("Id editora: " + livroRetorno.getID_EDITORA());
+        EditoraDAO editoraDAO = new EditoraDAO(bd);
+        Editora editora = new Editora();
+        editora.setID(livroRetorno.getID_EDITORA());
+        
+        editora = editoraDAO.buscarId(editora);
+        
+        System.out.println("______EDITORA_______");
+        System.out.println(editora.getCnpj());
+        System.out.println(editora.getNome());
+        System.out.println(editora.getTelefone());
+        System.out.println("____________________");
+        
+        
+        titulo = livroRetorno.getTitulo();
+        //private Autor autor;
+        //private Editora editora;
+        anoPublicacao = livroRetorno.getAnoPublicacao();
+        resumo = livroRetorno.getResumo();
+        sumario = livroRetorno.getSumario();
+        qtdEstoque = livroRetorno.getQtdEstoque();
+        precoVenda = livroRetorno.getPrecoVenda();
+        precoOferta = livroRetorno.getPrecoOferta();
+        precoCusto = livroRetorno.getPrecoCusto();
+        margemLucro = livroRetorno.getMargemLucro();
+        this.isbn = livroRetorno.getIsbn();
+        nomeAutor = autor.getNome();
+        nomeEditora = editora.getNome();
+        
+        //oferta = livroRetorno.get;
+        //digital = livroRetorno.getDigital();
+        //ID;
+        //ID_AUTOR;
+        //ID_EDITORA;
+        
+       
+        
+        
+        
+        
+        
+        
+        //Teste - APAGAR
+        System.out.println("Ano Public. " + anoPublicacao);
+        System.out.println("-2. " + livroRetorno.getResumo());
+        System.out.println("-3. " + livroRetorno.getSumario());
+        System.out.println("-4. " + livroRetorno.getMargemLucro());
+        System.out.println("-5. " + livroRetorno.getQtdEstoque());
+        
+        //List<Object> arrayLivro = new ArrayList();//Teste
+        
+
+        
         
     }
     

@@ -25,7 +25,7 @@ public class ControleBusca {
     public void buscarLivro(String palChave, int criterio, int organizacao){
         BuscaLivro busca = new BuscaLivro();
         
-        System.out.println(busca.buscarLivros(palChave, BuscaLivro.CriterioBusca.EDITORA));//muito temporario
+        System.out.println(busca.buscarLivros(palChave, BuscaLivro.CriterioBusca.EDITORA));//temporario
     }
     
     /**

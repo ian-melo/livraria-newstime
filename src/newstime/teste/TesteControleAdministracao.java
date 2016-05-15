@@ -13,17 +13,20 @@ public class TesteControleAdministracao {
     public static void main(String[] args) throws NegocioException, BancoException {
             ControleAdministracao controleAdm = new ControleAdministracao();
             
-            Autor autor = new Autor();
-            Editora editora = new Editora();
+            //Autor autor = new Autor();
+            //Editora editora = new Editora();
+            //controleAdm.inserirLivro("1234567890121", "titulo", autor, editora , "2222", "categoria", "resumo", "sumario", 33, "44.4", "5.5", "6.6", "7.7", true, true);
             
-            //erro não conecta banco
-            controleAdm.inserirLivro("111", "titulo", autor, editora , "2222", "categoria", "resumo", "sumario", 33, "44.4", "5.5", "6.6", "7.7", true, true);
+            controleAdm.buscarLivro("1234567890121");
             
+            //String teste = null;
+            //System.out.println("TESTE: " + teste);
             
             
 
-    
     }
+    
+
 
     
 }

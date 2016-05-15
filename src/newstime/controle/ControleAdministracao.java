@@ -25,7 +25,6 @@ public class ControleAdministracao {
      * Atributos
      * @return 
      */
-   
     private String titulo;
     private Autor autor;
     private Editora editora;
@@ -46,7 +45,6 @@ public class ControleAdministracao {
     private String nomeAutor;
     private String nomeEditora;
 
-    /* - Para pegar o valor do retorno nos formulario - */
     public String getIsbn() {
         return isbn;
     }
@@ -166,18 +164,29 @@ public class ControleAdministracao {
      * @throws newstime.excecao.BancoException
 
      */
-    public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
-    //public void inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
+    //public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
+    public void inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
         
         //Mudança no diagrama de tipo string autor para tipo Autor autor;
         //Mudança no diagrama de tipo string editora para tipo Editora editora;
-      
+        BancoDados bd = new BancoDados();
         Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro.setTitulo(titulo);
         
-        livro.setAutor(autor);// objeto tipo autor
-        livro.setEditora(editora);
+        Autor au = new Autor();
+        au.setNome(autor);//Coloca o naome da autor dentro do objeto
+        AutorDAO autorDAO = new AutorDAO(bd);
+        au = autorDAO.buscar(au);//envia o objeto com apenas o nome da autor e retorna o ojeto inteiro se caso o localize
+        
+        Editora ed = new Editora();
+        ed.setNome(editora);//Coloca o naome da editora dentro do objeto
+        EditoraDAO editoraDAO = new EditoraDAO(bd);
+        ed = editoraDAO.buscar(ed);//envia o objeto com apenas o nome da editora e retorna o ojeto inteiro se caso o localize
+        
+        
+        livro.setAutor(au);// seta o objeto autor dentro de livro
+        livro.setEditora(ed);//seta o objeto editora dentro de livro
         
         livro.setAnoPublicacao(qtdEstoque);
         livro.setCategoria(Livro.CategoriaLivro.ARTES);//mudar verificar//erro
@@ -192,7 +201,7 @@ public class ControleAdministracao {
         livro.setOferta(oferta);
         livro.setDigital(digital);
         
-       BancoDados bd = new BancoDados();
+       
 /*      try {
             //JOptionPane.showMessageDialog(null, bd);
             //System.out.println(bd);
@@ -304,7 +313,7 @@ public class ControleAdministracao {
         this.isbn = livroRetorno.getIsbn();
         nomeAutor = autor.getNome();
         nomeEditora = editora.getNome();
-        
+        //Não terminado
         //oferta = livroRetorno.get;
         //digital = livroRetorno.getDigital();
         //ID;
@@ -320,8 +329,8 @@ public class ControleAdministracao {
         
         //Teste - APAGAR
         System.out.println("Ano Public. " + anoPublicacao);
-        System.out.println("-2. " + livroRetorno.getResumo());
-        System.out.println("-3. " + livroRetorno.getSumario());
+        System.out.println("Resumo: " + livroRetorno.getResumo());
+        System.out.println("Sumario: " + livroRetorno.getSumario());
         System.out.println("-4. " + livroRetorno.getMargemLucro());
         System.out.println("-5. " + livroRetorno.getQtdEstoque());
         
@@ -332,7 +341,58 @@ public class ControleAdministracao {
         
     }
     
-    public void alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital){
+    public void alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException{
+        BancoDados bd1 = new BancoDados();
+        Livro livro = new Livro();
+        livro.setIsbn(isbn);
+        livro.setTitulo(titulo);
+        
+        Autor au = new Autor();
+        au.setNome(autor);//Coloca o naome da autor dentro do objeto
+        AutorDAO autorDAO = new AutorDAO(bd1);
+        au = autorDAO.buscar(au);//envia o objeto com apenas o nome da autor e retorna o ojeto inteiro se caso o localize
+        
+        Editora ed = new Editora();
+        ed.setNome(editora);//Coloca o naome da editora dentro do objeto
+        EditoraDAO editoraDAO = new EditoraDAO(bd1);
+        ed = editoraDAO.buscar(ed);//envia o objeto com apenas o nome da editora e retorna o ojeto inteiro se caso o localize
+        
+        
+        livro.setAutor(au);// seta o objeto autor dentro de livro
+        livro.setEditora(ed);//seta o objeto editora dentro de livro
+        
+        livro.setAnoPublicacao(qtdEstoque);
+        livro.setCategoria(Livro.CategoriaLivro.ARTES);//mudar verificar//erro
+        
+        livro.setResumo(resumo);
+        livro.setSumario(sumario);
+        livro.setQtdEstoque(qtdEstoque);
+        livro.setPrecoVenda(Float.parseFloat(precoVenda));
+        livro.setPrecoOferta(Float.parseFloat(precoOferta));
+        livro.setPrecoCusto(Float.parseFloat(precoCusto));
+        livro.setMargemLucro(Float.parseFloat(margemLucro));
+        livro.setOferta(oferta);
+        livro.setDigital(digital);
+        
+       
+
+        LivroDAO livroDAO = new LivroDAO(bd1);
+        livroDAO.alterar(livro);
+        
+        //bd.fecharConexao();
+        System.out.println("____TESTE____________________________________________________________________1");
+        System.out.println("Ano Public. " + anoPublicacao);
+        System.out.println("Resumo: " + livro.getResumo());
+        System.out.println("Sumario: " + livro.getSumario());
+        System.out.println("-4. " + livro.getMargemLucro());
+        System.out.println("-5. " + livro.getQtdEstoque());
+        System.out.println("Ano Public. " + anoPublicacao);
+        System.out.println("Re__sumo: " + livroDAO.listar());
+        System.out.println("Sumario: " + livro.getSumario());
+        System.out.println("-4. " + livro.getMargemLucro());
+        System.out.println("-5. " + livro.getQtdEstoque());
+        System.out.println("____TESTE____________________________________________________________________2");
+        
         
     }
     

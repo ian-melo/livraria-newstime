@@ -423,7 +423,7 @@ public class CadastroLivro extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-        
+        /*
         ControleAdministracao controleAdm = new ControleAdministracao();
         Autor autor = new Autor();//temporario
         Editora editora = new Editora();
@@ -434,6 +434,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         } catch (NegocioException ex) {
             Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -67,15 +67,14 @@ public class TesteCarrinho {
             return;
         }
         
-        Carrinho c = new Carrinho();
         //Adição de itens ao carrinho
-        c.adicionarItem(i);
-        c.adicionarItem(i2);
-        c.adicionarItem(i3);
+        Carrinho.adicionarItem(i);
+        Carrinho.adicionarItem(i2);
+        Carrinho.adicionarItem(i3);
         
         //Exibição de quantidade dos itens do carrinho
         System.out.println("Exibição 1");
-        for(ItemPedido x: c.getItens())
+        for(ItemPedido x: Carrinho.getItens())
             System.out.println(x.getQuantidade());
         
         //Mudança do item 1
@@ -86,27 +85,27 @@ public class TesteCarrinho {
         }
         
         //Alteração do carrinho
-        c.alterarItem(i);
+        Carrinho.alterarItem(i);
         
         //Exibição de quantidade dos itens do carrinho
         System.out.println("Exibição 2");
-        for(ItemPedido x: c.getItens())
+        for(ItemPedido x: Carrinho.getItens())
             System.out.println(x.getQuantidade());
         
         //Remoção do item 2 do carrinho
-        c.retirarItem(i2);
+        Carrinho.retirarItem(i2);
         
         //Exibição de quantidade dos itens do carrinho
         System.out.println("Exibição 3");
-        for(ItemPedido x: c.getItens())
+        for(ItemPedido x: Carrinho.getItens())
             System.out.println(x.getQuantidade());
         
         //Remoção total
-        c.limparCarrinho();
+        Carrinho.limparCarrinho();
         
         //Exibição de quantidade dos itens do carrinho
         System.out.println("Exibição 4");
-        for(ItemPedido x: c.getItens())
+        for(ItemPedido x: Carrinho.getItens())
             System.out.println(x.getQuantidade());
     }
 }

@@ -14,20 +14,20 @@ public class Carrinho {
     /**
      * Itens do carrinho de compras
      */
-    private final ArrayList<ItemPedido> itens = new ArrayList<>();
+    private static final ArrayList<ItemPedido> itens = new ArrayList<>();
     
     /**
      * Adiciona o item ao carrinho de compras
      * @param item Item do carrinho de compras
      */
-    public void adicionarItem(ItemPedido item) {
+    public static void adicionarItem(ItemPedido item) {
         itens.add(item);
     }
     /**
      * Altera o item do carrinho de compras
      * @param item Item do carrinho de compras
      */
-    public void alterarItem(ItemPedido item) {
+    public static void alterarItem(ItemPedido item) {
         try {
             //Busca a posição
             int p = itens.indexOf(item);
@@ -39,13 +39,13 @@ public class Carrinho {
      * Retira o item do carrinho de compras
      * @param item Item do carrinho de compras
      */
-    public void retirarItem(ItemPedido item) {
+    public static void retirarItem(ItemPedido item) {
         itens.remove(item);
     }
     /**
      * Remove todos os itens do carrinho de compras
      */
-    public void limparCarrinho() {
+    public static void limparCarrinho() {
         itens.clear();
     }
     
@@ -54,7 +54,7 @@ public class Carrinho {
      * Retorna os itens do carrinho de compras
      * @return Itens do carrinho de compras
      */
-    public ArrayList<ItemPedido> getItens() {
+    public static ArrayList<ItemPedido> getItens() {
         return itens;
     }   
 }

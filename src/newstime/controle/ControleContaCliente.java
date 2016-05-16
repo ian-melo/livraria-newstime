@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import newstime.entidade.Cliente;
 import newstime.entidade.Conta;
+import newstime.entidade.Endereco;
 import newstime.excecao.BancoException;
 import newstime.excecao.FormatacaoIncorretaException;
 import newstime.excecao.NegocioException;
@@ -35,7 +36,10 @@ public class ControleContaCliente {
      * @throws BancoException 
      * @throws newstime.excecao.FormatacaoIncorretaException 
      */
-    public boolean cadastrarCliente(String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, String endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
+    
+    //public boolean cadastrarCliente(String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, String endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
+    public boolean cadastrarCliente(String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, Endereco endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
+        /* Endereco altera do de tipo String para tipo Endereco */
         Conta conta = new Conta();
         Cliente cliente = new Cliente();
         
@@ -55,8 +59,14 @@ public class ControleContaCliente {
         cliente.setCelular(celular);
         cliente.setEndereco(null);//mudar - temporario
         cliente.setPromocional(promocional);
-                
+        
+        cliente.setEndereco(endereco);
+        
         conta.cadastrar(cliente);//enviando obijeto
+        
+        
+        
+        
         return false;//temporario
     }
     

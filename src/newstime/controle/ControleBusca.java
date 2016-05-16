@@ -1,5 +1,7 @@
 package newstime.controle;
 
+import newstime.entidade.BuscaLivro;
+
 
 /**
  *Está classe gerencia a busca do livro
@@ -21,7 +23,9 @@ public class ControleBusca {
      * A forma que será organizado
      */
     public void buscarLivro(String palChave, int criterio, int organizacao){
+        BuscaLivro busca = new BuscaLivro();
         
+        System.out.println(busca.buscarLivros(palChave, BuscaLivro.CriterioBusca.EDITORA));//temporario
     }
     
     /**

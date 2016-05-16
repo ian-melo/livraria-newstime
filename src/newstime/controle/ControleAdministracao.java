@@ -38,12 +38,13 @@ public class ControleAdministracao {
     private float margemLucro;
     private boolean oferta;
     private boolean digital;
-    private int ID;
-    private int ID_AUTOR;
-    private int ID_EDITORA;
+    private int ID;        //Só usar se necessario
+    private int ID_AUTOR;  //Só usar se necessario
+    private int ID_EDITORA;//Só usar se necessario
     private String isbn;
     private String nomeAutor;
     private String nomeEditora;
+    private String categoria;
 
     public String getIsbn() {
         return isbn;
@@ -120,6 +121,10 @@ public class ControleAdministracao {
     public String getNomeEditora() {
         return nomeEditora;
     }
+    
+    public String getCategoria() {
+        return categoria;
+    }
 
     
     
@@ -165,7 +170,7 @@ public class ControleAdministracao {
 
      */
     //public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
-    public void inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
+    public boolean inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
         
         //Mudança no diagrama de tipo string autor para tipo Autor autor;
         //Mudança no diagrama de tipo string editora para tipo Editora editora;
@@ -188,7 +193,7 @@ public class ControleAdministracao {
         livro.setAutor(au);// seta o objeto autor dentro de livro
         livro.setEditora(ed);//seta o objeto editora dentro de livro
         
-        livro.setAnoPublicacao(qtdEstoque);
+        livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
         livro.setCategoria(Livro.CategoriaLivro.ARTES);//mudar verificar//erro
         
         livro.setResumo(resumo);
@@ -215,7 +220,7 @@ public class ControleAdministracao {
         
         //bd.fecharConexao();
         
-        
+        return true;
     }
     
     public void inserirAutor(String nome, String codigo, String localNasc, String localMorte, String dataNasc, String dataMorte) throws ParseException, BancoException{
@@ -313,6 +318,7 @@ public class ControleAdministracao {
         this.isbn = livroRetorno.getIsbn();
         nomeAutor = autor.getNome();
         nomeEditora = editora.getNome();
+        categoria = livroRetorno.getCategoria().toString();
         //Não terminado
         //oferta = livroRetorno.get;
         //digital = livroRetorno.getDigital();
@@ -341,7 +347,7 @@ public class ControleAdministracao {
         
     }
     
-    public void alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException{
+    public boolean alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException{
         BancoDados bd1 = new BancoDados();
         Livro livro = new Livro();
         
@@ -396,12 +402,16 @@ public class ControleAdministracao {
 
         */
         
-        
+        return true;
     }
     
-    public void removerLivro(String isbn){
-        
-        
-        
+    public void removerLivro(String isbn) throws BancoException{
+        BancoDados bd = new BancoDados();
+        Livro livro = new Livro();
+        LivroDAO livroDAO = new LivroDAO(bd);
+        livro.setIsbn(isbn);
+        livro = livroDAO.buscar(livro);
+        livroDAO.excluir(livro);
+
     }
 }

@@ -37,14 +37,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdo_ofertSim" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdo_ofertaNao" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdo_digitalSim" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                              <Component id="rdo_digitalNao" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -61,7 +61,7 @@
                               <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="104" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -96,42 +96,47 @@
                                   <Component id="txt_editora" alignment="0" min="-2" pref="376" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
-                                  <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="526" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel8" min="-2" pref="31" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txt_isbn" min="-2" pref="144" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txt_qtd" min="-2" pref="72" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="txt_anoPublicacao" min="-2" pref="62" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cmb_pais" min="-2" pref="124" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cmb_categoria" min="-2" pref="116" max="-2" attributes="0"/>
-                                      </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
+                              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="526" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="cmb_dia" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmb_mes" pref="74" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmb_ano" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cmb_categoria" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel8" min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_isbn" min="-2" pref="153" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txt_qtd" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -142,17 +147,19 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="109" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_cadastrar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="109" max="-2" attributes="0"/>
+                      <Component id="btn_pesquisar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="109" max="-2" attributes="0"/>
+                      <Component id="btn_alterar" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btn_excluir" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton5" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -178,18 +185,20 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_anoPublicacao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cmb_pais" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmb_categoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmb_dia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmb_mes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmb_ano" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_isbn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_qtd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_isbn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel10" min="-2" pref="22" max="-2" attributes="0"/>
@@ -205,15 +214,15 @@
                       <Component id="jLabel14" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_digitalSim" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_digitalNao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_ofertSim" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rdo_ofertaNao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
@@ -244,10 +253,11 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_pesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_alterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_excluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -305,278 +315,6 @@
         <Property name="text" type="java.lang.String" value="Ano de Publica&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_anoPublicacao">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Broadway" size="11" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Pa&#xed;s"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="cmb_pais">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="251">
-            <StringItem index="0" value="Selecione.."/>
-            <StringItem index="1" value="AD - Andorra"/>
-            <StringItem index="2" value="AE - Emirados &#xc1;rabes Unidos"/>
-            <StringItem index="3" value="AF - Afeganist&#xe3;o"/>
-            <StringItem index="4" value="AG - Ant&#xed;gua e Barbuda"/>
-            <StringItem index="5" value="AI - Anguilla"/>
-            <StringItem index="6" value="AL - Alb&#xe2;nia"/>
-            <StringItem index="7" value="AM - Arm&#xea;nia"/>
-            <StringItem index="8" value="AO - Angola"/>
-            <StringItem index="9" value="AQ - Ant&#xe1;rtica"/>
-            <StringItem index="10" value="AR - Argentina"/>
-            <StringItem index="11" value="AS - Samoa Americana"/>
-            <StringItem index="12" value="AT - &#xc1;ustria"/>
-            <StringItem index="13" value="AU - Austr&#xe1;lia"/>
-            <StringItem index="14" value="AW - Aruba"/>
-            <StringItem index="15" value="AZ - Azerbaij&#xe3;o"/>
-            <StringItem index="16" value="BA - B&#xf3;snia e Herzegovina"/>
-            <StringItem index="17" value="BB - Barbados"/>
-            <StringItem index="18" value="BD - Bangladesh"/>
-            <StringItem index="19" value="BE - B&#xe9;lgica"/>
-            <StringItem index="20" value="BF - Burkina Faso"/>
-            <StringItem index="21" value="BG - Bulg&#xe1;ria"/>
-            <StringItem index="22" value="BH - Bar&#xe9;m"/>
-            <StringItem index="23" value="BI - Burundi"/>
-            <StringItem index="24" value="BJ - Benin"/>
-            <StringItem index="25" value="BL - S&#xe3;o Bartolomeu"/>
-            <StringItem index="26" value="BM - Bermuda"/>
-            <StringItem index="27" value="BN - Brunei"/>
-            <StringItem index="28" value="BO - Bol&#xed;via"/>
-            <StringItem index="29" value="BR - Brasil"/>
-            <StringItem index="30" value="BS - Bahamas"/>
-            <StringItem index="31" value="BT - But&#xe3;o"/>
-            <StringItem index="32" value="BV - Ilha Bouvet"/>
-            <StringItem index="33" value="BW - Botswana"/>
-            <StringItem index="34" value="BY - Belarus"/>
-            <StringItem index="35" value="BZ - Belize"/>
-            <StringItem index="36" value="CA - Canad&#xe1;"/>
-            <StringItem index="37" value="CC - Ilhas Cocos (Keeling)"/>
-            <StringItem index="38" value="CD - Congo, Rep&#xfa;blica Democr&#xe1;tica do"/>
-            <StringItem index="39" value="CF - Rep&#xfa;blica Centro-Africana"/>
-            <StringItem index="40" value="CG - Congo, Rep&#xfa;blica do"/>
-            <StringItem index="41" value="CH - Su&#xed;&#xe7;a"/>
-            <StringItem index="42" value="CI - Costa do Marfim"/>
-            <StringItem index="43" value="CK - Ilhas Cook"/>
-            <StringItem index="44" value="CL - Chile"/>
-            <StringItem index="45" value="CM - Camar&#xf5;es"/>
-            <StringItem index="46" value="CN - China"/>
-            <StringItem index="47" value="CO - Col&#xf4;mbia"/>
-            <StringItem index="48" value="CR - Costa Rica"/>
-            <StringItem index="49" value="CU - Cuba"/>
-            <StringItem index="50" value="CV - Cabo Verde"/>
-            <StringItem index="51" value="CW - Cura&#xe7;ao"/>
-            <StringItem index="52" value="CX - Ilha Christmas"/>
-            <StringItem index="53" value="CY - Chipre"/>
-            <StringItem index="54" value="CZ - Rep&#xfa;blica Tcheca"/>
-            <StringItem index="55" value="DE - Alemanha"/>
-            <StringItem index="56" value="DJ - Djibuti"/>
-            <StringItem index="57" value="DK - Dinamarca"/>
-            <StringItem index="58" value="DM - Dominica"/>
-            <StringItem index="59" value="DO - Rep&#xfa;blica Dominicana"/>
-            <StringItem index="60" value="DZ - Arg&#xe9;lia"/>
-            <StringItem index="61" value="EC - Equador"/>
-            <StringItem index="62" value="EE - Est&#xf4;nia"/>
-            <StringItem index="63" value="EG - Egito"/>
-            <StringItem index="64" value="EH - Saara Ocidental"/>
-            <StringItem index="65" value="ER - Eritr&#xe9;ia"/>
-            <StringItem index="66" value="ES - Espanha"/>
-            <StringItem index="67" value="ET - Eti&#xf3;pia"/>
-            <StringItem index="68" value="FI - Finl&#xe2;ndia"/>
-            <StringItem index="69" value="FJ - Fiji"/>
-            <StringItem index="70" value="FK - Ilhas Falkland (Malvinas)"/>
-            <StringItem index="71" value="FM - Micron&#xe9;sia, Estados Federados da"/>
-            <StringItem index="72" value="FO - Ilhas Feroe"/>
-            <StringItem index="73" value="FR - Fran&#xe7;a"/>
-            <StringItem index="74" value="FX - Fran&#xe7;a Metropolitana"/>
-            <StringItem index="75" value="GA - Gab&#xe3;o"/>
-            <StringItem index="76" value="GB - Reino Unido"/>
-            <StringItem index="77" value="GD - Grenada"/>
-            <StringItem index="78" value="GE - Ge&#xf3;rgia"/>
-            <StringItem index="79" value="GF - Guiana Francesa"/>
-            <StringItem index="80" value="GG - Guernsey"/>
-            <StringItem index="81" value="GH - Gana"/>
-            <StringItem index="82" value="GI - Gibraltar"/>
-            <StringItem index="83" value="GL - Greenland"/>
-            <StringItem index="84" value="GM - G&#xe2;mbia"/>
-            <StringItem index="85" value="GN - Guin&#xe9;"/>
-            <StringItem index="86" value="GP - Guadelupe"/>
-            <StringItem index="87" value="GQ - Guin&#xe9; Equatorial"/>
-            <StringItem index="88" value="GR - Gr&#xe9;cia"/>
-            <StringItem index="89" value="GS - Ge&#xf3;rgia do Sul e Ilhas"/>
-            <StringItem index="90" value="GT - Guatemala"/>
-            <StringItem index="91" value="GU - Guam"/>
-            <StringItem index="92" value="GW - Guin&#xe9;-Bissau"/>
-            <StringItem index="93" value="GY - Guiana"/>
-            <StringItem index="94" value="HK - Hong Kong"/>
-            <StringItem index="95" value="HM - Ilhas Heard and McDonald"/>
-            <StringItem index="96" value="HN - Honduras"/>
-            <StringItem index="97" value="HR - Cro&#xe1;cia"/>
-            <StringItem index="98" value="HT - Haiti"/>
-            <StringItem index="99" value="HU - Hungria"/>
-            <StringItem index="100" value="ID - Indon&#xe9;sia"/>
-            <StringItem index="101" value="IE - Irlanda"/>
-            <StringItem index="102" value="IL - Israel"/>
-            <StringItem index="103" value="IM - Ilha de Man"/>
-            <StringItem index="104" value="IN - &#xcd;ndia"/>
-            <StringItem index="105" value="IO - Territ&#xf3;rio Brit&#xe2;nico do Oceano &#xcd;ndico"/>
-            <StringItem index="106" value="IQ - Iraque"/>
-            <StringItem index="107" value="IR - Ir&#xe3;"/>
-            <StringItem index="108" value="IS - Isl&#xe2;ndia"/>
-            <StringItem index="109" value="IT - It&#xe1;lia"/>
-            <StringItem index="110" value="JE - Jersey"/>
-            <StringItem index="111" value="JM - Jamaica"/>
-            <StringItem index="112" value="JO - Jord&#xe2;nia"/>
-            <StringItem index="113" value="JP - Jap&#xe3;o"/>
-            <StringItem index="114" value="KE - Qu&#xea;nia"/>
-            <StringItem index="115" value="KG - Quirguist&#xe3;o"/>
-            <StringItem index="116" value="KH - Camboja"/>
-            <StringItem index="117" value="KI - Kiribati"/>
-            <StringItem index="118" value="KM - C&#xf4;moros"/>
-            <StringItem index="119" value="KN - S&#xe3;o Crist&#xf3;v&#xe3;o e Nevis"/>
-            <StringItem index="120" value="KP - Coreia do Norte"/>
-            <StringItem index="121" value="KR - Coreia do Sul"/>
-            <StringItem index="122" value="KW - Kuwait"/>
-            <StringItem index="123" value="KY - Ilhas Caiman"/>
-            <StringItem index="124" value="KZ - Cazaquist&#xe3;o"/>
-            <StringItem index="125" value="LA - Laos"/>
-            <StringItem index="126" value="LB - L&#xed;bano"/>
-            <StringItem index="127" value="LC - Santa L&#xfa;cia"/>
-            <StringItem index="128" value="LI - Liechtenstein"/>
-            <StringItem index="129" value="LK - Sri Lanka"/>
-            <StringItem index="130" value="LR - Lib&#xe9;ria"/>
-            <StringItem index="131" value="LS - Lesoto"/>
-            <StringItem index="132" value="LT - Litu&#xe2;nia"/>
-            <StringItem index="133" value="LU - Luxemburgo"/>
-            <StringItem index="134" value="LV - Let&#xf4;nia"/>
-            <StringItem index="135" value="LY - L&#xed;bia"/>
-            <StringItem index="136" value="MA - Marrocos"/>
-            <StringItem index="137" value="MC - M&#xf4;naco"/>
-            <StringItem index="138" value="MD - Moldova"/>
-            <StringItem index="139" value="ME - Montenegro"/>
-            <StringItem index="140" value="MF - Saint Martin"/>
-            <StringItem index="141" value="MG - Madagascar"/>
-            <StringItem index="142" value="MH - Ilhas Marshall"/>
-            <StringItem index="143" value="MK - Maced&#xf4;nia"/>
-            <StringItem index="144" value="ML - Mali"/>
-            <StringItem index="145" value="MM - Birm&#xe2;nia"/>
-            <StringItem index="146" value="MN - Mong&#xf3;lia"/>
-            <StringItem index="147" value="MO - Macao"/>
-            <StringItem index="148" value="MP - Ilhas Marianas do Norte"/>
-            <StringItem index="149" value="MQ - Martinica"/>
-            <StringItem index="150" value="MR - Maurit&#xe2;nia"/>
-            <StringItem index="151" value="MS - Montserrat"/>
-            <StringItem index="152" value="MT - Malta"/>
-            <StringItem index="153" value="mu &#x2013; Ilhas Maur&#xed;cio"/>
-            <StringItem index="154" value="MV - Maldivas"/>
-            <StringItem index="155" value="MW - Malawi"/>
-            <StringItem index="156" value="MX - M&#xe9;xico"/>
-            <StringItem index="157" value="MY - Mal&#xe1;sia"/>
-            <StringItem index="158" value="MZ - Mo&#xe7;ambique"/>
-            <StringItem index="159" value="NA - Nam&#xed;bia"/>
-            <StringItem index="160" value="NC - Nova Caled&#xf4;nia"/>
-            <StringItem index="161" value="NE - N&#xed;ger"/>
-            <StringItem index="162" value="NF - Ilha Norfolk"/>
-            <StringItem index="163" value="NG - Nig&#xe9;ria"/>
-            <StringItem index="164" value="NI - Nicar&#xe1;gua"/>
-            <StringItem index="165" value="NL - Holanda"/>
-            <StringItem index="166" value="NO - Noruega"/>
-            <StringItem index="167" value="NP - Nepal"/>
-            <StringItem index="168" value="NR - Nauru"/>
-            <StringItem index="169" value="NU - Niue"/>
-            <StringItem index="170" value="NZ - Nova Zel&#xe2;ndia"/>
-            <StringItem index="171" value="OM - Om&#xe3;"/>
-            <StringItem index="172" value="PA - Panam&#xe1;"/>
-            <StringItem index="173" value="PE - Peru"/>
-            <StringItem index="174" value="PF - Polin&#xe9;sia Francesa"/>
-            <StringItem index="175" value="PG - Papua Nova Guin&#xe9;"/>
-            <StringItem index="176" value="PH - Filipinas"/>
-            <StringItem index="177" value="PK - Paquist&#xe3;o"/>
-            <StringItem index="178" value="PL - Pol&#xf4;nia"/>
-            <StringItem index="179" value="PM - Saint Pierre e Miquelon"/>
-            <StringItem index="180" value="PN - Ilhas Pitcairn"/>
-            <StringItem index="181" value="PR - Porto Rico"/>
-            <StringItem index="182" value="PS - Faixa de Gaza"/>
-            <StringItem index="183" value="PS - Cisjord&#xe2;nia"/>
-            <StringItem index="184" value="PT - Portugal"/>
-            <StringItem index="185" value="PW - Palau"/>
-            <StringItem index="186" value="PY - Paraguai"/>
-            <StringItem index="187" value="QA - Qatar"/>
-            <StringItem index="188" value="RE - Reuni&#xe3;o"/>
-            <StringItem index="189" value="RO - Rom&#xea;nia"/>
-            <StringItem index="190" value="RS - S&#xe9;rvia"/>
-            <StringItem index="191" value="RU - R&#xfa;ssia"/>
-            <StringItem index="192" value="RW - Ruanda"/>
-            <StringItem index="193" value="SA - Ar&#xe1;bia Saudita"/>
-            <StringItem index="194" value="SB - Ilhas Salom&#xe3;o"/>
-            <StringItem index="195" value="SC - Seicheles"/>
-            <StringItem index="196" value="SD - Sud&#xe3;o"/>
-            <StringItem index="197" value="SE - Su&#xe9;cia"/>
-            <StringItem index="198" value="SG - Cingapura"/>
-            <StringItem index="199" value="SH - Santa Helena, Ascens&#xe3;o e Trist&#xe3;o da Cunha"/>
-            <StringItem index="200" value="SI - Eslov&#xea;nia"/>
-            <StringItem index="201" value="SJ - Svalbard"/>
-            <StringItem index="202" value="SK - Eslov&#xe1;quia"/>
-            <StringItem index="203" value="SL - Serra Leoa"/>
-            <StringItem index="204" value="SM - San Marino"/>
-            <StringItem index="205" value="SN - Senegal"/>
-            <StringItem index="206" value="SO - Som&#xe1;lia"/>
-            <StringItem index="207" value="SR - Suriname"/>
-            <StringItem index="208" value="SS - Sud&#xe3;o do Sul"/>
-            <StringItem index="209" value="ST - S&#xe3;o Tom&#xe9; e Pr&#xed;ncipe"/>
-            <StringItem index="210" value="SV - El Salvador"/>
-            <StringItem index="211" value="SX - S&#xe3;o Martinho"/>
-            <StringItem index="212" value="SY - S&#xed;ria"/>
-            <StringItem index="213" value="SZ - Suazil&#xe2;ndia"/>
-            <StringItem index="214" value="TC - Ilhas Turks e Caicos"/>
-            <StringItem index="215" value="TD - Chad"/>
-            <StringItem index="216" value="TF - Sul da Fran&#xe7;a e Ant&#xe1;rtica"/>
-            <StringItem index="217" value="TG - Togo"/>
-            <StringItem index="218" value="TH - Tail&#xe2;ndia"/>
-            <StringItem index="219" value="TJ - Tadjiquist&#xe3;o"/>
-            <StringItem index="220" value="TK - Toquelau"/>
-            <StringItem index="221" value="TL - Timor-Leste"/>
-            <StringItem index="222" value="TM - Turcomenist&#xe3;o"/>
-            <StringItem index="223" value="TN - Tun&#xed;sia"/>
-            <StringItem index="224" value="TO - Tonga"/>
-            <StringItem index="225" value="TR - Turquia"/>
-            <StringItem index="226" value="TT - Trinidad e Tobago"/>
-            <StringItem index="227" value="TV - Tuvalu"/>
-            <StringItem index="228" value="TW - Taiwan"/>
-            <StringItem index="229" value="TZ - Tanz&#xe2;nia"/>
-            <StringItem index="230" value="UA - Ucr&#xe2;nia"/>
-            <StringItem index="231" value="UG - Uganda"/>
-            <StringItem index="232" value="UM - Ilhas Menores Distantes dos Estados Unidos"/>
-            <StringItem index="233" value="US - Estados Unidos"/>
-            <StringItem index="234" value="UY - Uruguai"/>
-            <StringItem index="235" value="UZ - Uzbequist&#xe3;o"/>
-            <StringItem index="236" value="VA - Santa S&#xe9; (Cidade do Vaticano)"/>
-            <StringItem index="237" value="VC - S&#xe3;o Vicente e Granadinas"/>
-            <StringItem index="238" value="VE - Venezuela"/>
-            <StringItem index="239" value="VG - Ilhas Virgens Brit&#xe2;nicas"/>
-            <StringItem index="240" value="VI - Ilhas Virgens Americanas"/>
-            <StringItem index="241" value="VN - Vietn&#xe3;"/>
-            <StringItem index="242" value="VU - Vanuatu"/>
-            <StringItem index="243" value="WF - Ilhas Wallis e Futuna"/>
-            <StringItem index="244" value="WS - Samoa"/>
-            <StringItem index="245" value="XK - Kosovo"/>
-            <StringItem index="246" value="YE - I&#xea;men"/>
-            <StringItem index="247" value="YT - Maiote"/>
-            <StringItem index="248" value="ZA - &#xc1;frica do Sul"/>
-            <StringItem index="249" value="ZM - Z&#xe2;mbia"/>
-            <StringItem index="250" value="ZW - Zimb&#xe1;bue"/>
-          </StringArray>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -588,31 +326,34 @@
     <Component class="javax.swing.JComboBox" name="cmb_categoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="24">
+          <StringArray count="27">
             <StringItem index="0" value="Selecione.."/>
-            <StringItem index="1" value="Auto-Ajuda "/>
-            <StringItem index="2" value="Ci&#xea;ncia "/>
-            <StringItem index="3" value="Culin&#xe1;ria | Gastronomia "/>
-            <StringItem index="4" value="Esoterismo "/>
-            <StringItem index="5" value="Fantasia | Fic&#xe7;&#xe3;o "/>
-            <StringItem index="6" value="Filosofia "/>
-            <StringItem index="7" value="Guerra "/>
-            <StringItem index="8" value="Hist&#xf3;ria "/>
-            <StringItem index="9" value="Linguistica "/>
-            <StringItem index="10" value="Lit. Estrangeira "/>
-            <StringItem index="11" value="Lit. Infanto-Juvenil "/>
-            <StringItem index="12" value="Lit. Nacional "/>
-            <StringItem index="13" value="Medicina "/>
-            <StringItem index="14" value="M&#xfa;sica "/>
-            <StringItem index="15" value="Pol&#xed;tica "/>
-            <StringItem index="16" value="Psicologia "/>
-            <StringItem index="17" value="Romance "/>
-            <StringItem index="18" value="Quadrinhos "/>
-            <StringItem index="19" value="Religi&#xe3;o "/>
-            <StringItem index="20" value="Sa&#xfa;de "/>
-            <StringItem index="21" value="Sexo "/>
-            <StringItem index="22" value="Terror "/>
-            <StringItem index="23" value="Vestibular "/>
+            <StringItem index="1" value="ADMINISTRACAO"/>
+            <StringItem index="2" value="AGROPECUARIA"/>
+            <StringItem index="3" value="ARTES"/>
+            <StringItem index="4" value="AUDIOLIVRO"/>
+            <StringItem index="5" value="AUTOAJUDA"/>
+            <StringItem index="6" value="CIENCIAS_BIO"/>
+            <StringItem index="7" value="CIENCIAS_EXA"/>
+            <StringItem index="8" value="CIENCIAS_HUM"/>
+            <StringItem index="9" value="CONTABILIDADE"/>
+            <StringItem index="10" value="IDIOMA"/>
+            <StringItem index="11" value="DICIONARIO"/>
+            <StringItem index="12" value="DIDATICO"/>
+            <StringItem index="13" value="DIREITO"/>
+            <StringItem index="14" value="ECONOMIA"/>
+            <StringItem index="15" value="ENG_TEC"/>
+            <StringItem index="16" value="ESPORTE"/>
+            <StringItem index="17" value="GASTRONOMIA"/>
+            <StringItem index="18" value="GEO_HIST"/>
+            <StringItem index="19" value="INFORMATICA"/>
+            <StringItem index="20" value="LINGUISTICA"/>
+            <StringItem index="21" value="LITER_ESTR"/>
+            <StringItem index="22" value="LITER_INFA"/>
+            <StringItem index="23" value="LITER_NACIO"/>
+            <StringItem index="24" value="MEDICINA"/>
+            <StringItem index="25" value="RELIGIAO"/>
+            <StringItem index="26" value="TURISMO"/>
           </StringArray>
         </Property>
       </Properties>
@@ -628,8 +369,6 @@
         <Property name="text" type="java.lang.String" value="ISBN"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_isbn">
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -637,8 +376,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Quantidade"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_qtd">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
@@ -694,7 +431,7 @@
         <Property name="text" type="java.lang.String" value="Pre&#xe7;o de Custo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+    <Component class="javax.swing.JRadioButton" name="rdo_digitalSim">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -702,10 +439,10 @@
         <Property name="text" type="java.lang.String" value="Sim"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdo_digitalSimActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+    <Component class="javax.swing.JRadioButton" name="rdo_digitalNao">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
@@ -714,7 +451,7 @@
         <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdo_digitalNaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -725,7 +462,7 @@
         <Property name="text" type="java.lang.String" value="Oferta"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+    <Component class="javax.swing.JRadioButton" name="rdo_ofertSim">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup2"/>
@@ -733,10 +470,10 @@
         <Property name="text" type="java.lang.String" value="Sim"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdo_ofertSimActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+    <Component class="javax.swing.JRadioButton" name="rdo_ofertaNao">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup2"/>
@@ -745,7 +482,7 @@
         <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdo_ofertaNaoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
@@ -811,33 +548,267 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btn_pesquisar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_pesquisarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btn_alterar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alterar"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_alterarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btn_cadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cadastrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="btn_excluir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_excluirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel18">
       <Properties>
         <Property name="text" type="java.lang.String" value="%"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Limpar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmb_dia">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="31">
+            <StringItem index="0" value="01"/>
+            <StringItem index="1" value="02"/>
+            <StringItem index="2" value="03"/>
+            <StringItem index="3" value="04"/>
+            <StringItem index="4" value="05"/>
+            <StringItem index="5" value="06"/>
+            <StringItem index="6" value="07"/>
+            <StringItem index="7" value="08"/>
+            <StringItem index="8" value="09"/>
+            <StringItem index="9" value="10"/>
+            <StringItem index="10" value="11"/>
+            <StringItem index="11" value="12"/>
+            <StringItem index="12" value="13"/>
+            <StringItem index="13" value="14"/>
+            <StringItem index="14" value="15"/>
+            <StringItem index="15" value="16"/>
+            <StringItem index="16" value="17"/>
+            <StringItem index="17" value="18"/>
+            <StringItem index="18" value="19"/>
+            <StringItem index="19" value="20"/>
+            <StringItem index="20" value="21"/>
+            <StringItem index="21" value="22"/>
+            <StringItem index="22" value="23"/>
+            <StringItem index="23" value="24"/>
+            <StringItem index="24" value="25"/>
+            <StringItem index="25" value="26"/>
+            <StringItem index="26" value="27"/>
+            <StringItem index="27" value="28"/>
+            <StringItem index="28" value="29"/>
+            <StringItem index="29" value="30"/>
+            <StringItem index="30" value="31"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmb_mes">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="01"/>
+            <StringItem index="1" value="02"/>
+            <StringItem index="2" value="03"/>
+            <StringItem index="3" value="04"/>
+            <StringItem index="4" value="05"/>
+            <StringItem index="5" value="06"/>
+            <StringItem index="6" value="07"/>
+            <StringItem index="7" value="08"/>
+            <StringItem index="8" value="09"/>
+            <StringItem index="9" value="10"/>
+            <StringItem index="10" value="11"/>
+            <StringItem index="11" value="12"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmb_ano">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="117">
+            <StringItem index="0" value="1900"/>
+            <StringItem index="1" value="1901"/>
+            <StringItem index="2" value="1902"/>
+            <StringItem index="3" value="1903"/>
+            <StringItem index="4" value="1904"/>
+            <StringItem index="5" value="1905"/>
+            <StringItem index="6" value="1906"/>
+            <StringItem index="7" value="1907"/>
+            <StringItem index="8" value="1908"/>
+            <StringItem index="9" value="1909"/>
+            <StringItem index="10" value="1910"/>
+            <StringItem index="11" value="1911"/>
+            <StringItem index="12" value="1912"/>
+            <StringItem index="13" value="1913"/>
+            <StringItem index="14" value="1914"/>
+            <StringItem index="15" value="1915"/>
+            <StringItem index="16" value="1916"/>
+            <StringItem index="17" value="1917"/>
+            <StringItem index="18" value="1918"/>
+            <StringItem index="19" value="1919"/>
+            <StringItem index="20" value="1920"/>
+            <StringItem index="21" value="1921"/>
+            <StringItem index="22" value="1922"/>
+            <StringItem index="23" value="1923"/>
+            <StringItem index="24" value="1924"/>
+            <StringItem index="25" value="1925"/>
+            <StringItem index="26" value="1926"/>
+            <StringItem index="27" value="1927"/>
+            <StringItem index="28" value="1928"/>
+            <StringItem index="29" value="1929"/>
+            <StringItem index="30" value="1930"/>
+            <StringItem index="31" value="1931"/>
+            <StringItem index="32" value="1932"/>
+            <StringItem index="33" value="1933"/>
+            <StringItem index="34" value="1934"/>
+            <StringItem index="35" value="1935"/>
+            <StringItem index="36" value="1936"/>
+            <StringItem index="37" value="1937"/>
+            <StringItem index="38" value="1938"/>
+            <StringItem index="39" value="1939"/>
+            <StringItem index="40" value="1940"/>
+            <StringItem index="41" value="1941"/>
+            <StringItem index="42" value="1942"/>
+            <StringItem index="43" value="1943"/>
+            <StringItem index="44" value="1944"/>
+            <StringItem index="45" value="1945"/>
+            <StringItem index="46" value="1946"/>
+            <StringItem index="47" value="1947"/>
+            <StringItem index="48" value="1948"/>
+            <StringItem index="49" value="1949"/>
+            <StringItem index="50" value="1950"/>
+            <StringItem index="51" value="1951"/>
+            <StringItem index="52" value="1952"/>
+            <StringItem index="53" value="1953"/>
+            <StringItem index="54" value="1954"/>
+            <StringItem index="55" value="1955"/>
+            <StringItem index="56" value="1956"/>
+            <StringItem index="57" value="1957"/>
+            <StringItem index="58" value="1958"/>
+            <StringItem index="59" value="1959"/>
+            <StringItem index="60" value="1960"/>
+            <StringItem index="61" value="1961"/>
+            <StringItem index="62" value="1962"/>
+            <StringItem index="63" value="1963"/>
+            <StringItem index="64" value="1964"/>
+            <StringItem index="65" value="1965"/>
+            <StringItem index="66" value="1966"/>
+            <StringItem index="67" value="1967"/>
+            <StringItem index="68" value="1968"/>
+            <StringItem index="69" value="1969"/>
+            <StringItem index="70" value="1970"/>
+            <StringItem index="71" value="1971"/>
+            <StringItem index="72" value="1972"/>
+            <StringItem index="73" value="1973"/>
+            <StringItem index="74" value="1974"/>
+            <StringItem index="75" value="1975"/>
+            <StringItem index="76" value="1976"/>
+            <StringItem index="77" value="1977"/>
+            <StringItem index="78" value="1978"/>
+            <StringItem index="79" value="1979"/>
+            <StringItem index="80" value="1980"/>
+            <StringItem index="81" value="1981"/>
+            <StringItem index="82" value="1982"/>
+            <StringItem index="83" value="1983"/>
+            <StringItem index="84" value="1984"/>
+            <StringItem index="85" value="1985"/>
+            <StringItem index="86" value="1986"/>
+            <StringItem index="87" value="1987"/>
+            <StringItem index="88" value="1988"/>
+            <StringItem index="89" value="1989"/>
+            <StringItem index="90" value="1990"/>
+            <StringItem index="91" value="1991"/>
+            <StringItem index="92" value="1992"/>
+            <StringItem index="93" value="1993"/>
+            <StringItem index="94" value="1994"/>
+            <StringItem index="95" value="1995"/>
+            <StringItem index="96" value="1996"/>
+            <StringItem index="97" value="1997"/>
+            <StringItem index="98" value="1998"/>
+            <StringItem index="99" value="1999"/>
+            <StringItem index="100" value="2000"/>
+            <StringItem index="101" value="2001"/>
+            <StringItem index="102" value="2002"/>
+            <StringItem index="103" value="2003"/>
+            <StringItem index="104" value="2004"/>
+            <StringItem index="105" value="2005"/>
+            <StringItem index="106" value="2006"/>
+            <StringItem index="107" value="2007"/>
+            <StringItem index="108" value="2008"/>
+            <StringItem index="109" value="2009"/>
+            <StringItem index="110" value="2010"/>
+            <StringItem index="111" value="2011"/>
+            <StringItem index="112" value="2012"/>
+            <StringItem index="113" value="2013"/>
+            <StringItem index="114" value="2014"/>
+            <StringItem index="115" value="2015"/>
+            <StringItem index="116" value="2016"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="50"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="autoscrolls" type="boolean" value="true"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="/"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel19">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="/"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="txt_qtd">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format format="######" subtype="-1" type="0"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_isbn">
     </Component>
   </SubComponents>
 </Form>

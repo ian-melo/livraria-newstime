@@ -7,9 +7,11 @@ package newstime.fronteira;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import newstime.controle.ControleAdministracao;
 import newstime.entidade.Autor;
 import newstime.entidade.Editora;
+import newstime.excecao.BancoException;
 import newstime.excecao.NegocioException;
 
 /**
@@ -22,7 +24,7 @@ public class CadastroLivro extends javax.swing.JFrame {
      * Creates new form CadastroLivro
      */
     private boolean oferta = false, digital = false;//variaveis para radio buton
-    
+
     public CadastroLivro() {
         initComponents();
     }
@@ -46,15 +48,10 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txt_editora = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txt_anoPublicacao = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        cmb_pais = new javax.swing.JComboBox<String>();
         jLabel7 = new javax.swing.JLabel();
         cmb_categoria = new javax.swing.JComboBox<String>();
         jLabel8 = new javax.swing.JLabel();
-        txt_isbn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txt_qtd = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_resumo = new javax.swing.JTextArea();
@@ -62,11 +59,11 @@ public class CadastroLivro extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_sumario = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rdo_digitalSim = new javax.swing.JRadioButton();
+        rdo_digitalNao = new javax.swing.JRadioButton();
         jLabel13 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rdo_ofertSim = new javax.swing.JRadioButton();
+        rdo_ofertaNao = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
         txt_precoCusto = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -75,11 +72,19 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         txt_precoOferta = new javax.swing.JTextField();
         cmb_margemLucro = new javax.swing.JComboBox<String>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btn_pesquisar = new javax.swing.JButton();
+        btn_alterar = new javax.swing.JButton();
+        btn_cadastrar = new javax.swing.JButton();
+        btn_excluir = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        cmb_dia = new javax.swing.JComboBox<String>();
+        cmb_mes = new javax.swing.JComboBox<String>();
+        cmb_ano = new javax.swing.JComboBox<String>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        txt_qtd = new javax.swing.JFormattedTextField();
+        txt_isbn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,15 +110,10 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Broadway", 0, 11)); // NOI18N
         jLabel5.setText("Ano de Publicação");
 
-        jLabel6.setFont(new java.awt.Font("Broadway", 0, 11)); // NOI18N
-        jLabel6.setText("País");
-
-        cmb_pais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "AD - Andorra", "AE - Emirados Árabes Unidos", "AF - Afeganistão", "AG - Antígua e Barbuda", "AI - Anguilla", "AL - Albânia", "AM - Armênia", "AO - Angola", "AQ - Antártica", "AR - Argentina", "AS - Samoa Americana", "AT - Áustria", "AU - Austrália", "AW - Aruba", "AZ - Azerbaijão", "BA - Bósnia e Herzegovina", "BB - Barbados", "BD - Bangladesh", "BE - Bélgica", "BF - Burkina Faso", "BG - Bulgária", "BH - Barém", "BI - Burundi", "BJ - Benin", "BL - São Bartolomeu", "BM - Bermuda", "BN - Brunei", "BO - Bolívia", "BR - Brasil", "BS - Bahamas", "BT - Butão", "BV - Ilha Bouvet", "BW - Botswana", "BY - Belarus", "BZ - Belize", "CA - Canadá", "CC - Ilhas Cocos (Keeling)", "CD - Congo, República Democrática do", "CF - República Centro-Africana", "CG - Congo, República do", "CH - Suíça", "CI - Costa do Marfim", "CK - Ilhas Cook", "CL - Chile", "CM - Camarões", "CN - China", "CO - Colômbia", "CR - Costa Rica", "CU - Cuba", "CV - Cabo Verde", "CW - Curaçao", "CX - Ilha Christmas", "CY - Chipre", "CZ - República Tcheca", "DE - Alemanha", "DJ - Djibuti", "DK - Dinamarca", "DM - Dominica", "DO - República Dominicana", "DZ - Argélia", "EC - Equador", "EE - Estônia", "EG - Egito", "EH - Saara Ocidental", "ER - Eritréia", "ES - Espanha", "ET - Etiópia", "FI - Finlândia", "FJ - Fiji", "FK - Ilhas Falkland (Malvinas)", "FM - Micronésia, Estados Federados da", "FO - Ilhas Feroe", "FR - França", "FX - França Metropolitana", "GA - Gabão", "GB - Reino Unido", "GD - Grenada", "GE - Geórgia", "GF - Guiana Francesa", "GG - Guernsey", "GH - Gana", "GI - Gibraltar", "GL - Greenland", "GM - Gâmbia", "GN - Guiné", "GP - Guadelupe", "GQ - Guiné Equatorial", "GR - Grécia", "GS - Geórgia do Sul e Ilhas", "GT - Guatemala", "GU - Guam", "GW - Guiné-Bissau", "GY - Guiana", "HK - Hong Kong", "HM - Ilhas Heard and McDonald", "HN - Honduras", "HR - Croácia", "HT - Haiti", "HU - Hungria", "ID - Indonésia", "IE - Irlanda", "IL - Israel", "IM - Ilha de Man", "IN - Índia", "IO - Território Britânico do Oceano Índico", "IQ - Iraque", "IR - Irã", "IS - Islândia", "IT - Itália", "JE - Jersey", "JM - Jamaica", "JO - Jordânia", "JP - Japão", "KE - Quênia", "KG - Quirguistão", "KH - Camboja", "KI - Kiribati", "KM - Cômoros", "KN - São Cristóvão e Nevis", "KP - Coreia do Norte", "KR - Coreia do Sul", "KW - Kuwait", "KY - Ilhas Caiman", "KZ - Cazaquistão", "LA - Laos", "LB - Líbano", "LC - Santa Lúcia", "LI - Liechtenstein", "LK - Sri Lanka", "LR - Libéria", "LS - Lesoto", "LT - Lituânia", "LU - Luxemburgo", "LV - Letônia", "LY - Líbia", "MA - Marrocos", "MC - Mônaco", "MD - Moldova", "ME - Montenegro", "MF - Saint Martin", "MG - Madagascar", "MH - Ilhas Marshall", "MK - Macedônia", "ML - Mali", "MM - Birmânia", "MN - Mongólia", "MO - Macao", "MP - Ilhas Marianas do Norte", "MQ - Martinica", "MR - Mauritânia", "MS - Montserrat", "MT - Malta", "mu – Ilhas Maurício", "MV - Maldivas", "MW - Malawi", "MX - México", "MY - Malásia", "MZ - Moçambique", "NA - Namíbia", "NC - Nova Caledônia", "NE - Níger", "NF - Ilha Norfolk", "NG - Nigéria", "NI - Nicarágua", "NL - Holanda", "NO - Noruega", "NP - Nepal", "NR - Nauru", "NU - Niue", "NZ - Nova Zelândia", "OM - Omã", "PA - Panamá", "PE - Peru", "PF - Polinésia Francesa", "PG - Papua Nova Guiné", "PH - Filipinas", "PK - Paquistão", "PL - Polônia", "PM - Saint Pierre e Miquelon", "PN - Ilhas Pitcairn", "PR - Porto Rico", "PS - Faixa de Gaza", "PS - Cisjordânia", "PT - Portugal", "PW - Palau", "PY - Paraguai", "QA - Qatar", "RE - Reunião", "RO - Romênia", "RS - Sérvia", "RU - Rússia", "RW - Ruanda", "SA - Arábia Saudita", "SB - Ilhas Salomão", "SC - Seicheles", "SD - Sudão", "SE - Suécia", "SG - Cingapura", "SH - Santa Helena, Ascensão e Tristão da Cunha", "SI - Eslovênia", "SJ - Svalbard", "SK - Eslováquia", "SL - Serra Leoa", "SM - San Marino", "SN - Senegal", "SO - Somália", "SR - Suriname", "SS - Sudão do Sul", "ST - São Tomé e Príncipe", "SV - El Salvador", "SX - São Martinho", "SY - Síria", "SZ - Suazilândia", "TC - Ilhas Turks e Caicos", "TD - Chad", "TF - Sul da França e Antártica", "TG - Togo", "TH - Tailândia", "TJ - Tadjiquistão", "TK - Toquelau", "TL - Timor-Leste", "TM - Turcomenistão", "TN - Tunísia", "TO - Tonga", "TR - Turquia", "TT - Trinidad e Tobago", "TV - Tuvalu", "TW - Taiwan", "TZ - Tanzânia", "UA - Ucrânia", "UG - Uganda", "UM - Ilhas Menores Distantes dos Estados Unidos", "US - Estados Unidos", "UY - Uruguai", "UZ - Uzbequistão", "VA - Santa Sé (Cidade do Vaticano)", "VC - São Vicente e Granadinas", "VE - Venezuela", "VG - Ilhas Virgens Britânicas", "VI - Ilhas Virgens Americanas", "VN - Vietnã", "VU - Vanuatu", "WF - Ilhas Wallis e Futuna", "WS - Samoa", "XK - Kosovo", "YE - Iêmen", "YT - Maiote", "ZA - África do Sul", "ZM - Zâmbia", "ZW - Zimbábue" }));
-
         jLabel7.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel7.setText("Categoria");
 
-        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "Auto-Ajuda ", "Ciência ", "Culinária | Gastronomia ", "Esoterismo ", "Fantasia | Ficção ", "Filosofia ", "Guerra ", "História ", "Linguistica ", "Lit. Estrangeira ", "Lit. Infanto-Juvenil ", "Lit. Nacional ", "Medicina ", "Música ", "Política ", "Psicologia ", "Romance ", "Quadrinhos ", "Religião ", "Saúde ", "Sexo ", "Terror ", "Vestibular " }));
+        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "ADMINISTRACAO", "AGROPECUARIA", "ARTES", "AUDIOLIVRO", "AUTOAJUDA", "CIENCIAS_BIO", "CIENCIAS_EXA", "CIENCIAS_HUM", "CONTABILIDADE", "IDIOMA", "DICIONARIO", "DIDATICO", "DIREITO", "ECONOMIA", "ENG_TEC", "ESPORTE", "GASTRONOMIA", "GEO_HIST", "INFORMATICA", "LINGUISTICA", "LITER_ESTR", "LITER_INFA", "LITER_NACIO", "MEDICINA", "RELIGIAO", "TURISMO" }));
 
         jLabel8.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel8.setText("ISBN");
@@ -138,40 +138,40 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel12.setText("Preço de Custo");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Sim");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rdo_digitalSim);
+        rdo_digitalSim.setText("Sim");
+        rdo_digitalSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rdo_digitalSimActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setSelected(true);
-        jRadioButton2.setText("Não");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rdo_digitalNao);
+        rdo_digitalNao.setSelected(true);
+        rdo_digitalNao.setText("Não");
+        rdo_digitalNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                rdo_digitalNaoActionPerformed(evt);
             }
         });
 
         jLabel13.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel13.setText("Oferta");
 
-        buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText("Sim");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdo_ofertSim);
+        rdo_ofertSim.setText("Sim");
+        rdo_ofertSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                rdo_ofertSimActionPerformed(evt);
             }
         });
 
-        buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setSelected(true);
-        jRadioButton4.setText("Não");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup2.add(rdo_ofertaNao);
+        rdo_ofertaNao.setSelected(true);
+        rdo_ofertaNao.setText("Não");
+        rdo_ofertaNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                rdo_ofertaNaoActionPerformed(evt);
             }
         });
 
@@ -195,20 +195,59 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         cmb_margemLucro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" }));
 
-        jButton1.setText("Pesquisar");
-
-        jButton2.setText("Alterar");
-
-        jButton3.setText("Cadastrar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_pesquisar.setText("Pesquisar");
+        btn_pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_pesquisarActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Excluir");
+        btn_alterar.setText("Alterar");
+        btn_alterar.setEnabled(false);
+        btn_alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_alterarActionPerformed(evt);
+            }
+        });
+
+        btn_cadastrar.setText("Cadastrar");
+        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cadastrarActionPerformed(evt);
+            }
+        });
+
+        btn_excluir.setText("Excluir");
+        btn_excluir.setEnabled(false);
+        btn_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_excluirActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("%");
+
+        jButton5.setText("Limpar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        cmb_dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+
+        cmb_ano.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016" }));
+        cmb_ano.setSelectedIndex(50);
+        cmb_ano.setToolTipText("");
+        cmb_ano.setAutoscrolls(true);
+
+        jLabel6.setText("/");
+
+        jLabel19.setText("/");
+
+        txt_qtd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,13 +261,13 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
+                                .addComponent(rdo_ofertSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton4))
+                                .addComponent(rdo_ofertaNao))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rdo_digitalSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2))
+                                .addComponent(rdo_digitalNao))
                             .addComponent(jLabel13))
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,7 +279,7 @@ public class CadastroLivro extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txt_precoCusto, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -266,50 +305,58 @@ public class CadastroLivro extends javax.swing.JFrame {
                                     .addComponent(txt_nomeAutor)
                                     .addComponent(txt_titulo)
                                     .addComponent(txt_editora, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(27, 27, 27)
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txt_anoPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(cmb_pais, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(cmb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmb_mes, 0, 74, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel19)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmb_ano, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addComponent(btn_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_pesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btn_alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,17 +377,19 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_anoPublicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cmb_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmb_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmb_ano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_isbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -355,14 +404,14 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(rdo_digitalSim)
+                            .addComponent(rdo_digitalNao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))
+                            .addComponent(rdo_ofertSim)
+                            .addComponent(rdo_ofertaNao))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,33 +434,34 @@ public class CadastroLivro extends javax.swing.JFrame {
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(btn_pesquisar)
+                    .addComponent(btn_alterar)
+                    .addComponent(btn_excluir)
+                    .addComponent(btn_cadastrar)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rdo_digitalSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_digitalSimActionPerformed
         digital = true;
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rdo_digitalSimActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void rdo_digitalNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_digitalNaoActionPerformed
         digital = false;
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_rdo_digitalNaoActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void rdo_ofertSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_ofertSimActionPerformed
         //System.out.println("Sim");
         oferta = true;
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_rdo_ofertSimActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void rdo_ofertaNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_ofertaNaoActionPerformed
         //System.out.println("Nao");
         oferta = false;
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_rdo_ofertaNaoActionPerformed
 
     private void txt_nomeAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeAutorActionPerformed
         // TODO add your handling code here:
@@ -421,21 +471,156 @@ public class CadastroLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_precoOfertaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-        /*
-        ControleAdministracao controleAdm = new ControleAdministracao();
-        Autor autor = new Autor();//temporario
-        Editora editora = new Editora();
-        
-        try {
-            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), autor , editora, txt_anoPublicacao.getText(), cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
-            
-        } catch (NegocioException ex) {
-            Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
+
+        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) || "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) || "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) || "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
+        } else {
+            //JOptionPane.showMessageDialog(null, "Tudo OK");
+
+            ControleAdministracao controleAdm = new ControleAdministracao();
+            boolean feito;
+
+            try {
+                String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
+                feito = controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+                if (feito == true) {
+                    JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não cadastrado");
+                }
+            } catch (BancoException | NegocioException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-        */
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_cadastrarActionPerformed
+
+    private void btn_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarActionPerformed
+        //JOptionPane.showMessageDialog(rootPane, txt_isbn.getText());
+        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) || "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) || "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) || "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "O livro é pesquisado pelo seu ISBN");
+        } else {
+            ControleAdministracao controleAdm = new ControleAdministracao();
+
+            try {
+
+                controleAdm.buscarLivro(txt_isbn.getText());
+                
+                txt_isbn.setEnabled(false);
+                
+                txt_titulo.setText(controleAdm.getTitulo());
+                txt_nomeAutor.setText(controleAdm.getNomeAutor());
+                txt_editora.setText(controleAdm.getNomeEditora());
+                cmb_dia.setSelectedItem("01");
+                cmb_mes.setSelectedItem("01");
+                cmb_ano.setSelectedItem("1950");
+                cmb_categoria.setSelectedItem(controleAdm.getCategoria());
+                txt_resumo.setText(controleAdm.getResumo());
+                txt_sumario.setText(controleAdm.getSumario());
+                txt_qtd.setText(String.valueOf(controleAdm.getQtdEstoque()));
+                txt_precoRevenda.setText(String.valueOf(controleAdm.getPrecoVenda()));
+                txt_precoOferta.setText(String.valueOf(controleAdm.getPrecoOferta()));
+                txt_precoCusto.setText(String.valueOf(controleAdm.getPrecoCusto()));
+                cmb_margemLucro.setSelectedItem(controleAdm.getMargemLucro());
+                //oferta = false;
+                //digital = false;
+                //rdo_digitalNao.setSelected(true);
+                //rdo_ofertaNao.setSelected(true);
+
+                liberaBotao();
+
+            } catch (BancoException ex) {
+                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+    }//GEN-LAST:event_btn_pesquisarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        limparCampos();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
+        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) || "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) || "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) || "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "O livro é excluido pelo seu ISBN");
+        } else {
+            ControleAdministracao adm = new ControleAdministracao();
+
+            try {
+                adm.removerLivro(txt_isbn.getText());
+                txt_isbn.setEditable(true);
+            } catch (BancoException ex) {
+                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_excluirActionPerformed
+
+    private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
+
+        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) || "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) || "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) || "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
+        } else {
+            //JOptionPane.showMessageDialog(null, "Tudo OK");
+
+            ControleAdministracao adm = new ControleAdministracao();
+            boolean feito;
+
+            try {
+                String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
+                feito = adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+                if (feito == true) {
+                    JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+                    txt_isbn.setEditable(true);
+                    limparCampos();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não alterado");
+                }
+            } catch (BancoException | NegocioException ex) {
+                JOptionPane.showMessageDialog(null, ex.toString());
+                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+
+    }//GEN-LAST:event_btn_alterarActionPerformed
+    public void limparCampos() {
+        txt_isbn.setText("");
+        txt_titulo.setText("");
+        txt_nomeAutor.setText("");
+        txt_editora.setText("");
+        //txt_anoPublicacao.setText("");
+        cmb_dia.setSelectedItem("01");
+        cmb_mes.setSelectedItem("01");
+        cmb_ano.setSelectedItem("1950");
+        cmb_categoria.setSelectedItem("Selecione..");
+        txt_resumo.setText("");
+        txt_sumario.setText("");
+        txt_qtd.setText("");
+        txt_precoRevenda.setText("");
+        txt_precoOferta.setText("");
+        txt_precoCusto.setText("");
+        cmb_margemLucro.setSelectedItem("Selecione..");
+        oferta = false;
+        digital = false;
+        rdo_digitalNao.setSelected(true);
+        rdo_ofertaNao.setSelected(true);
+        bloqueiaBotao();
+    }
+
+    public void liberaBotao() {
+        btn_alterar.setEnabled(true);
+        btn_excluir.setEnabled(true);
+    }
+
+    public void bloqueiaBotao() {
+        btn_alterar.setEnabled(false);
+        btn_excluir.setEnabled(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -473,15 +658,18 @@ public class CadastroLivro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_alterar;
+    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btn_excluir;
+    private javax.swing.JButton btn_pesquisar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cmb_ano;
     private javax.swing.JComboBox<String> cmb_categoria;
+    private javax.swing.JComboBox<String> cmb_dia;
     private javax.swing.JComboBox<String> cmb_margemLucro;
-    private javax.swing.JComboBox<String> cmb_pais;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> cmb_mes;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -492,6 +680,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -500,20 +689,19 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField txt_anoPublicacao;
+    private javax.swing.JRadioButton rdo_digitalNao;
+    private javax.swing.JRadioButton rdo_digitalSim;
+    private javax.swing.JRadioButton rdo_ofertSim;
+    private javax.swing.JRadioButton rdo_ofertaNao;
     private javax.swing.JTextField txt_editora;
     private javax.swing.JTextField txt_isbn;
     private javax.swing.JTextField txt_nomeAutor;
     private javax.swing.JTextField txt_precoCusto;
     private javax.swing.JTextField txt_precoOferta;
     private javax.swing.JTextField txt_precoRevenda;
-    private javax.swing.JTextField txt_qtd;
+    private javax.swing.JFormattedTextField txt_qtd;
     private javax.swing.JTextArea txt_resumo;
     private javax.swing.JTextArea txt_sumario;
     private javax.swing.JTextField txt_titulo;

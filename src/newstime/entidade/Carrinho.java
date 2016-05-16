@@ -1,10 +1,7 @@
 package newstime.entidade;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import newstime.excecao.NegocioException;
-//import newstime.excecao.NegocioException;
 
 /**
  * Classe de entidade que representa o carrinho de compras

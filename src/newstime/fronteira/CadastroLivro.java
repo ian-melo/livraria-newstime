@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package newstime.fronteira;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import newstime.controle.ControleAdministracao;
-import newstime.entidade.Autor;
-import newstime.entidade.Editora;
 import newstime.excecao.BancoException;
 import newstime.excecao.NegocioException;
 
 /**
- *
+ * Classe do formulário de CRUD do livro
  * @author lukin
  */
 public class CadastroLivro extends javax.swing.JFrame {
@@ -94,12 +85,6 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel2.setText("Nome do Autor");
-
-        txt_nomeAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nomeAutorActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel3.setText("Título");
@@ -186,12 +171,6 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel17.setText("Preço de Oferta");
-
-        txt_precoOferta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_precoOfertaActionPerformed(evt);
-            }
-        });
 
         cmb_margemLucro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100" }));
 
@@ -463,81 +442,66 @@ public class CadastroLivro extends javax.swing.JFrame {
         oferta = false;
     }//GEN-LAST:event_rdo_ofertaNaoActionPerformed
 
-    private void txt_nomeAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nomeAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nomeAutorActionPerformed
-
-    private void txt_precoOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precoOfertaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_precoOfertaActionPerformed
-
     private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-
-        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) || "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) || "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) || "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
-        } else {
-            //JOptionPane.showMessageDialog(null, "Tudo OK");
-
-            ControleAdministracao controleAdm = new ControleAdministracao();
-            boolean feito;
-
-            try {
-                String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-                feito = controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
-                if (feito == true) {
-                    JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-                    limparCampos();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Não cadastrado");
-                }
-            } catch (BancoException | NegocioException ex) {
-                JOptionPane.showMessageDialog(null, ex.toString());
-                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+        //Verifica os campos
+        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) ||
+                "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) ||
+                "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) ||
+                "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos.");
+            return;
+        }
+        //Cadastra
+        ControleAdministracao controleAdm = new ControleAdministracao();
+        try {
+            String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
+            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            JOptionPane.showMessageDialog(null, "O livro foi cadastrado com sucesso.");
+            limparCampos();
+        } catch (BancoException | NegocioException ex) {
+            JOptionPane.showMessageDialog(null,"O livro não foi cadastrado: " + ex.toString());
         }
     }//GEN-LAST:event_btn_cadastrarActionPerformed
 
     private void btn_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pesquisarActionPerformed
-        //JOptionPane.showMessageDialog(rootPane, txt_isbn.getText());
-        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) || "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) || "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) || "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "O livro é pesquisado pelo seu ISBN");
-        } else {
-            ControleAdministracao controleAdm = new ControleAdministracao();
-
-            try {
-
-                controleAdm.buscarLivro(txt_isbn.getText());
-                
-                txt_isbn.setEnabled(false);
-                
-                txt_titulo.setText(controleAdm.getTitulo());
-                txt_nomeAutor.setText(controleAdm.getNomeAutor());
-                txt_editora.setText(controleAdm.getNomeEditora());
-                cmb_dia.setSelectedItem("01");
-                cmb_mes.setSelectedItem("01");
-                cmb_ano.setSelectedItem("1950");
-                cmb_categoria.setSelectedItem(controleAdm.getCategoria());
-                txt_resumo.setText(controleAdm.getResumo());
-                txt_sumario.setText(controleAdm.getSumario());
-                txt_qtd.setText(String.valueOf(controleAdm.getQtdEstoque()));
-                txt_precoRevenda.setText(String.valueOf(controleAdm.getPrecoVenda()));
-                txt_precoOferta.setText(String.valueOf(controleAdm.getPrecoOferta()));
-                txt_precoCusto.setText(String.valueOf(controleAdm.getPrecoCusto()));
-                cmb_margemLucro.setSelectedItem(controleAdm.getMargemLucro());
-                //oferta = false;
-                //digital = false;
-                //rdo_digitalNao.setSelected(true);
-                //rdo_ofertaNao.setSelected(true);
-
-                liberaBotao();
-
-            } catch (BancoException ex) {
-                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        //Verifica o campo ISBN
+        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) ||
+                "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) ||
+                "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) ||
+                "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) ||
+                "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) ||
+                "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Informe o ISBN para buscar.");
+            txt_isbn.requestFocus();
+            return;
         }
-
-
+        //Pesquisa
+        ControleAdministracao controleAdm = new ControleAdministracao();
+        try {
+            controleAdm.buscarLivro(txt_isbn.getText());
+            txt_isbn.setEnabled(false);
+            
+            txt_titulo.setText(controleAdm.getTitulo());
+            txt_nomeAutor.setText(controleAdm.getNomeAutor());
+            txt_editora.setText(controleAdm.getNomeEditora());
+            cmb_dia.setSelectedItem("01"); //Alterar (?)
+            cmb_mes.setSelectedItem("01"); //Alterar (?)
+            cmb_ano.setSelectedItem(String.valueOf(controleAdm.getAnoPublicacao()));
+            cmb_categoria.setSelectedItem(controleAdm.getCategoria());
+            txt_resumo.setText(controleAdm.getResumo());
+            txt_sumario.setText(controleAdm.getSumario());
+            txt_qtd.setText(String.valueOf(controleAdm.getQtdEstoque()));
+            txt_precoRevenda.setText(String.valueOf(controleAdm.getPrecoVenda()));
+            txt_precoOferta.setText(String.valueOf(controleAdm.getPrecoOferta()));
+            txt_precoCusto.setText(String.valueOf(controleAdm.getPrecoCusto()));
+            cmb_margemLucro.setSelectedItem(controleAdm.getMargemLucro());
+            rdo_digitalNao.setSelected(controleAdm.isDigital());
+            rdo_ofertaNao.setSelected(controleAdm.isOferta());
+            
+            liberaBotao();
+        } catch (BancoException ex) {
+            JOptionPane.showMessageDialog(null,"O livro não foi encontrado: " + ex.getMessage());
+        }
     }//GEN-LAST:event_btn_pesquisarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -545,49 +509,54 @@ public class CadastroLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excluirActionPerformed
-        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) || "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) || "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) || "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "O livro é excluido pelo seu ISBN");
-        } else {
-            ControleAdministracao adm = new ControleAdministracao();
-
-            try {
-                adm.removerLivro(txt_isbn.getText());
-                txt_isbn.setEditable(true);
-            } catch (BancoException ex) {
-                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        //Verifica o campo ISBN
+        if ("".equals(txt_isbn.getText()) || " ".equals(txt_isbn.getText()) || "  ".equals(txt_isbn.getText()) ||
+                "    ".equals(txt_isbn.getText()) || "     ".equals(txt_isbn.getText()) ||
+                "       ".equals(txt_isbn.getText()) || "      ".equals(txt_isbn.getText()) ||
+                "      ".equals(txt_isbn.getText()) || "            ".equals(txt_isbn.getText()) ||
+                "            ".equals(txt_isbn.getText()) || "           ".equals(txt_isbn.getText()) ||
+                "          ".equals(txt_isbn.getText()) || "         ".equals(txt_isbn.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Informe o ISBN para excluir.");
+            txt_isbn.requestFocus();
+            return;
         }
+        //Certifica ação, retornando caso cancele
+        if(JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o livro?") != JOptionPane.YES_OPTION) {
+            return;
+        }
+        //Exclui
+        ControleAdministracao adm = new ControleAdministracao();
+        try {
+            adm.removerLivro(txt_isbn.getText());
+            txt_isbn.setEditable(true);
+            JOptionPane.showMessageDialog(null,"O livro foi excluído com sucesso.");
+        } catch (BancoException ex) {
+            JOptionPane.showMessageDialog(null,"O livro não foi excluído: " + ex.getMessage());
+        }        
     }//GEN-LAST:event_btn_excluirActionPerformed
 
     private void btn_alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_alterarActionPerformed
-
-        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) || "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) || "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) || "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(null, "Há campos não preenchidos");
-        } else {
-            //JOptionPane.showMessageDialog(null, "Tudo OK");
-
-            ControleAdministracao adm = new ControleAdministracao();
-            boolean feito;
-
-            try {
-                String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-                feito = adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
-                if (feito == true) {
-                    JOptionPane.showMessageDialog(null, "Alterado com sucesso");
-                    txt_isbn.setEditable(true);
-                    limparCampos();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Não alterado");
-                }
-            } catch (BancoException | NegocioException ex) {
-                JOptionPane.showMessageDialog(null, ex.toString());
-                Logger.getLogger(CadastroLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+        //Verifica os campos
+        if ("".equals(txt_isbn.getText()) || "".equals(txt_titulo.getText()) || "".equals(txt_nomeAutor.getText()) ||
+                "".equals(txt_editora.getText()) || "Selecione..".equals(cmb_categoria.getSelectedItem().toString()) ||
+                "".equals(txt_resumo.getText()) || "".equals(txt_sumario.getText()) || "".equals(txt_qtd.getText()) ||
+                "Selecione..".equals(cmb_margemLucro.getSelectedItem().toString())) {
+            JOptionPane.showMessageDialog(null, "Há campos não preenchidos.");
+            return;
         }
-
-
+        //Altera
+        ControleAdministracao adm = new ControleAdministracao();
+        try {
+            String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
+            adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            JOptionPane.showMessageDialog(null, "O livro foi alterado com sucesso.");
+            txt_isbn.setEditable(true);
+            limparCampos();
+        } catch (BancoException | NegocioException ex) {
+            JOptionPane.showMessageDialog(null,"O livro não foi alterado: " + ex.toString());
+        }
     }//GEN-LAST:event_btn_alterarActionPerformed
+    
     public void limparCampos() {
         txt_isbn.setText("");
         txt_titulo.setText("");
@@ -607,8 +576,8 @@ public class CadastroLivro extends javax.swing.JFrame {
         cmb_margemLucro.setSelectedItem("Selecione..");
         oferta = false;
         digital = false;
-        rdo_digitalNao.setSelected(true);
-        rdo_ofertaNao.setSelected(true);
+        rdo_digitalNao.setSelected(false);
+        rdo_ofertaNao.setSelected(false);
         bloqueiaBotao();
     }
 
@@ -633,27 +602,21 @@ public class CadastroLivro extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadastroLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroLivro().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CadastroLivro().setVisible(true);
         });
     }
 

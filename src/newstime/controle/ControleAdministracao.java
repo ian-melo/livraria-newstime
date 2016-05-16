@@ -21,13 +21,7 @@ import newstime.excecao.NegocioException;
  * @author Fábio M.
  */
 public class ControleAdministracao {
-    /**
-     * Atributos
-     * @return 
-     */
     private String titulo;
-    private Autor autor;
-    private Editora editora;
     private int anoPublicacao;
     private String resumo;
     private String sumario;
@@ -36,30 +30,15 @@ public class ControleAdministracao {
     private float precoOferta;
     private float precoCusto;
     private float margemLucro;
-    private boolean oferta;
-    private boolean digital;
-    private int ID;        //Só usar se necessario
-    private int ID_AUTOR;  //Só usar se necessario
-    private int ID_EDITORA;//Só usar se necessario
     private String isbn;
     private String nomeAutor;
     private String nomeEditora;
     private String categoria;
-
-    public String getIsbn() {
-        return isbn;
-    }
+    private boolean digital;
+    private boolean oferta;
 
     public String getTitulo() {
         return titulo;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public Editora getEditora() {
-        return editora;
     }
 
     public int getAnoPublicacao() {
@@ -94,50 +73,32 @@ public class ControleAdministracao {
         return margemLucro;
     }
 
-    public boolean isOferta() {
-        return oferta;
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getNomeAutor() {
+        return nomeAutor;
+    }
+
+    public String getNomeEditora() {
+        return nomeEditora;
+    }
+
+    public String getCategoria() {
+        return categoria;
     }
 
     public boolean isDigital() {
         return digital;
     }
 
-    public int getID() {
-        return ID;
+    public boolean isOferta() {
+        return oferta;
     }
-
-    public int getID_AUTOR() {
-        return ID_AUTOR;
-    }
-
-    public int getID_EDITORA() {
-        return ID_EDITORA;
-    }
-    
-    public String getNomeAutor() {
-        return nomeAutor;
-    }
-    
-    public String getNomeEditora() {
-        return nomeEditora;
-    }
-    
-    public String getCategoria() {
-        return categoria;
-    }
-
-    
-    
-    
-    
     
     /**
-     * Metodos
-     */
-    
-    /**
-     * Verifica o tipo de conta, se é de cliente ou 
-     * funcionario/administrador do sistema
+     * Verifica se o login e senha do administrador batem
      * @param login
      * @param senha
      */
@@ -145,7 +106,6 @@ public class ControleAdministracao {
         
     }
     
-
     
     /**
      * Cadastra os livros
@@ -165,37 +125,42 @@ public class ControleAdministracao {
      * @param margemLucro
      * @param oferta
      * @param digital
+     * @return 
      * @throws newstime.excecao.NegocioException
      * @throws newstime.excecao.BancoException
-
      */
-    //public void inserirLivro(String isbn, String titulo, Autor autor, Editora editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
     public boolean inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException{
-        
-        //Mudança no diagrama de tipo string autor para tipo Autor autor;
-        //Mudança no diagrama de tipo string editora para tipo Editora editora;
         BancoDados bd = new BancoDados();
+        AutorDAO autorDAO = new AutorDAO(bd);
+        EditoraDAO editoraDAO = new EditoraDAO(bd);
+        LivroDAO livroDAO = new LivroDAO(bd);
+        
+        //Busca autor, caso não encontre, insere e busca
+        Autor au = new Autor();
+        au.setNome(autor);
+        try {
+            au = autorDAO.buscar(au);
+        } catch(BancoException ex) {
+            autorDAO.inserir(au);
+            au = autorDAO.buscar(au);
+        }
+        
+        //Busca editora, caso não encontre, insere e busca
+        Editora ed = new Editora();
+        ed.setNome(editora);
+        try {
+            ed = editoraDAO.buscar(ed);
+        } catch(BancoException ex) {
+            editoraDAO.inserir(ed);
+            ed = editoraDAO.buscar(ed);
+        }
+        
+        //Define e insere livro
         Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro.setTitulo(titulo);
-        
-        Autor au = new Autor();
-        au.setNome(autor);//Coloca o naome da autor dentro do objeto
-        AutorDAO autorDAO = new AutorDAO(bd);
-        au = autorDAO.buscar(au);//envia o objeto com apenas o nome da autor e retorna o ojeto inteiro se caso o localize
-        
-        Editora ed = new Editora();
-        ed.setNome(editora);//Coloca o naome da editora dentro do objeto
-        EditoraDAO editoraDAO = new EditoraDAO(bd);
-        ed = editoraDAO.buscar(ed);//envia o objeto com apenas o nome da editora e retorna o ojeto inteiro se caso o localize
-        
-        
-        livro.setAutor(au);// seta o objeto autor dentro de livro
-        livro.setEditora(ed);//seta o objeto editora dentro de livro
-        
         livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
-        livro.setCategoria(Livro.CategoriaLivro.ARTES);//mudar verificar//erro
-        
+        livro.setCategoria(Livro.CategoriaLivro.valueOf(categoria));
         livro.setResumo(resumo);
         livro.setSumario(sumario);
         livro.setQtdEstoque(qtdEstoque);
@@ -205,34 +170,22 @@ public class ControleAdministracao {
         livro.setMargemLucro(Float.parseFloat(margemLucro));
         livro.setOferta(oferta);
         livro.setDigital(digital);
+        livro.setAutor(au);// seta o objeto autor dentro de livro
+        livro.setEditora(ed);//seta o objeto editora dentro de livro
         
-       
-/*      try {
-            //JOptionPane.showMessageDialog(null, bd);
-            //System.out.println(bd);
-            bd.abrirConexao();
-        } catch (BancoException ex) {
-            Logger.getLogger(ControleAdministracao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    */   
-        LivroDAO livroDAO = new LivroDAO(bd);
         livroDAO.inserir(livro);
-        
-        //bd.fecharConexao();
-        
         return true;
     }
     
     public void inserirAutor(String nome, String codigo, String localNasc, String localMorte, String dataNasc, String dataMorte) throws ParseException, BancoException{
-        Autor autor = new Autor();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         
+        Autor autor = new Autor();
         autor.setNome(nome);
         autor.setCodigo(codigo);
         autor.setLocalNasci(localNasc);
         autor.setLocalMorte(localMorte);
-         
-         
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
         Date dataMort = formato.parse(dataMorte);
         autor.setDataMorte(dataMort);
         Date dataNasce = formato.parse(dataNasc);
@@ -240,141 +193,88 @@ public class ControleAdministracao {
         
         BancoDados bd = new BancoDados();
         AutorDAO autorDAO = new AutorDAO(bd);
-        
         autorDAO.inserir(autor);
-        
     }
     
     public void inserirEditora(String cnpj, String nomeEdi, String endereco, String telefone) throws FormatacaoIncorretaException, BancoException{
         Editora editora = new Editora();
-        
         editora.setCnpj(cnpj);
         editora.setNome(nomeEdi);
         editora.setEndereco(endereco);
         editora.setTelefone(telefone);
         
         BancoDados bd = new BancoDados();
-        
         EditoraDAO editoraD = new EditoraDAO(bd);
         editoraD.inserir(editora);
-        
-        
     }
     
     public void buscarLivro(String isbn) throws BancoException{
-        //CadastroLivro cdl = new CadastroLivro();//Apenas um teste - apagar
-        
         BancoDados bd = new BancoDados();
         LivroDAO livroDAO = new LivroDAO(bd);
-        Livro livro = new Livro();
-        Livro livroRetorno = new Livro();
-        
-        livro.setIsbn(isbn);//Envia o isbn do livro
-        
-        livroRetorno = livroDAO.buscar(livro);//Envia objeto livro e retorna um objeto livroRetorno som o livro caso seje encontrado retorna uma exceção se não for
-        
-        /* - Objeto Autor - */
-        System.out.println("Id autor: " + livroRetorno.getID_AUTOR());
         AutorDAO autorDAO = new AutorDAO(bd);
-        Autor autor = new Autor();
-        autor.setID(livroRetorno.getID_AUTOR());
+        EditoraDAO editoraDAO = new EditoraDAO(bd);
         
+        //Busca livro (ISBN)
+        Livro livro = new Livro();
+        livro.setIsbn(isbn);
+        livro = livroDAO.buscar(livro);
+        
+        //Puxa autor
+        Autor autor = new Autor();
+        autor.setID(livro.getID_AUTOR());
         autor = autorDAO.buscarId(autor);
         
-        System.out.println("______AUTOR_________");
-        System.out.println(autor.getCodigo());
-        System.out.println(autor.getNome());
-        System.out.println(autor.getLocalNasci());
-        System.out.println("____________________");
-        //Para retornar para o form
-        
-        
-        /* - Objeto Editora - */
-         System.out.println("Id editora: " + livroRetorno.getID_EDITORA());
-        EditoraDAO editoraDAO = new EditoraDAO(bd);
+        //Puxa editora
         Editora editora = new Editora();
-        editora.setID(livroRetorno.getID_EDITORA());
-        
+        editora.setID(livro.getID_EDITORA());
         editora = editoraDAO.buscarId(editora);
         
-        System.out.println("______EDITORA_______");
-        System.out.println(editora.getCnpj());
-        System.out.println(editora.getNome());
-        System.out.println(editora.getTelefone());
-        System.out.println("____________________");
-        
-        
-        titulo = livroRetorno.getTitulo();
-        //private Autor autor;
-        //private Editora editora;
-        anoPublicacao = livroRetorno.getAnoPublicacao();
-        resumo = livroRetorno.getResumo();
-        sumario = livroRetorno.getSumario();
-        qtdEstoque = livroRetorno.getQtdEstoque();
-        precoVenda = livroRetorno.getPrecoVenda();
-        precoOferta = livroRetorno.getPrecoOferta();
-        precoCusto = livroRetorno.getPrecoCusto();
-        margemLucro = livroRetorno.getMargemLucro();
-        this.isbn = livroRetorno.getIsbn();
-        nomeAutor = autor.getNome();
-        nomeEditora = editora.getNome();
-        categoria = livroRetorno.getCategoria().toString();
-        //Não terminado
-        //oferta = livroRetorno.get;
-        //digital = livroRetorno.getDigital();
-        //ID;
-        //ID_AUTOR;
-        //ID_EDITORA;
-        
-       
-        
-        
-        
-        
-        
-        
-        //Teste - APAGAR
-        System.out.println("Ano Public. " + anoPublicacao);
-        System.out.println("Resumo: " + livroRetorno.getResumo());
-        System.out.println("Sumario: " + livroRetorno.getSumario());
-        System.out.println("-4. " + livroRetorno.getMargemLucro());
-        System.out.println("-5. " + livroRetorno.getQtdEstoque());
-        
-        //List<Object> arrayLivro = new ArrayList();//Teste
-        
-
-        
-        
+        //Define resultados
+        this.titulo = livro.getTitulo();
+        this.anoPublicacao = livro.getAnoPublicacao();
+        this.resumo = livro.getResumo();
+        this.sumario = livro.getSumario();
+        this.qtdEstoque = livro.getQtdEstoque();
+        this.precoVenda = livro.getPrecoVenda();
+        this.precoOferta = livro.getPrecoOferta();
+        this.precoCusto = livro.getPrecoCusto();
+        this.margemLucro = livro.getMargemLucro();
+        this.isbn = livro.getIsbn();
+        this.categoria = livro.getCategoria().toString();
+        this.nomeAutor = autor.getNome();
+        this.nomeEditora = editora.getNome();
+        this.oferta = livro.isOferta();
+        this.digital = livro.isDigital();
     }
     
     public boolean alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException{
         BancoDados bd1 = new BancoDados();
-        Livro livro = new Livro();
-        
         LivroDAO livroDAO = new LivroDAO(bd1);
+        AutorDAO autorDAO = new AutorDAO(bd1);
+        EditoraDAO editoraDAO = new EditoraDAO(bd1);
+        
+        //Busca livro, se não existir, pára
+        Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro = livroDAO.buscar(livro);
         
-        //livro.setID(ID);
-        livro.setTitulo(titulo);
-        
+        //Altera autor
         Autor au = new Autor();
-        au.setNome(autor);//Coloca o naome da autor dentro do objeto
-        AutorDAO autorDAO = new AutorDAO(bd1);
-        au = autorDAO.buscar(au);//envia o objeto com apenas o nome da autor e retorna o ojeto inteiro se caso o localize
+        au.setID(livro.getID_AUTOR());
+        au.setNome(autor);
+        autorDAO.alterar(au);
         
+        //Altera editora
         Editora ed = new Editora();
-        ed.setNome(editora);//Coloca o naome da editora dentro do objeto
-        EditoraDAO editoraDAO = new EditoraDAO(bd1);
-        ed = editoraDAO.buscar(ed);//envia o objeto com apenas o nome da editora e retorna o ojeto inteiro se caso o localize
+        au.setID(livro.getID_EDITORA());
+        ed.setNome(editora);
+        editoraDAO.alterar(ed);
         
-        
-        livro.setAutor(au);// seta o objeto autor dentro de livro
-        livro.setEditora(ed);//seta o objeto editora dentro de livro
-        
-        livro.setAnoPublicacao(qtdEstoque);
-        livro.setCategoria(Livro.CategoriaLivro.ARTES);//mudar verificar//erro
-        
+        //Altera livro
+        livro.setIsbn(isbn);
+        livro.setTitulo(titulo);
+        livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
+        livro.setCategoria(Livro.CategoriaLivro.valueOf(categoria));
         livro.setResumo(resumo);
         livro.setSumario(sumario);
         livro.setQtdEstoque(qtdEstoque);
@@ -384,34 +284,25 @@ public class ControleAdministracao {
         livro.setMargemLucro(Float.parseFloat(margemLucro));
         livro.setOferta(oferta);
         livro.setDigital(digital);
-        //livro.setID(20);
-       
-
+        livro.setAutor(au);
+        livro.setEditora(ed);
         
         livroDAO.alterar(livro);
-        /*
-        //bd.fecharConexao();
-        System.out.println("____TESTE____________________________________________________________________1");
-        System.out.println("Ano Public. " + anoPublicacao);
-        System.out.println("Resumo: " + livro.getResumo());
-        System.out.println("Sumario: " + livro.getSumario());
-        System.out.println("-4. " + livro.getMargemLucro());
-        System.out.println("-5. " + livro.getQtdEstoque());
-        System.out.println("Ano Public. " + anoPublicacao);
-        System.out.println("Re__sumo: " + livroDAO.listar());
-
-        */
-        
         return true;
     }
     
     public void removerLivro(String isbn) throws BancoException{
         BancoDados bd = new BancoDados();
-        Livro livro = new Livro();
         LivroDAO livroDAO = new LivroDAO(bd);
+        
+        //Busca livro, se não existir, pára
+        Livro livro = new Livro();
         livro.setIsbn(isbn);
         livro = livroDAO.buscar(livro);
+        
+        //Exclui
         livroDAO.excluir(livro);
-
+        
+        //NOTA: Para segurança, não foi excluído autor e editora
     }
 }

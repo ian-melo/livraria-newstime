@@ -283,9 +283,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_nomeAutor">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_nomeAutorActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -522,9 +519,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_precoOferta">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_precoOfertaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_margemLucro">
       <Properties>

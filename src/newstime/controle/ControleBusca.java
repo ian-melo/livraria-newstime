@@ -23,9 +23,9 @@ public class ControleBusca {
      * A forma que será organizado
      */
     public void buscarLivro(String palChave, int criterio, int organizacao){
-        BuscaLivro busca = new BuscaLivro();
+        //BuscaLivro busca = new BuscaLivro();
         
-        System.out.println(busca.buscarLivros(palChave, BuscaLivro.CriterioBusca.EDITORA));//temporario
+        //System.out.println(busca.buscarLivros(palChave, BuscaLivro.CriterioBusca.EDITORA));//temporario
     }
     
     /**

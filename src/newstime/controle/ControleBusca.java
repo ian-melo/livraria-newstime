@@ -37,18 +37,22 @@ public class ControleBusca {
         
         
         /*
-        0 = CATEGORIA 
-        1 = EDITORA   
-        2 = TITULO    
-        3 = AUTOR     
+        
+        0 = Filtros
+        1 = Categoria
+        2 = Editora
+        3 = Título
+        4 = Autor
+        5 = ISBN
+             
         */
-        if (criterio == 0){
+        if (criterio == 1){
            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.CATEGORIA));
-        }else if(criterio == 1){
-            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.EDITORA));
         }else if(criterio == 2){
-            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.TITULO));
+            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.EDITORA));
         }else if(criterio == 3){
+            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.TITULO));
+        }else if(criterio == 4){
             resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.AUTOR));
         }else{
             JOptionPane.showMessageDialog(null, "ERRO - Criterio de busca");
@@ -65,7 +69,7 @@ public class ControleBusca {
         }
         */
         
-        
+        resultadosBusca = resultados;
         
         //JOptionPane.showMessageDialog(null, resultados);
     }
@@ -150,15 +154,16 @@ public class ControleBusca {
         }
 
 
+        resultadosBusca = resultados;
         /*
-        for(Livro x:resultados) {
+        for(Livro x:resultadosBusca) {
             System.out.println("_____________________________________teste_");
             System.out.println(x.getTitulo());
             System.out.println(x.getAutor());
             System.out.println(x.getEditora());
         }
-        */
-        resultadosBusca = resultados;
+        */        
+        
         //JOptionPane.showMessageDialog(null, resultados);
     }
     

@@ -3,6 +3,7 @@ package newstime.teste;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import newstime.controle.ControleContaCliente;
 import newstime.entidade.Endereco;
 import newstime.excecao.BancoException;
@@ -19,16 +20,29 @@ public class TesteControleContaCliente {
          ControleContaCliente controleCliente = new  ControleContaCliente();
          
          try {
-             //String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, String endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
-            Endereco endereco = new Endereco();
-            endereco.setID(2);
-            controleCliente.cadastrarCliente("teste@teste.com", "senha1234", "nomeC", "SobreNome", "F", "111.111.111-11", "11/11/2000", "(11)1111-1111", "(11)1111-1111", "(11)1111-1111", endereco, true);
+     
+            controleCliente.cadastrarCliente("testeteste.com", "senha1234", "nomeC", "SobreNome", "F", "111.111.111-11", "11/11/2000", "(11)1111-1111", "(11)1111-1111", "(11)1111-1111", "endereco", true, "logadouro", "1", "complemento", "Bairro", "São Paulo", "SP", "11111-010", "referenci");
          
          
          
          
-         } catch (BancoException | FormatacaoIncorretaException | ParseException | NegocioException ex) {
+         } catch (BancoException ex) {
+             JOptionPane.showMessageDialog(null, "teste1" + ex);
              Logger.getLogger(TesteControleContaCliente.class.getName()).log(Level.SEVERE, null, ex);
+             
+         }catch (NegocioException ex) {
+             JOptionPane.showMessageDialog(null, "teste2" + ex.toString());
+             JOptionPane.showMessageDialog(null, "teste 2 " + ex.getMessage());
+             Logger.getLogger(TesteControleContaCliente.class.getName()).log(Level.SEVERE, null, ex);
+             
+         }catch (ParseException ex) {
+             JOptionPane.showMessageDialog(null, "teste3" + ex);
+             Logger.getLogger(TesteControleContaCliente.class.getName()).log(Level.SEVERE, null, ex);
+             
+         }catch (FormatacaoIncorretaException ex) {
+             JOptionPane.showMessageDialog(null, "teste4" + ex);
+             Logger.getLogger(TesteControleContaCliente.class.getName()).log(Level.SEVERE, null, ex);
+             
          }
      }
 }

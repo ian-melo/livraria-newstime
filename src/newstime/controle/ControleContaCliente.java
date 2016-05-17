@@ -29,19 +29,35 @@ public class ControleContaCliente {
      * @param telefone
      * @param telefoneAlt
      * @param celular
-     * @param endereco
+     * @param endereco ?
      * @param promocional
+     * @param logadouro ?
+     * @param numero
+     * @param complemento
+     * @param bairro
+     * @param cidade
+     * @param estado
+     * @param cep
+     * @param referencia
      * @return
      * @throws NegocioException
-     * @throws BancoException 
-     * @throws newstime.excecao.FormatacaoIncorretaException 
+     * @throws BancoException
+     * @throws FormatacaoIncorretaException
+     * @throws ParseException 
      */
+
     
-    //public boolean cadastrarCliente(String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, String endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
-    public boolean cadastrarCliente(String email, String senha, String nome, String sobrenome, String sexo, String cpf, String dataNascimento, String telefone, String telefoneAlt, String celular, Endereco endereco, boolean promocional) throws NegocioException, BancoException, FormatacaoIncorretaException, ParseException {
-        /* Endereco altera do de tipo String para tipo Endereco */
+    
+    public boolean cadastrarCliente(String email, String senha, String nome, 
+            String sobrenome, String sexo, String cpf, String dataNascimento, 
+            String telefone, String telefoneAlt, String celular, String endereco, 
+            boolean promocional, String logadouro, String numero, String complemento, 
+            String bairro, String cidade, String estado, String cep, String referencia)
+            throws BancoException, FormatacaoIncorretaException, ParseException, NegocioException {
+        //variavel endereco não usada 
         Conta conta = new Conta();
         Cliente cliente = new Cliente();
+        Endereco enderecoC = new Endereco();
         
         cliente.setEmail(email);
         cliente.setSenha(senha);
@@ -49,6 +65,7 @@ public class ControleContaCliente {
         cliente.setSobrenome(sobrenome);
         cliente.setSexo(sexo);
         cliente.setCpf(cpf);
+        
         
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date dataNasc = formato.parse(dataNascimento);
@@ -60,9 +77,25 @@ public class ControleContaCliente {
         cliente.setEndereco(null);//mudar - temporario
         cliente.setPromocional(promocional);
         
-        cliente.setEndereco(endereco);
         
-        conta.cadastrar(cliente);//enviando obijeto
+        enderecoC.setBairro(bairro);
+        enderecoC.setCep(cep);
+        enderecoC.setCidade(cidade);
+        enderecoC.setComplemento(complemento);
+        enderecoC.setEstado(estado);
+        enderecoC.setLogradouro(logadouro);
+        enderecoC.setNumero(numero);
+        enderecoC.setReferencia(referencia);
+        
+        
+        
+        cliente.setEndereco(enderecoC);
+        //try {
+            conta.cadastrar(cliente);//enviando obijeto
+            //Foi encontrado o cliente, portanto não poderá cadastrar
+        //    throw new NegocioException("Não é pos          sível cadastrar, pois já existe uma conta com esse e-mail.");
+        //} catch(BancoException ex) {}
+        
         
         
         

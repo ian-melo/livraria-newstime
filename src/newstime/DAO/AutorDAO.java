@@ -46,8 +46,14 @@ public class AutorDAO implements DAO<Autor> {
             //Atrubui os dados
             pst.setString(1, o.getCodigo());
             pst.setString(2, o.getNome());
-            pst.setDate(3, new java.sql.Date(o.getDataNasci().getTime()));
-            pst.setDate(4, new java.sql.Date(o.getDataMorte().getTime()));
+            if(o.getDataNasci() != null)
+                pst.setDate(3, new java.sql.Date(o.getDataNasci().getTime()));
+            else
+                pst.setNull(3, java.sql.Types.NULL);
+            if(o.getDataMorte() != null)
+                pst.setDate(4, new java.sql.Date(o.getDataMorte().getTime()));
+            else
+                pst.setNull(4, java.sql.Types.NULL);
             pst.setString(5, o.getLocalNasci());
             pst.setString(6, o.getLocalMorte());
             //Executa
@@ -64,10 +70,20 @@ public class AutorDAO implements DAO<Autor> {
     @Override
     public void alterar(Autor o) throws BancoException {
         try {
+            //Verificando datas
+            String dataN, dataM;
+            if(o.getDataNasci()!= null) //Nascimento
+                dataN = "'" + new java.sql.Date(o.getDataNasci().getTime()) + "'";
+            else
+                dataN = "NULL";
+            if(o.getDataMorte()!= null) //Morte
+                dataM = "'" + new java.sql.Date(o.getDataMorte().getTime()) + "'";
+            else
+                dataM = "NULL";
             //Define String
             sql = "UPDATE Autor SET " +
-                "CodigoAlt='"+o.getCodigo()+"', Nome='"+o.getNome()+"', DataNasci='"+new java.sql.Date(o.getDataNasci().getTime())+"', " +
-                "DataMorte='"+new java.sql.Date(o.getDataMorte().getTime())+"', LocalNasci='"+o.getLocalNasci()+"', LocalMorte='"+o.getLocalMorte()+"' " +
+                "CodigoAlt='"+o.getCodigo()+"', Nome='"+o.getNome()+"', DataNasci="+dataN+", " +
+                "DataMorte="+dataM+", LocalNasci='"+o.getLocalNasci()+"', LocalMorte='"+o.getLocalMorte()+"' " +
                 "WHERE CodAutor="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
@@ -116,8 +132,10 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
-                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
+                if(rs.getDate("DataNasci") != null)
+                    autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                if(rs.getDate("DataMorte") != null)
+                    autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));
@@ -153,8 +171,10 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
-                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
+                if(rs.getDate("DataNasci") != null)
+                    autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                if(rs.getDate("DataMorte") != null)
+                    autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));
@@ -189,8 +209,10 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
-                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
+                if(rs.getDate("DataNasci") != null)
+                    autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                if(rs.getDate("DataMorte") != null)
+                    autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));

@@ -52,7 +52,10 @@ public class ClienteDAO implements DAO<Cliente> {
             pst.setString(4, o.getSobrenome());
             pst.setString(5, o.getSexo());
             pst.setString(6, o.getCpf());
-            pst.setDate(7, new java.sql.Date(o.getDataNascimento().getTime()));
+            if(o.getDataNascimento() != null)
+                pst.setDate(7, new java.sql.Date(o.getDataNascimento().getTime()));
+            else
+                pst.setNull(7, java.sql.Types.NULL);
             pst.setString(8, o.getTelefone());
             pst.setString(9, o.getTelefoneAlt());
             pst.setString(10, o.getCelular());
@@ -70,9 +73,15 @@ public class ClienteDAO implements DAO<Cliente> {
     @Override
     public void alterar(Cliente o) throws BancoException {
         try {
+            //Verificando data
+            String data;
+            if(o.getDataNascimento() != null)
+                data = "'" + new java.sql.Date(o.getDataNascimento().getTime()) + "'";
+            else
+                data = "NULL";
             //Define String
             sql = "UPDATE Cliente SET Email='"+o.getEmail()+"', Senha='"+o.getSenha()+"', Nome='"+o.getNome()+"', " +
-                "Sobrenome='"+o.getSobrenome()+"', Sexo='"+o.getSexo()+"', Cpf='"+o.getCpf()+"', DataNascimento='"+new java.sql.Date(o.getDataNascimento().getTime())+"', Telefone='"+o.getTelefone()+"', " +
+                "Sobrenome='"+o.getSobrenome()+"', Sexo='"+o.getSexo()+"', Cpf='"+o.getCpf()+"', DataNascimento="+data+", Telefone='"+o.getTelefone()+"', " +
                 "TelefoneAlt='"+o.getTelefoneAlt()+"', Celular='"+o.getCelular()+"', Q_Promocional="+o.isPromocional()+", CodEndereco="+o.getEndereco().getID()+" " +
                 "WHERE IdCliente="+o.getID();
             //Abre banco e prepara gatilho
@@ -138,7 +147,8 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
+                if(rs.getDate("DataNascimento") != null)
+                    cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));
@@ -193,7 +203,8 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
+                if(rs.getDate("DataNascimento") != null)
+                    cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));
@@ -247,7 +258,8 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
+                if(rs.getDate("DataNascimento") != null)
+                    cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));

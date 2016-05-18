@@ -45,7 +45,10 @@ public class PedidoDAO implements DAO<Pedido> {
             pst = bd.abrirConexao().prepareStatement(sql);
             //Atrubui os dados
             pst.setInt(1,o.getCliente().getID());
-            pst.setDate(2, new java.sql.Date(o.getDataHora().getTime()));
+            if(o.getDataHora() != null)
+                pst.setDate(2, new java.sql.Date(o.getDataHora().getTime()));
+            else
+                pst.setNull(2, java.sql.Types.NULL);
             //Executa
             pst.executeUpdate();
             bd.fecharConexao();
@@ -58,8 +61,14 @@ public class PedidoDAO implements DAO<Pedido> {
     @Override
     public void alterar(Pedido o) throws BancoException {
         try {
+            //Verificando data
+            String data;
+            if(o.getDataHora() != null)
+                data = "'" + new java.sql.Date(o.getDataHora().getTime()) + "'";
+            else
+                data = "NULL";
             //Define String
-            sql = "UPDATE Pedido SET IdCliente="+o.getCliente().getID()+", Data='"+new java.sql.Date(o.getDataHora().getTime())+"' " +
+            sql = "UPDATE Pedido SET IdCliente="+o.getCliente().getID()+", Data="+data+" " +
                 "WHERE IdPedido="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);

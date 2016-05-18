@@ -19,7 +19,15 @@ import newstime.excecao.BancoException;
  * @author lukin
  */
 public class Home extends javax.swing.JFrame {
-    
+    Livro l = new Livro();
+  
+    public Livro getL() {
+        return l;
+    }
+
+    public void setL(Livro l) {
+        this.l = l;
+    }
     /**
      * Creates new form Home
      */
@@ -77,6 +85,11 @@ public class Home extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jButton1.setText("Nossas Lojas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jLabel2.setText("Televendas (11) 4003-3390");
@@ -131,11 +144,11 @@ public class Home extends javax.swing.JFrame {
         pn_pai.setLayout(pn_paiLayout);
         pn_paiLayout.setHorizontalGroup(
             pn_paiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
         pn_paiLayout.setVerticalGroup(
             pn_paiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
 
         scroll_1.setViewportView(pn_pai);
@@ -188,8 +201,8 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scroll_1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addComponent(scroll_1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,43 +253,57 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        GridLayout gerente = new GridLayout(10,1);
-        pn_pai.setLayout(gerente);     
-        
-        
-        
-        
-        
-        ControleBusca busca = new ControleBusca();
-        ArrayList<Livro> resultBusca = new ArrayList<>();
-        
-        try {
-            busca.buscarLivro(txt_palChave.getText(), cmb_criterios.getSelectedIndex());
-        } catch (BancoException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        resultBusca = busca.getResultadosBusca();
-        
-        
-        
-        for(Livro ver:resultBusca) {
-            newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
-            pn_pai.add(p1);
-            JOptionPane.showMessageDialog(null, "Teste " + ver.getTitulo());
-            p1.getTxt_titulo().setText(ver.getTitulo());
-            p1.getTxt_resumo().setText(ver.getResumo());
+
+        pn_pai.removeAll();//Retira tudo do painel
+        if ("".equals(txt_palChave.getText()) || " ".equals(txt_palChave.getText()) || "   ".equals(txt_palChave.getText()) ||cmb_criterios.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Preencha filtros ou paravra chave");
+        } else {
+            GridLayout gerente = new GridLayout(10, 1);//Mostra até 10 itens um em baixo do outro
+            pn_pai.setLayout(gerente);
+
+            ControleBusca busca = new ControleBusca();
+            ArrayList<Livro> resultBusca = new ArrayList<>();
+
+            try {
+                busca.buscarLivro(txt_palChave.getText(), cmb_criterios.getSelectedIndex());
+            } catch (BancoException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            resultBusca = busca.getResultadosBusca();
             
+           
+            
+            for (Livro ver : resultBusca) {
+                newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
+                pn_pai.add(p1);
+                JOptionPane.showMessageDialog(null, "Teste " + ver.getTitulo());
+                p1.getTxt_titulo().setText(ver.getTitulo());
+                p1.getTxt_resumo().setText(ver.getResumo());
+                p1.getTxt_autor().setText(ver.getAutor().getNome());
+                p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
+                
+                
+                
+            }
+            System.out.println(l.getIsbn());
+            System.out.println(l.getMargemLucro()); 
+            //Atualiza form...pequeno erro grafico
+            int x = this.getHeight();
+            int y = this.getWidth();
+            this.setSize(y - 1, x - 1);
+            this.setSize(y, x);
+
         }
-        
-        
-        //Atualiza form...pequeno erro grafico
-        int x = this.getHeight();
-        int y = this.getWidth();
-        this.setSize(y-1,x-1);
-        this.setSize(y, x);
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        NossasLojas nossas = new NossasLojas();
+        
+        nossas.show();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

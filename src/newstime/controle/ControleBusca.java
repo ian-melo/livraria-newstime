@@ -46,6 +46,9 @@ public class ControleBusca {
         5 = ISBN
              
         */
+       
+     
+        
         if (criterio == 1){
            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.CATEGORIA));
         }else if(criterio == 2){

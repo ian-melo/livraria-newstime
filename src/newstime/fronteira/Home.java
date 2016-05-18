@@ -6,6 +6,7 @@
 package newstime.fronteira;
 
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,8 +62,8 @@ public class Home extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<String>();
         jComboBox3 = new javax.swing.JComboBox<String>();
-        jComboBox4 = new javax.swing.JComboBox<String>();
-        scroll_1 = new javax.swing.JScrollPane();
+        cmb_categoria = new javax.swing.JComboBox<String>();
+        scroll_15 = new javax.swing.JScrollPane();
         pn_pai = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -114,7 +115,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        cmb_criterios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filtros", "Categoria", "Editora", "Título", "Autor", "ISBN" }));
+        cmb_criterios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filtros", "Editora", "Título", "Autor", "ISBN" }));
 
         jButton7.setText("OK");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -133,10 +134,15 @@ public class Home extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros Digitais", "Lançamentos", "Pré-Vendas", "Mais Vendidos" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "Auto-Ajuda ", "Ciência ", "Culinária | Gastronomia ", "Esoterismo ", "Fantasia | Ficção ", "Filosofia ", "Guerra ", "História ", "Linguistica ", "Lit. Estrangeira ", "Lit. Infanto-Juvenil ", "Lit. Nacional ", "Medicina ", "Música ", "Política ", "Psicologia ", "Romance ", "Quadrinhos ", "Religião ", "Saúde ", "Sexo ", "Terror ", "Vestibular " }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "ADMINISTRAÇÃO", "AGROPECUÁRIA", "ARTES", "ÁUDIO LIVRO", "AUTO AJUDA", "CIÊNCIAS BIOLÓGICAS", "CIÊNCIAS EXATAS", "CIÊNCIAS HUMANAS", "CONTABILIDADE", "IDIOMA", "DICIONÁRIO", "DIDÁTICO", "DIREITO", "ECONOMIA", "ENGENHARIA TECNOLÓGICA", "ESPORTE", "GASTRONOMIA", "GEOGRAFIA HISTÓRICA", "INFORMÁTICA", "LINGUÍSTICA", "LITERATURA ESTRANGEIRA", "LITERATURA INFANTIL", "LITERATURA NACIONAL", "MEDICINA", "RELIGIÃO", "TURISMO" }));
+        cmb_categoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_categoriaItemStateChanged(evt);
+            }
+        });
+        cmb_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                cmb_categoriaActionPerformed(evt);
             }
         });
 
@@ -151,7 +157,7 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 370, Short.MAX_VALUE)
         );
 
-        scroll_1.setViewportView(pn_pai);
+        scroll_15.setViewportView(pn_pai);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +173,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(165, 165, 165)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
@@ -201,7 +207,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scroll_1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll_15, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
@@ -235,27 +241,151 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jButton9))
                     .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jComboBox3)
-                    .addComponent(jComboBox4))
+                    .addComponent(cmb_categoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll_1)
+                .addComponent(scroll_15)
                 .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void cmb_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_cmb_categoriaActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    private void cmb_categoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_categoriaItemStateChanged
+        /*
+        Categorias
+        ADMINISTRAÇÃO
+        AGROPECUÁRIA
+        ARTES
+        ÁUDIO LIVRO
+        AUTO AJUDA
+        CIÊNCIAS BIOLÓGICAS
+        CIÊNCIAS EXATAS
+        CIÊNCIAS HUMANAS
+        CONTABILIDADE
+        IDIOMA
+        DICIONÁRIO
+        DIDÁTICO
+        DIREITO
+        ECONOMIA
+        ENGENHARIA TECNOLÓGICA
+        ESPORTE
+        GASTRONOMIA
+        GEOGRAFIA HISTÓRICA
+        INFORMÁTICA
+        LINGUÍSTICA
+        LITERATURA ESTRANGEIRA
+        LITERATURA INFANTIL
+        LITERATURA NACIONAL
+        MEDICINA
+        RELIGIÃO
+        TURISMO
+        */
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            pn_pai.removeAll();
+            GridLayout gerente = new GridLayout(10, 1);//Mostra até 10 itens um em baixo do outro
+            pn_pai.setLayout(gerente);
+
+            ControleBusca busca = new ControleBusca();
+            ArrayList<Livro> resultBusca = new ArrayList<>();
+
+            String categoria = null;
+            if(cmb_categoria.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Selecione uma categoria");
+            }else if(cmb_categoria.getSelectedIndex() == 1){
+                categoria = "ADMINISTRACAO";
+            }else if(cmb_categoria.getSelectedIndex() == 2){
+                categoria = "AGROPECUARIA";
+            }else if(cmb_categoria.getSelectedIndex() == 3){
+                categoria = "ARTES";
+            }else if(cmb_categoria.getSelectedIndex() == 4){
+                categoria = "AUDIOLIVRO";
+            }else if(cmb_categoria.getSelectedIndex() == 5){
+                categoria = "AUTOAJUDA";
+            }else if(cmb_categoria.getSelectedIndex() == 6){
+                categoria = "CIENCIAS_BIO";
+            }else if(cmb_categoria.getSelectedIndex() == 7){
+                categoria = "CIENCIAS_EXA";
+            }else if(cmb_categoria.getSelectedIndex() == 8){
+                categoria = "CIENCIAS_HUM";
+            }else if(cmb_categoria.getSelectedIndex() == 9){
+                categoria = "CONTABILIDADE";
+            }else if(cmb_categoria.getSelectedIndex() == 10){
+                categoria = "IDIOMA";
+            }else if(cmb_categoria.getSelectedIndex() == 11){
+                categoria = "DICIONARIO";
+            }else if(cmb_categoria.getSelectedIndex() == 12){
+                categoria = "DIDATICO";
+            }else if(cmb_categoria.getSelectedIndex() == 13){
+                categoria = "ECONOMIA";
+            }else if(cmb_categoria.getSelectedIndex() == 14){
+                categoria = "ENG_TEC";
+            }else if(cmb_categoria.getSelectedIndex() == 15){
+                categoria = "ESPORTE";
+            }else if(cmb_categoria.getSelectedIndex() == 16){
+                categoria = "GASTRONOMIA";
+            }else if(cmb_categoria.getSelectedIndex() == 17){
+                categoria = "GEO_HIST";
+            }else if(cmb_categoria.getSelectedIndex() == 18){
+                categoria = "INFORMATICA";
+            }else if(cmb_categoria.getSelectedIndex() == 19){
+                categoria = "LINGUISTICA";
+            }else if(cmb_categoria.getSelectedIndex() == 20){
+                categoria = "LITER_ESTR";
+            }else if(cmb_categoria.getSelectedIndex() == 21){
+                categoria = "LITER_INFA";
+            }else if(cmb_categoria.getSelectedIndex() == 22){
+                categoria = "LITER_NACIO";
+            }else if(cmb_categoria.getSelectedIndex() == 23){
+                categoria = "MEDICINA";
+            }else if(cmb_categoria.getSelectedIndex() == 24){
+                categoria = "RELIGIAO";
+            }else if(cmb_categoria.getSelectedIndex() == 25){
+                categoria = "TURISMO";
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Erro ao buscar");
+                categoria = "TURISMO";
+            }
+
+            try {
+                busca.buscarLivro(categoria, 1);
+            } catch (BancoException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            resultBusca = busca.getResultadosBusca();
+
+            for (Livro ver : resultBusca) {
+                newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
+                pn_pai.add(p1);
+                JOptionPane.showMessageDialog(null, "Teste " + ver.getTitulo());
+                p1.getTxt_titulo().setText(ver.getTitulo());
+                p1.getTxt_resumo().setText(ver.getResumo());
+                p1.getTxt_autor().setText(ver.getAutor().getNome());
+                p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
+
+                p1.setLi(ver);
+
+            }
+            System.out.println(l.getIsbn());
+            System.out.println(l.getMargemLucro());
+            //Atualiza form...pequeno erro grafico
+            pequenoBug();//Corrige
+        }
+    }//GEN-LAST:event_cmb_categoriaItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        NossasLojas nossas = new NossasLojas();
+
+        nossas.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
         pn_pai.removeAll();//Retira tudo do painel
-        
         if ("".equals(txt_palChave.getText()) || " ".equals(txt_palChave.getText()) || "   ".equals(txt_palChave.getText()) ||cmb_criterios.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Preencha filtros ou paravra chave");
         } else {
@@ -272,9 +402,7 @@ public class Home extends javax.swing.JFrame {
             }
 
             resultBusca = busca.getResultadosBusca();
-            
-           
-            
+
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
                 pn_pai.add(p1);
@@ -283,29 +411,28 @@ public class Home extends javax.swing.JFrame {
                 p1.getTxt_resumo().setText(ver.getResumo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
-                
-                
-                
+
+                p1.setLi(ver);//envia objeto
+
             }
             System.out.println(l.getIsbn());
-            System.out.println(l.getMargemLucro()); 
+            System.out.println(l.getMargemLucro());
+
             //Atualiza form...pequeno erro grafico
-            int x = this.getHeight();
+            pequenoBug();//Corrige
+
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+    private void pequenoBug(){
+        int x = this.getHeight();
             int y = this.getWidth();
             this.setSize(y - 1, x - 1);
             this.setSize(y, x);
-
-        }
-
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NossasLojas nossas = new NossasLojas();
-        
-        nossas.show();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -342,6 +469,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_criterios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -354,13 +482,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel pn_pai;
-    private javax.swing.JScrollPane scroll_1;
+    private javax.swing.JScrollPane scroll_15;
     private javax.swing.JTextField txt_palChave;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,14 +6,24 @@
 package newstime.fronteira;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import newstime.entidade.Livro;
 
 /**
  *
  * @author Usuario
  */
 public class pn_Busca extends javax.swing.JPanel {
+    private Livro li = new Livro();
 
+    public Livro getLi() {
+        return li;
+    }
+
+    public void setLi(Livro li) {
+        this.li = li;
+    }
     public JLabel getjLabel1() {
         return jLabel1;
     }
@@ -115,6 +125,7 @@ public class pn_Busca extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lbl_img.setText("img");
@@ -162,8 +173,7 @@ public class pn_Busca extends javax.swing.JPanel {
                     .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(lab)
-                        .addGap(20, 20, 20)))
+                        .addComponent(lab)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_preco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,10 +223,10 @@ public class pn_Busca extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         MaisDetalhes detalhes = new MaisDetalhes();
         Home h = new Home();
- 
-
         
-        detalhes.getTxt_resumo().setText(h.getL().getResumo());
+        
+        detalhes.setLiv(li);
+        //detalhes
         
         detalhes.show();
     }//GEN-LAST:event_jButton2ActionPerformed

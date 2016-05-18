@@ -6,14 +6,26 @@
 package newstime.fronteira;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import newstime.entidade.Livro;
 
 /**
  *
  * @author Usuario
  */
 public class MaisDetalhes extends javax.swing.JFrame {
+    private Livro liv = new Livro();
 
+    public Livro getLiv() {
+        return liv;
+    }
+
+    public void setLiv(Livro liv) {
+        JOptionPane.showMessageDialog(null, "Teste " + liv);
+        this.liv = liv;
+        JOptionPane.showMessageDialog(null, "Teste44444 " + this.liv);
+    }
     public JLabel getjLabel1() {
         return jLabel1;
     }
@@ -23,11 +35,11 @@ public class MaisDetalhes extends javax.swing.JFrame {
     }
 
     public JTextField getTxt_resumo() {
-        return txt_resumo;
+        return txt_resumo1;
     }
 
     public void setTxt_resumo(JTextField txt_resumo) {
-        this.txt_resumo = txt_resumo;
+        this.txt_resumo1 = txt_resumo;
     }
 
     /**
@@ -47,13 +59,18 @@ public class MaisDetalhes extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txt_resumo = new javax.swing.JTextField();
+        txt_resumo1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Resumo");
 
-        txt_resumo.setText("jTextField1");
+        txt_resumo1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +83,7 @@ public class MaisDetalhes extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(293, 293, 293)
-                        .addComponent(txt_resumo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_resumo1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(307, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,12 +92,22 @@ public class MaisDetalhes extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addComponent(txt_resumo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_resumo1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(252, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        pn_Busca bb = new pn_Busca();
+        
+        //Livro liv = new Livro();
+        //liv = bb.getLi();
+        
+        txt_resumo1.setText(this.liv.getResumo());
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -119,6 +146,6 @@ public class MaisDetalhes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txt_resumo;
+    private javax.swing.JTextField txt_resumo1;
     // End of variables declaration//GEN-END:variables
 }

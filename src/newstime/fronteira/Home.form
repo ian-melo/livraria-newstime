@@ -56,7 +56,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                              <Component id="jComboBox4" min="-2" pref="135" max="-2" attributes="0"/>
+                              <Component id="cmb_categoria" min="-2" pref="135" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jComboBox2" min="-2" pref="79" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="scroll_1" min="-2" pref="700" max="-2" attributes="0"/>
+              <Component id="scroll_15" min="-2" pref="700" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -146,10 +146,10 @@
                   </Group>
                   <Component id="jComboBox2" alignment="0" pref="35" max="32767" attributes="0"/>
                   <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jComboBox4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cmb_categoria" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="scroll_1" max="32767" attributes="0"/>
+              <Component id="scroll_15" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -229,13 +229,12 @@
     <Component class="javax.swing.JComboBox" name="cmb_criterios">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
+          <StringArray count="5">
             <StringItem index="0" value="Filtros"/>
-            <StringItem index="1" value="Categoria"/>
-            <StringItem index="2" value="Editora"/>
-            <StringItem index="3" value="T&#xed;tulo"/>
-            <StringItem index="4" value="Autor"/>
-            <StringItem index="5" value="ISBN"/>
+            <StringItem index="1" value="Editora"/>
+            <StringItem index="2" value="T&#xed;tulo"/>
+            <StringItem index="3" value="Autor"/>
+            <StringItem index="4" value="ISBN"/>
           </StringArray>
         </Property>
       </Properties>
@@ -299,45 +298,49 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox4">
+    <Component class="javax.swing.JComboBox" name="cmb_categoria">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="24">
+          <StringArray count="27">
             <StringItem index="0" value="Categorias"/>
-            <StringItem index="1" value="Auto-Ajuda "/>
-            <StringItem index="2" value="Ci&#xea;ncia "/>
-            <StringItem index="3" value="Culin&#xe1;ria | Gastronomia "/>
-            <StringItem index="4" value="Esoterismo "/>
-            <StringItem index="5" value="Fantasia | Fic&#xe7;&#xe3;o "/>
-            <StringItem index="6" value="Filosofia "/>
-            <StringItem index="7" value="Guerra "/>
-            <StringItem index="8" value="Hist&#xf3;ria "/>
-            <StringItem index="9" value="Linguistica "/>
-            <StringItem index="10" value="Lit. Estrangeira "/>
-            <StringItem index="11" value="Lit. Infanto-Juvenil "/>
-            <StringItem index="12" value="Lit. Nacional "/>
-            <StringItem index="13" value="Medicina "/>
-            <StringItem index="14" value="M&#xfa;sica "/>
-            <StringItem index="15" value="Pol&#xed;tica "/>
-            <StringItem index="16" value="Psicologia "/>
-            <StringItem index="17" value="Romance "/>
-            <StringItem index="18" value="Quadrinhos "/>
-            <StringItem index="19" value="Religi&#xe3;o "/>
-            <StringItem index="20" value="Sa&#xfa;de "/>
-            <StringItem index="21" value="Sexo "/>
-            <StringItem index="22" value="Terror "/>
-            <StringItem index="23" value="Vestibular "/>
+            <StringItem index="1" value="ADMINISTRA&#xc7;&#xc3;O"/>
+            <StringItem index="2" value="AGROPECU&#xc1;RIA"/>
+            <StringItem index="3" value="ARTES"/>
+            <StringItem index="4" value="&#xc1;UDIO LIVRO"/>
+            <StringItem index="5" value="AUTO AJUDA"/>
+            <StringItem index="6" value="CI&#xca;NCIAS BIOL&#xd3;GICAS"/>
+            <StringItem index="7" value="CI&#xca;NCIAS EXATAS"/>
+            <StringItem index="8" value="CI&#xca;NCIAS HUMANAS"/>
+            <StringItem index="9" value="CONTABILIDADE"/>
+            <StringItem index="10" value="IDIOMA"/>
+            <StringItem index="11" value="DICION&#xc1;RIO"/>
+            <StringItem index="12" value="DID&#xc1;TICO"/>
+            <StringItem index="13" value="DIREITO"/>
+            <StringItem index="14" value="ECONOMIA"/>
+            <StringItem index="15" value="ENGENHARIA TECNOL&#xd3;GICA"/>
+            <StringItem index="16" value="ESPORTE"/>
+            <StringItem index="17" value="GASTRONOMIA"/>
+            <StringItem index="18" value="GEOGRAFIA HIST&#xd3;RICA"/>
+            <StringItem index="19" value="INFORM&#xc1;TICA"/>
+            <StringItem index="20" value="LINGU&#xcd;STICA"/>
+            <StringItem index="21" value="LITERATURA ESTRANGEIRA"/>
+            <StringItem index="22" value="LITERATURA INFANTIL"/>
+            <StringItem index="23" value="LITERATURA NACIONAL"/>
+            <StringItem index="24" value="MEDICINA"/>
+            <StringItem index="25" value="RELIGI&#xc3;O"/>
+            <StringItem index="26" value="TURISMO"/>
           </StringArray>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox4ActionPerformed"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmb_categoriaItemStateChanged"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmb_categoriaActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="scroll_1">
+    <Container class="javax.swing.JScrollPane" name="scroll_15">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>

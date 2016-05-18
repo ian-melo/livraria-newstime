@@ -255,6 +255,7 @@ public class Home extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
         pn_pai.removeAll();//Retira tudo do painel
+        
         if ("".equals(txt_palChave.getText()) || " ".equals(txt_palChave.getText()) || "   ".equals(txt_palChave.getText()) ||cmb_criterios.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Preencha filtros ou paravra chave");
         } else {

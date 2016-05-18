@@ -25,8 +25,8 @@ CREATE TABLE Autor(
 	CodAutor INT(11) AUTO_INCREMENT,
 	CodigoAlt CHAR(14),
 	Nome VARCHAR(30),
-	DataNasci DATE,
-	DataMorte DATE,
+	DataNasci DATE DEFAULT '1900-01-01',
+	DataMorte DATE DEFAULT '1900-01-01',
 	LocalNasci VARCHAR(30),
 	LocalMorte VARCHAR(30),
 	XDEAD BOOLEAN DEFAULT FALSE,
@@ -84,7 +84,7 @@ CREATE TABLE Cliente( /*Dep. Endereço*/
 	Sobrenome VARCHAR(25),
 	Sexo CHAR(1),
 	Cpf CHAR(14),
-	DataNascimento DATE,
+	DataNascimento DATE DEFAULT '1900-01-01',
 	Telefone CHAR(14),
 	TelefoneAlt CHAR(14),
 	Celular CHAR(14),
@@ -100,7 +100,7 @@ CREATE TABLE Cliente( /*Dep. Endereço*/
 CREATE TABLE Pedido( /*Dep. Cliente*/
 	IdPedido INT(11) AUTO_INCREMENT,
 	IdCliente INT(11),
-	Data DATE,
+	Data DATE DEFAULT '1900-01-01',
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*CHAVE PRIMÁRIA*/
 	PRIMARY KEY(IdPedido),
@@ -148,7 +148,7 @@ CREATE TABLE Entrega(
 	CodEntrega INT(11) AUTO_INCREMENT,
 	Tipo CHAR(20),
 	Preco DECIMAL(6,2),
-	DataEntrega DATE,
+	DataEntrega DATE DEFAULT '1900-01-01',
 	XDEAD BOOLEAN DEFAULT FALSE,
 /*CHAVE PRIMÁRIA*/
 	PRIMARY KEY(CodEntrega)

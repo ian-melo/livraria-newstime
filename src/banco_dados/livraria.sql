@@ -44,6 +44,8 @@ CREATE TABLE Livro( /*Dep. Autor, Editora*/
 	Categoria CHAR(20),
 	Resumo VARCHAR(1000),
 	Sumario VARCHAR(1000),
+	Formato CHAR(20),
+	NumPaginas INT(6),
 	QtdEstoque INT(7),
 	PrecoVenda DECIMAL(6,2),
 	PrecoOferta DECIMAL(6,2),
@@ -170,3 +172,6 @@ CREATE TABLE Venda( /*Dep. Pedido, Endereço, Pagamento, Entrega*/
 	FOREIGN KEY(CodEntrega) REFERENCES Entrega(CodEntrega)
 );
 
+/*INSERIR FUNCIONÁRIO*/
+INSERT INTO Funcionario
+VALUES (NULL,'mariana_peixoto','abc123','Mariana Peixoto',FALSE);

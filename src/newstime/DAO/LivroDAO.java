@@ -1,4 +1,3 @@
-//TODO: Testar
 package newstime.DAO;
 
 import java.sql.*;
@@ -44,7 +43,7 @@ public class LivroDAO implements DAO<Livro> {
         try {
             //Define String
             sql = "INSERT INTO Livro " +
-                "VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,FALSE)";
+                "VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,FALSE)";
             //Abre conexao e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
             //Atrubui os dados
@@ -56,13 +55,15 @@ public class LivroDAO implements DAO<Livro> {
             pst.setString(6, o.getCategoria().toString());
             pst.setString(7, o.getResumo());
             pst.setString(8, o.getSumario());
-            pst.setInt(9,o.getQtdEstoque());
-            pst.setFloat(10,o.getPrecoVenda());
-            pst.setFloat(11,o.getPrecoOferta());
-            pst.setFloat(12,o.getPrecoCusto());
-            pst.setFloat(13, o.getMargemLucro());
-            pst.setBoolean(14, o.isOferta());
-            pst.setBoolean(15, o.isDigital());
+            pst.setString(9, o.getFormato().toString());
+            pst.setInt(10, o.getNumPaginas());
+            pst.setInt(11,o.getQtdEstoque());
+            pst.setFloat(12,o.getPrecoVenda());
+            pst.setFloat(13,o.getPrecoOferta());
+            pst.setFloat(14,o.getPrecoCusto());
+            pst.setFloat(15, o.getMargemLucro());
+            pst.setBoolean(16, o.isOferta());
+            pst.setBoolean(17, o.isDigital());
             //Executa
             pst.executeUpdate();
             bd.fecharConexao();
@@ -79,7 +80,7 @@ public class LivroDAO implements DAO<Livro> {
             sql = "UPDATE Livro SET " +
                 "Isbn='"+o.getIsbn()+"', Titulo='"+o.getTitulo()+"', CodAutor="+o.getAutor().getID()+", " +
                 "CodEditora="+o.getEditora().getID()+", AnoPublicacao="+o.getAnoPublicacao()+", Categoria='"+o.getCategoria().toString()+"', Resumo='"+o.getResumo()+"', Sumario='"+o.getSumario()+"', " +
-                "QtdEstoque="+o.getQtdEstoque()+", PrecoVenda='"+o.getPrecoVenda()+"', PrecoOferta='"+o.getPrecoOferta()+"', PrecoCusto='"+o.getPrecoCusto()+"', MargemLucro='"+o.getMargemLucro()+"', Q_Oferta="+o.isOferta()+", Q_Digital="+o.isDigital()+" " +
+                "Formato='"+o.getFormato().toString()+"', NumPaginas="+o.getNumPaginas()+", QtdEstoque="+o.getQtdEstoque()+", PrecoVenda='"+o.getPrecoVenda()+"', PrecoOferta='"+o.getPrecoOferta()+"', PrecoCusto='"+o.getPrecoCusto()+"', MargemLucro='"+o.getMargemLucro()+"', Q_Oferta="+o.isOferta()+", Q_Digital="+o.isDigital()+" " +
                 "WHERE CodLivro="+o.getID();
             //Abre banco e prepara gatilho
             pst = bd.abrirConexao().prepareStatement(sql);
@@ -129,6 +130,8 @@ public class LivroDAO implements DAO<Livro> {
                 livro.setCategoria(CategoriaLivro.valueOf(rs.getString("Categoria")));
                 livro.setResumo(rs.getString("Resumo"));
                 livro.setSumario(rs.getString("Sumario"));
+                livro.setFormato(Livro.FormatoLivro.valueOf(rs.getString("Formato")));
+                livro.setNumPaginas(rs.getInt("NumPaginas"));
                 try {
                     livro.setQtdEstoque(rs.getInt("QtdEstoque"));
                 } catch (NegocioException ex) {}
@@ -185,6 +188,8 @@ public class LivroDAO implements DAO<Livro> {
                 livro.setCategoria(CategoriaLivro.valueOf(rs.getString("Categoria")));
                 livro.setResumo(rs.getString("Resumo"));
                 livro.setSumario(rs.getString("Sumario"));
+                livro.setFormato(Livro.FormatoLivro.valueOf(rs.getString("Formato")));
+                livro.setNumPaginas(rs.getInt("NumPaginas"));
                 try {
                     livro.setQtdEstoque(rs.getInt("QtdEstoque"));
                 } catch (NegocioException ex) {}
@@ -240,6 +245,8 @@ public class LivroDAO implements DAO<Livro> {
                 livro.setCategoria(CategoriaLivro.valueOf(rs.getString("Categoria")));
                 livro.setResumo(rs.getString("Resumo"));
                 livro.setSumario(rs.getString("Sumario"));
+                livro.setFormato(Livro.FormatoLivro.valueOf(rs.getString("Formato")));
+                livro.setNumPaginas(rs.getInt("NumPaginas"));
                 try {
                     livro.setQtdEstoque(rs.getInt("QtdEstoque"));
                 } catch (NegocioException ex) {}

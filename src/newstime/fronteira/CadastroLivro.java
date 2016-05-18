@@ -457,7 +457,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         ControleAdministracao controleAdm = new ControleAdministracao();
         try {
             String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), null/*FALTA FORMATO*/, null/*FALTA NÚMERO DE PÁGINAS*/, Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
             JOptionPane.showMessageDialog(null, "O livro foi cadastrado com sucesso.");
             limparCampos();
         } catch (BancoException | NegocioException ex) {
@@ -551,7 +551,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         ControleAdministracao adm = new ControleAdministracao();
         try {
             String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-            adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), null/*FALTA FORMATO*/, null/*FALTA NÚMERO DE PÁGINAS*/, Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
             JOptionPane.showMessageDialog(null, "O livro foi alterado com sucesso.");
             txt_isbn.setEditable(true);
             limparCampos();

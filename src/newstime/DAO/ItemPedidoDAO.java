@@ -1,4 +1,3 @@
-//TODO: Testar
 package newstime.DAO;
 
 import java.sql.*;

@@ -39,6 +39,27 @@ public class Livro {
         /** Religião */                     RELIGIAO,
         /** Turismo */                      TURISMO
     }
+    /**
+     * Formatos de livro existentes
+     */
+    public static enum FormatoLivro {
+        /**
+         * Brochura
+         */
+        BROCHURA,
+        /**
+         * Grampo
+         */
+        GRAMPO,
+        /**
+         * Capa dura
+         */
+        CAPA_DURA,
+        /**
+         * Digital
+         */
+        DIGITAL
+    }
     
     /**
      * ISBN do livro
@@ -72,6 +93,14 @@ public class Livro {
      * Sumário do livro
      */
     private String sumario;
+    /**
+     * Formato do livro
+     */
+    private FormatoLivro formato;
+    /**
+     * Número de páginas do livro
+     */
+    private int numPaginas;
     /**
      * Quantidade em estoque do livro
      */
@@ -225,6 +254,34 @@ public class Livro {
      */
     public void setSumario(String sumario) {
         this.sumario = sumario;
+    }
+    /**
+     * Retorna o formato do livro
+     * @return Formato do livro
+     */
+    public FormatoLivro getFormato() {
+        return formato;
+    }
+    /**
+     * Define o formato do livro
+     * @param formato Formato do livro
+     */
+    public void setFormato(FormatoLivro formato) {
+        this.formato = formato;
+    }
+    /**
+     * Retorna o número de páginas do livro
+     * @return Número de páginas do livro
+     */
+    public int getNumPaginas() {
+        return numPaginas;
+    }
+    /**
+     * Define o número de páginas do livro
+     * @param numPaginas Número de páginas do livro
+     */
+    public void setNumPaginas(int numPaginas) {
+        this.numPaginas = numPaginas;
     }
     /**
      * Retorna a quantidade em estoque do livro

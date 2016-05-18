@@ -31,7 +31,7 @@ public class TesteControleAdministracao {
             ed.setNome("Editora Manzollini");
             ed.setTelefone("(11)1234-1234");
             */
-            
+            /*
             controleAdm.inserirLivro("1234567890001", "titulo2", "Floriano2 Marquendes2", "Editora Manzollini" , "2222", "categoria2", "resumo2", "sumario2", 50, "44.4", "5.5", "6.6", "7.7", true, true);
             
             controleAdm.buscarLivro("1234567890122");
@@ -40,7 +40,7 @@ public class TesteControleAdministracao {
             //System.out.println("-----------------------------------------------");
             controleAdm.removerLivro("1234567890001");
             //controleAdm.buscarLivro("1234567890121");
-
+            */
             
             
 

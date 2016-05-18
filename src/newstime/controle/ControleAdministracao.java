@@ -260,7 +260,7 @@ public class ControleAdministracao {
         this.precoVenda = String.valueOf(livro.getPrecoVenda());
         this.precoOferta = String.valueOf(livro.getPrecoOferta());
         this.precoCusto = String.valueOf(livro.getPrecoCusto());
-        this.margemLucro = String.valueOf(livro.getMargemLucro());
+        this.margemLucro = String.valueOf(((int)livro.getMargemLucro()));
         this.isbn = livro.getIsbn();
         this.categoria = livro.getCategoria().toString();
         this.nomeAutor = autor.getNome();
@@ -288,10 +288,10 @@ public class ControleAdministracao {
 
         //Altera editora
         Editora ed = new Editora();
-        au.setID(livro.getID_EDITORA());
+        ed.setID(livro.getID_EDITORA());
         ed.setNome(editora);
         editoraDAO.alterar(ed);
-
+        
         //Altera livro
         try {
             livro.setIsbn(isbn);
@@ -309,6 +309,8 @@ public class ControleAdministracao {
             livro.setMargemLucro(Float.parseFloat(margemLucro));
             livro.setOferta(oferta);
             livro.setDigital(digital);
+            livro.setID_AUTOR(au.getID());
+            livro.setID_EDITORA(ed.getID());
             livro.setAutor(au);
             livro.setEditora(ed);
         } catch(NumberFormatException ex) {

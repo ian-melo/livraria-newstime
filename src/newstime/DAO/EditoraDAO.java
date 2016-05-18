@@ -60,8 +60,6 @@ public class EditoraDAO implements DAO<Editora> {
 
     @Override
     public void alterar(Editora o) throws BancoException {
-        pst = null;
-        rs = null;
         try {
             //Define String
             sql = "UPDATE Editora SET Cnpj='"+o.getCnpj()+"', Nome='"+o.getNome()+"', Endereco='"+o.getEndereco()+"', Telefone='"+o.getTelefone()+"' " +
@@ -73,7 +71,7 @@ public class EditoraDAO implements DAO<Editora> {
             bd.fecharConexao();
         } catch (SQLException ex) {
             bd.fecharConexao();
-            throw new BancoException("Houve um problema ao alterar a editora." + ex.getMessage());
+            throw new BancoException("Houve um problema ao alterar a editora.");
         }
     }
 

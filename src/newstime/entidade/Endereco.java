@@ -11,35 +11,35 @@ public class Endereco {
     /**
      * Logradouro do endereço
      */
-    private String logradouro;
+    private String logradouro = "";
     /**
      * Número do endereço
      */
-    private String numero;
+    private String numero = "";
     /**
      * Complemento do endereço
      */
-    private String complemento;
+    private String complemento = "";
     /**
      * Bairro do endereço
      */
-    private String bairro;
+    private String bairro = "";
     /**
      * Cidade do endereço
      */
-    private String cidade;
+    private String cidade = "";
     /**
      * Estado do endereço
      */
-    private String estado;
+    private String estado = "";
     /**
      * CEP do endereço
      */
-    private String cep;
+    private String cep = "";
     /**
      * Ponto de referência do endereço
      */
-    private String referencia;
+    private String referencia = "";
     /**
      * Identificador do endereço
      */
@@ -195,6 +195,8 @@ public class Endereco {
      * <br/>false, caso contrário
      */
     private boolean validarCep(String cep) {
+        if(cep == null)
+            cep = "";
         return Pattern.matches("(\\d{5})-(\\d{3})", cep);
     }
     /**
@@ -204,6 +206,8 @@ public class Endereco {
      * <br/>false, caso contrário
      */
     private boolean validarEstado(String estado) {
+        if(estado == null)
+            estado = "";
         return Pattern.matches("([A-Z]{2})", estado);
     }
 }

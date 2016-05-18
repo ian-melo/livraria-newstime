@@ -11,19 +11,19 @@ public class Editora {
     /**
      * CNPJ da editora
      */
-    private String cnpj;
+    private String cnpj = "";
     /**
      * Nome da editora
      */
-    private String nome;
+    private String nome = "";
     /**
      * Endereço físico da editora
      */
-    private String endereco;
+    private String endereco = "";
     /**
      * Telefone para contato da editora
      */
-    private String telefone;
+    private String telefone = "";
     /**
      * Identificador da editora
      */
@@ -123,6 +123,8 @@ public class Editora {
      * <br/>false, caso contrário
      */
     private boolean validarCnpj(String cnpj) {
+        if(cnpj == null)
+            cnpj = "";
         return Pattern.matches("(\\d{2}).(\\d{3}).(\\d{3})/(\\d{4})-(\\d{2})", cnpj);
     }
     /**
@@ -132,6 +134,8 @@ public class Editora {
      * <br/>false, caso contrário
      */
     private boolean validarTelefone(String telefone) {
+        if(telefone == null)
+            telefone = "";
         return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{4})", telefone);
     }
 }

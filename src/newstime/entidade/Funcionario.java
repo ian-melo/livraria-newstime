@@ -8,15 +8,15 @@ public class Funcionario {
     /**
      * Nome do funcionário
      */
-    private String nome;
+    private String nome = "";
     /**
      * Nome de login do funcionário
      */
-    private String login;
+    private String login = "";
     /**
      * Senha do funcionário
      */
-    private String senha;
+    private String senha = "";
     /**
      * Identificador do funcionário
      */

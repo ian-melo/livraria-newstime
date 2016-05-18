@@ -64,11 +64,11 @@ public class Livro {
     /**
      * ISBN do livro
      */
-    private String isbn;
+    private String isbn = "";
     /**
      * Título do livro
      */
-    private String titulo;
+    private String titulo = "";
     /**
      * Autor do livro
      */
@@ -88,11 +88,11 @@ public class Livro {
     /**
      * Resumo do livro
      */
-    private String resumo;
+    private String resumo = "";
     /**
      * Sumário do livro
      */
-    private String sumario;
+    private String sumario = "";
     /**
      * Formato do livro
      */

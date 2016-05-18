@@ -312,6 +312,8 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarCpf(String cpf) {
+        if(cpf == null)
+            cpf = "";
         return Pattern.matches("(\\d{3}).(\\d{3}).(\\d{3})-([0-9X]{2})", cpf);
     }
     /**
@@ -321,6 +323,8 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarSenha(String senha) {
+        if(senha == null)
+            senha = "";
         return (senha.length() >= 8 && senha.length() <= 16);
     }
     /**
@@ -330,6 +334,8 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarEmail(String email) {
+        if(email == null)
+            email = "";
         return Pattern.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", email);
     }
@@ -340,6 +346,8 @@ public class Cliente {
      * <br/>false, caso contrário
      */
     private boolean validarTelefone(String telefone) {
+        if(telefone == null)
+            telefone = "";
         return Pattern.matches("(\\(\\d{2}\\))(\\d{4,5})-(\\d{3,4})", telefone);
     }
     

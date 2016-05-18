@@ -523,9 +523,11 @@ public class CadastroLivro extends javax.swing.JFrame {
             txt_resumo.setText(controleAdm.getResumo());
             txt_sumario.setText(controleAdm.getSumario());
             txt_qtd.setText(String.valueOf(controleAdm.getQtdEstoque()));
+            txt_precoCusto.setText(String.valueOf(controleAdm.getPrecoCusto()));
             txt_precoRevenda.setText(String.valueOf(controleAdm.getPrecoVenda()));
             txt_precoOferta.setText(String.valueOf(controleAdm.getPrecoOferta()));
-            txt_numPaginas.setText(String.valueOf(controleAdm.getPrecoCusto()));
+            txt_numPaginas.setText(String.valueOf(controleAdm.getNumPaginas()));
+            cmb_formato.setSelectedItem(controleAdm.getFormato());
             cmb_margemLucro.setSelectedItem(controleAdm.getMargemLucro());
             rdo_digitalNao.setSelected(controleAdm.isDigital());
             rdo_ofertaNao.setSelected(controleAdm.isOferta());
@@ -537,7 +539,6 @@ public class CadastroLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_pesquisarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
         limparCampos();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -563,6 +564,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             adm.removerLivro(txt_isbn.getText());
             txt_isbn.setEditable(true);
             JOptionPane.showMessageDialog(null,"O livro foi excluído com sucesso.");
+            limparCampos();
         } catch (BancoException ex) {
             JOptionPane.showMessageDialog(null,"O livro não foi excluído: " + ex.getMessage());
         }        
@@ -595,7 +597,6 @@ public class CadastroLivro extends javax.swing.JFrame {
         txt_titulo.setText("");
         txt_nomeAutor.setText("");
         txt_editora.setText("");
-        //txt_anoPublicacao.setText("");
         cmb_dia.setSelectedItem("01");
         cmb_mes.setSelectedItem("01");
         cmb_ano.setSelectedItem("1950");
@@ -603,14 +604,18 @@ public class CadastroLivro extends javax.swing.JFrame {
         txt_resumo.setText("");
         txt_sumario.setText("");
         txt_qtd.setText("");
+        txt_precoCusto.setText("");
         txt_precoRevenda.setText("");
         txt_precoOferta.setText("");
         txt_numPaginas.setText("");
         cmb_margemLucro.setSelectedItem("Selecione..");
+        cmb_formato.setSelectedItem("Selecione..");
         oferta = false;
         digital = false;
         rdo_digitalNao.setSelected(false);
         rdo_ofertaNao.setSelected(false);
+        
+        txt_isbn.setEnabled(true);
         bloqueiaBotao();
     }
 

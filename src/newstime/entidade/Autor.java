@@ -10,11 +10,11 @@ public class Autor {
     /**
      * Código do autor
      */
-    private String codigo;
+    private String codigo = "";
     /**
      * Nome do autor
      */
-    private String nome;
+    private String nome = "";
     /**
      * Data de nascimento do autor
      */
@@ -26,11 +26,11 @@ public class Autor {
     /**
      * Local de nascimento do autor
      */
-    private String localNasci;
+    private String localNasci = "";
     /**
      * Local de morte do autor (se houver)
      */
-    private String localMorte;
+    private String localMorte = "";
     /**
      * Identificador do autor
      */

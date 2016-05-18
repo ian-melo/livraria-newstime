@@ -24,16 +24,16 @@ import newstime.excecao.NegocioException;
 public class ControleAdministracao {
 
     private String titulo;
-    private int anoPublicacao;
+    private String anoPublicacao;
     private String resumo;
     private String sumario;
     private String formato;
-    private int numPaginas;
-    private int qtdEstoque;
-    private float precoVenda;
-    private float precoOferta;
-    private float precoCusto;
-    private float margemLucro;
+    private String numPaginas;
+    private String qtdEstoque;
+    private String precoVenda;
+    private String precoOferta;
+    private String precoCusto;
+    private String margemLucro;
     private String isbn;
     private String nomeAutor;
     private String nomeEditora;
@@ -45,7 +45,7 @@ public class ControleAdministracao {
         return titulo;
     }
 
-    public int getAnoPublicacao() {
+    public String getAnoPublicacao() {
         return anoPublicacao;
     }
 
@@ -61,27 +61,27 @@ public class ControleAdministracao {
         return formato;
     }
 
-    public int getNumPaginas() {
+    public String getNumPaginas() {
         return numPaginas;
     }
     
-    public int getQtdEstoque() {
+    public String getQtdEstoque() {
         return qtdEstoque;
     }
 
-    public float getPrecoVenda() {
+    public String getPrecoVenda() {
         return precoVenda;
     }
 
-    public float getPrecoOferta() {
+    public String getPrecoOferta() {
         return precoOferta;
     }
 
-    public float getPrecoCusto() {
+    public String getPrecoCusto() {
         return precoCusto;
     }
 
-    public float getMargemLucro() {
+    public String getMargemLucro() {
         return margemLucro;
     }
 
@@ -143,7 +143,7 @@ public class ControleAdministracao {
      * @throws newstime.excecao.NegocioException
      * @throws newstime.excecao.BancoException
      */
-    public boolean inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, String formato, int numPaginas, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException {
+    public boolean inserirLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, String formato, String numPaginas, String qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws NegocioException, BancoException {
         BancoDados bd = new BancoDados();
         AutorDAO autorDAO = new AutorDAO(bd);
         EditoraDAO editoraDAO = new EditoraDAO(bd);
@@ -171,24 +171,28 @@ public class ControleAdministracao {
 
         //Define e insere livro
         Livro livro = new Livro();
-        livro.setIsbn(isbn);
-        livro.setTitulo(titulo);
-        livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
-        livro.setCategoria(Livro.CategoriaLivro.valueOf(categoria));
-        livro.setResumo(resumo);
-        livro.setSumario(sumario);
-        livro.setFormato(Livro.FormatoLivro.valueOf(formato));
-        livro.setNumPaginas(numPaginas);
-        livro.setQtdEstoque(qtdEstoque);
-        livro.setPrecoVenda(Float.parseFloat(precoVenda));
-        livro.setPrecoOferta(Float.parseFloat(precoOferta));
-        livro.setPrecoCusto(Float.parseFloat(precoCusto));
-        livro.setMargemLucro(Float.parseFloat(margemLucro));
-        livro.setOferta(oferta);
-        livro.setDigital(digital);
-        livro.setAutor(au);// seta o objeto autor dentro de livro
-        livro.setEditora(ed);//seta o objeto editora dentro de livro
-
+        try {
+            livro.setIsbn(isbn);
+            livro.setTitulo(titulo);
+            livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
+            livro.setCategoria(Livro.CategoriaLivro.valueOf(categoria));
+            livro.setResumo(resumo);
+            livro.setSumario(sumario);
+            livro.setFormato(Livro.FormatoLivro.valueOf(formato));
+            livro.setNumPaginas(Integer.parseInt(numPaginas));
+            livro.setQtdEstoque(Integer.parseInt(qtdEstoque));
+            livro.setPrecoVenda(Float.parseFloat(precoVenda));
+            livro.setPrecoOferta(Float.parseFloat(precoOferta));
+            livro.setPrecoCusto(Float.parseFloat(precoCusto));
+            livro.setMargemLucro(Float.parseFloat(margemLucro));
+            livro.setOferta(oferta);
+            livro.setDigital(digital);
+            livro.setAutor(au);// seta o objeto autor dentro de livro
+            livro.setEditora(ed);//seta o objeto editora dentro de livro
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null,"Não coloque texto em campo numérico. Utilize '.' como divisor decimal.");
+            return false;
+        }
         livroDAO.inserir(livro);
         return true;
     }
@@ -247,16 +251,16 @@ public class ControleAdministracao {
 
         //Define resultados
         this.titulo = livro.getTitulo();
-        this.anoPublicacao = livro.getAnoPublicacao();
+        this.anoPublicacao = String.valueOf(livro.getAnoPublicacao());
         this.resumo = livro.getResumo();
         this.sumario = livro.getSumario();
         this.formato = livro.getFormato().toString();
-        this.numPaginas = livro.getNumPaginas();
-        this.qtdEstoque = livro.getQtdEstoque();
-        this.precoVenda = livro.getPrecoVenda();
-        this.precoOferta = livro.getPrecoOferta();
-        this.precoCusto = livro.getPrecoCusto();
-        this.margemLucro = livro.getMargemLucro();
+        this.numPaginas = String.valueOf(livro.getNumPaginas());
+        this.qtdEstoque = String.valueOf(livro.getQtdEstoque());
+        this.precoVenda = String.valueOf(livro.getPrecoVenda());
+        this.precoOferta = String.valueOf(livro.getPrecoOferta());
+        this.precoCusto = String.valueOf(livro.getPrecoCusto());
+        this.margemLucro = String.valueOf(livro.getMargemLucro());
         this.isbn = livro.getIsbn();
         this.categoria = livro.getCategoria().toString();
         this.nomeAutor = autor.getNome();
@@ -265,34 +269,31 @@ public class ControleAdministracao {
         this.digital = livro.isDigital();
     }
     
-    public boolean alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, String formato, int numPaginas, int qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException {
-        int resp = JOptionPane.showConfirmDialog(null, "Deseja mesmo alterar este livro?");
-        JOptionPane.showMessageDialog(null, resp);
+    public boolean alterarLivro(String isbn, String titulo, String autor, String editora, String anoPublicacao, String categoria, String resumo, String sumario, String formato, String numPaginas, String qtdEstoque, String precoVenda, String precoOferta, String precoCusto, String margemLucro, boolean oferta, boolean digital) throws BancoException, NegocioException {
+        BancoDados bd1 = new BancoDados();
+        LivroDAO livroDAO = new LivroDAO(bd1);
+        AutorDAO autorDAO = new AutorDAO(bd1);
+        EditoraDAO editoraDAO = new EditoraDAO(bd1);
 
-        if (resp == 0) {
-            BancoDados bd1 = new BancoDados();
-            LivroDAO livroDAO = new LivroDAO(bd1);
-            AutorDAO autorDAO = new AutorDAO(bd1);
-            EditoraDAO editoraDAO = new EditoraDAO(bd1);
+        //Busca livro, se não existir, pára
+        Livro livro = new Livro();
+        livro.setIsbn(isbn);
+        livro = livroDAO.buscar(livro);
 
-            //Busca livro, se não existir, pára
-            Livro livro = new Livro();
-            livro.setIsbn(isbn);
-            livro = livroDAO.buscar(livro);
+        //Altera autor
+        Autor au = new Autor();
+        au.setID(livro.getID_AUTOR());
+        au.setNome(autor);
+        autorDAO.alterar(au);
 
-            //Altera autor
-            Autor au = new Autor();
-            au.setID(livro.getID_AUTOR());
-            au.setNome(autor);
-            autorDAO.alterar(au);
+        //Altera editora
+        Editora ed = new Editora();
+        au.setID(livro.getID_EDITORA());
+        ed.setNome(editora);
+        editoraDAO.alterar(ed);
 
-            //Altera editora
-            Editora ed = new Editora();
-            au.setID(livro.getID_EDITORA());
-            ed.setNome(editora);
-            editoraDAO.alterar(ed);
-
-            //Altera livro
+        //Altera livro
+        try {
             livro.setIsbn(isbn);
             livro.setTitulo(titulo);
             livro.setAnoPublicacao(Integer.parseInt(anoPublicacao));
@@ -300,8 +301,8 @@ public class ControleAdministracao {
             livro.setResumo(resumo);
             livro.setSumario(sumario);
             livro.setFormato(Livro.FormatoLivro.valueOf(formato));
-            livro.setNumPaginas(numPaginas);
-            livro.setQtdEstoque(qtdEstoque);
+            livro.setNumPaginas(Integer.parseInt(numPaginas));
+            livro.setQtdEstoque(Integer.parseInt(qtdEstoque));
             livro.setPrecoVenda(Float.parseFloat(precoVenda));
             livro.setPrecoOferta(Float.parseFloat(precoOferta));
             livro.setPrecoCusto(Float.parseFloat(precoCusto));
@@ -310,11 +311,12 @@ public class ControleAdministracao {
             livro.setDigital(digital);
             livro.setAutor(au);
             livro.setEditora(ed);
-
-            livroDAO.alterar(livro);
-            return true;
+        } catch(NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null,"Não coloque texto em campo numérico. Utilize '.' como divisor decimal.");
+            return false;
         }
-        return false;
+        livroDAO.alterar(livro);
+        return true;
     }
     
     public void removerLivro(String isbn) throws BancoException {

@@ -58,7 +58,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         rdo_ofertSim = new javax.swing.JRadioButton();
         rdo_ofertaNao = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
-        txt_precoCusto = new javax.swing.JTextField();
+        txt_numPaginas = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txt_precoRevenda = new javax.swing.JTextField();
@@ -78,6 +78,10 @@ public class CadastroLivro extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         txt_qtd = new javax.swing.JFormattedTextField();
         txt_isbn = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        txt_precoCusto = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        cmb_formato = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +127,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txt_sumario);
 
         jLabel12.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
-        jLabel12.setText("Preço de Custo");
+        jLabel12.setText("Formato do livro");
 
         buttonGroup1.add(rdo_digitalSim);
         rdo_digitalSim.setText("Sim");
@@ -230,6 +234,14 @@ public class CadastroLivro extends javax.swing.JFrame {
 
         txt_qtd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("######"))));
 
+        jLabel20.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
+        jLabel20.setText("Preço de Custo");
+
+        jLabel21.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
+        jLabel21.setText("Número de páginas");
+
+        cmb_formato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione..", "BROCHURA", "GRAMPO", "CAPA_DURA", "DIGITAL" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,27 +252,37 @@ public class CadastroLivro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rdo_ofertSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rdo_ofertaNao))
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rdo_digitalSim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rdo_digitalNao))
-                            .addComponent(jLabel13))
-                        .addGap(76, 76, 76)
+                                .addComponent(rdo_digitalNao)))
+                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmb_margemLucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel18))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txt_precoCusto, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20)
+                            .addComponent(txt_precoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_numPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(cmb_formato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(52, 52, 52))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel21)
+                                .addGap(44, 44, 44)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -301,7 +323,7 @@ public class CadastroLivro extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmb_mes, 0, 74, Short.MAX_VALUE)
+                                        .addComponent(cmb_mes, 0, 65, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -320,7 +342,7 @@ public class CadastroLivro extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txt_qtd, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(36, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -337,7 +359,7 @@ public class CadastroLivro extends javax.swing.JFrame {
                         .addComponent(btn_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,39 +403,47 @@ public class CadastroLivro extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdo_digitalSim)
-                            .addComponent(rdo_digitalNao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdo_ofertSim)
-                            .addComponent(rdo_ofertaNao))
-                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_precoRevenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_numPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_precoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_precoOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_formato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(35, 35, 35)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cmb_margemLucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel18)))
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_precoRevenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_precoOferta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmb_margemLucro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rdo_digitalSim)
+                                    .addComponent(rdo_digitalNao))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_precoCusto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)))
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdo_ofertSim)
+                                    .addComponent(rdo_ofertaNao))))
+                        .addGap(12, 12, 12)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_pesquisar)
                     .addComponent(btn_alterar)
@@ -457,7 +487,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         ControleAdministracao controleAdm = new ControleAdministracao();
         try {
             String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), null/*FALTA FORMATO*/, null/*FALTA NÚMERO DE PÁGINAS*/, Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            controleAdm.inserirLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(),  cmb_formato.getSelectedItem().toString(), txt_numPaginas.getText(), txt_qtd.getText(), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_numPaginas.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
             JOptionPane.showMessageDialog(null, "O livro foi cadastrado com sucesso.");
             limparCampos();
         } catch (BancoException | NegocioException ex) {
@@ -495,7 +525,7 @@ public class CadastroLivro extends javax.swing.JFrame {
             txt_qtd.setText(String.valueOf(controleAdm.getQtdEstoque()));
             txt_precoRevenda.setText(String.valueOf(controleAdm.getPrecoVenda()));
             txt_precoOferta.setText(String.valueOf(controleAdm.getPrecoOferta()));
-            txt_precoCusto.setText(String.valueOf(controleAdm.getPrecoCusto()));
+            txt_numPaginas.setText(String.valueOf(controleAdm.getPrecoCusto()));
             cmb_margemLucro.setSelectedItem(controleAdm.getMargemLucro());
             rdo_digitalNao.setSelected(controleAdm.isDigital());
             rdo_ofertaNao.setSelected(controleAdm.isOferta());
@@ -551,7 +581,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         ControleAdministracao adm = new ControleAdministracao();
         try {
             String data = cmb_dia.getSelectedItem().toString() + cmb_mes.getSelectedItem().toString() + cmb_ano.getSelectedItem().toString();
-            adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), null/*FALTA FORMATO*/, null/*FALTA NÚMERO DE PÁGINAS*/, Integer.parseInt(txt_qtd.getText()), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_precoCusto.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
+            adm.alterarLivro(txt_isbn.getText(), txt_titulo.getText(), txt_nomeAutor.getText(), txt_editora.getText(), data, cmb_categoria.getSelectedItem().toString(), txt_resumo.getText(), txt_sumario.getText(), cmb_formato.getSelectedItem().toString(), txt_numPaginas.getText(), txt_qtd.getText(), txt_precoRevenda.getText(), txt_precoOferta.getText(), txt_numPaginas.getText(), cmb_margemLucro.getSelectedItem().toString(), oferta, digital);
             JOptionPane.showMessageDialog(null, "O livro foi alterado com sucesso.");
             txt_isbn.setEditable(true);
             limparCampos();
@@ -575,7 +605,7 @@ public class CadastroLivro extends javax.swing.JFrame {
         txt_qtd.setText("");
         txt_precoRevenda.setText("");
         txt_precoOferta.setText("");
-        txt_precoCusto.setText("");
+        txt_numPaginas.setText("");
         cmb_margemLucro.setSelectedItem("Selecione..");
         oferta = false;
         digital = false;
@@ -633,6 +663,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_ano;
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_dia;
+    private javax.swing.JComboBox<String> cmb_formato;
     private javax.swing.JComboBox<String> cmb_margemLucro;
     private javax.swing.JComboBox<String> cmb_mes;
     private javax.swing.JButton jButton5;
@@ -648,6 +679,8 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -664,6 +697,7 @@ public class CadastroLivro extends javax.swing.JFrame {
     private javax.swing.JTextField txt_editora;
     private javax.swing.JTextField txt_isbn;
     private javax.swing.JTextField txt_nomeAutor;
+    private javax.swing.JTextField txt_numPaginas;
     private javax.swing.JTextField txt_precoCusto;
     private javax.swing.JTextField txt_precoOferta;
     private javax.swing.JTextField txt_precoRevenda;

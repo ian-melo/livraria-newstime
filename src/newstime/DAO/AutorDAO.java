@@ -169,7 +169,7 @@ public class AutorDAO implements DAO<Autor> {
             return autor;
         } catch (SQLException ex) {
             bd.fecharConexao();
-            throw new BancoException("Houve um problema ao buscar o autor." + ex.getMessage());
+            throw new BancoException("Houve um problema ao buscar o autor.");
         }
     }
     

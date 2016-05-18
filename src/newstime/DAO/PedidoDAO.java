@@ -105,7 +105,7 @@ public class PedidoDAO implements DAO<Pedido> {
             //Verifica se houve resultados e atribui valores ao objeto
             if(rs.next()){
                 pedido = new Pedido();
-                pedido.setDataHora(rs.getDate("Data"));
+                pedido.setDataHora(new java.util.Date(rs.getDate("Data").getTime()));
                 pedido.setID(rs.getInt("IdPedido"));
                 pedido.setID_CLIENTE(rs.getInt("IdCliente"));
             }
@@ -138,7 +138,7 @@ public class PedidoDAO implements DAO<Pedido> {
             //Verifica se houve resultados e atribui valores ao objeto
             if(rs.next()){
                 pedido = new Pedido();
-                pedido.setDataHora(rs.getDate("Data"));
+                pedido.setDataHora(new java.util.Date(rs.getDate("Data").getTime()));
                 pedido.setID(rs.getInt("IdPedido"));
                 pedido.setID_CLIENTE(rs.getInt("IdCliente"));
             }
@@ -170,7 +170,7 @@ public class PedidoDAO implements DAO<Pedido> {
             //Verifica se houve resultados e atribui valores ao objeto
             while(rs.next()){
                 pedido = new Pedido();
-                pedido.setDataHora(rs.getDate("Data"));
+                pedido.setDataHora(new java.util.Date(rs.getDate("Data").getTime()));
                 pedido.setID(rs.getInt("IdPedido"));
                 pedido.setID_CLIENTE(rs.getInt("IdCliente"));
                 //Adiciona à lista

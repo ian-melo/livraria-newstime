@@ -118,7 +118,7 @@ public class EntregaDAO implements DAO<Entrega> {
                 entrega = new Entrega();
                 entrega.setTipo(Entrega.TipoEntrega.valueOf(rs.getString("Tipo")));
                 entrega.setPreco(rs.getFloat("Preco"));
-                entrega.setDataEntrega(rs.getDate("DataEntrega"));
+                entrega.setDataEntrega(new java.util.Date(rs.getDate("DataEntrega").getTime()));
                 entrega.setID(rs.getInt("CodEntrega"));
             }
             //Verifica se o objeto foi nulo e joga uma exceção, caso não foi encontrado
@@ -152,7 +152,7 @@ public class EntregaDAO implements DAO<Entrega> {
                 entrega = new Entrega();
                 entrega.setTipo(Entrega.TipoEntrega.valueOf(rs.getString("Tipo")));
                 entrega.setPreco(rs.getFloat("Preco"));
-                entrega.setDataEntrega(rs.getDate("DataEntrega"));
+                entrega.setDataEntrega(new java.util.Date(rs.getDate("DataEntrega").getTime()));
                 entrega.setID(rs.getInt("CodEntrega"));
             }
             //Verifica se o objeto foi nulo e joga uma exceção, caso não foi encontrado
@@ -185,7 +185,7 @@ public class EntregaDAO implements DAO<Entrega> {
                 entrega = new Entrega();
                 entrega.setTipo(Entrega.TipoEntrega.valueOf(rs.getString("Tipo")));
                 entrega.setPreco(rs.getFloat("Preco"));
-                entrega.setDataEntrega(rs.getDate("DataEntrega"));
+                entrega.setDataEntrega(new java.util.Date(rs.getDate("DataEntrega").getTime()));
                 entrega.setID(rs.getInt("CodEntrega"));
                 //Adiciona à lista
                 entregas.add(entrega);

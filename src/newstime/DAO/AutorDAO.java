@@ -116,8 +116,8 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(rs.getDate("DataNasci"));
-                autor.setDataMorte(rs.getDate("DataMorte"));
+                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));
@@ -153,8 +153,8 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(rs.getDate("DataNasci"));
-                autor.setDataMorte(rs.getDate("DataMorte"));
+                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));
@@ -169,7 +169,7 @@ public class AutorDAO implements DAO<Autor> {
             return autor;
         } catch (SQLException ex) {
             bd.fecharConexao();
-            throw new BancoException("Houve um problema ao buscar o autor.");
+            throw new BancoException("Houve um problema ao buscar o autor." + ex.getMessage());
         }
     }
     
@@ -189,8 +189,8 @@ public class AutorDAO implements DAO<Autor> {
                 autor = new Autor();
                 autor.setCodigo(rs.getString("CodigoAlt"));
                 autor.setNome(rs.getString("Nome"));
-                autor.setDataNasci(rs.getDate("DataNasci"));
-                autor.setDataMorte(rs.getDate("DataMorte"));
+                autor.setDataNasci(new java.util.Date(rs.getDate("DataNasci").getTime()));
+                autor.setDataMorte(new java.util.Date(rs.getDate("DataMorte").getTime()));
                 autor.setLocalNasci(rs.getString("LocalNasci"));
                 autor.setLocalMorte(rs.getString("LocalMorte"));
                 autor.setID(rs.getInt("CodAutor"));

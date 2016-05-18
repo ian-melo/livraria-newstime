@@ -138,7 +138,7 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(rs.getDate("DataNascimento"));
+                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));
@@ -193,7 +193,7 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(rs.getDate("DataNascimento"));
+                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));
@@ -247,7 +247,7 @@ public class ClienteDAO implements DAO<Cliente> {
                 cliente.setNome(rs.getString("Nome"));
                 cliente.setSobrenome(rs.getString("Sobrenome"));
                 cliente.setSexo(rs.getString("Sexo"));
-                cliente.setDataNascimento(rs.getDate("DataNascimento"));
+                cliente.setDataNascimento(new java.util.Date(rs.getDate("DataNascimento").getTime()));
                 cliente.setPromocional(rs.getBoolean("Q_Promocional"));
                 cliente.setID(rs.getInt("IdCliente"));
                 cliente.setID_ENDERECO(rs.getInt("CodEndereco"));

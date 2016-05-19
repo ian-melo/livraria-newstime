@@ -196,14 +196,16 @@ public class CarrinhoCompras extends javax.swing.JFrame {
 
     private void btn_menosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_menosActionPerformed
         if(escolhido != null) {
-            conCar.alterarItem(escolhido.getLivro().getIsbn(), String.valueOf((escolhido.getQuantidade()-1)));
+            int quantidade = escolhido.getQuantidade() - 1;
+            conCar.alterarItem(escolhido.getLivro().getIsbn(), String.valueOf(quantidade));
             preencherTabela();
         }
     }//GEN-LAST:event_btn_menosActionPerformed
 
     private void btn_maisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_maisActionPerformed
         if(escolhido != null) {
-            conCar.alterarItem(escolhido.getLivro().getIsbn(), String.valueOf((escolhido.getQuantidade()-1)));
+            int quantidade = escolhido.getQuantidade() + 1;
+            conCar.alterarItem(escolhido.getLivro().getIsbn(), String.valueOf(quantidade));
             preencherTabela();
         }
     }//GEN-LAST:event_btn_maisActionPerformed

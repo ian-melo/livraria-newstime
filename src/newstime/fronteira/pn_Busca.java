@@ -6,8 +6,8 @@
 package newstime.fronteira;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import newstime.controle.ControleCarrinho;
 import newstime.entidade.Livro;
 
 /**
@@ -32,14 +32,6 @@ public class pn_Busca extends javax.swing.JPanel {
         this.jLabel1 = jLabel1;
     }
 
-    public JLabel getjLabel2() {
-        return jLabel2;
-    }
-
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
-    }
-
     public JLabel getjLabel3() {
         return jLabel3;
     }
@@ -56,14 +48,6 @@ public class pn_Busca extends javax.swing.JPanel {
         this.lab = lab;
     }
 
-    public JLabel getLbl_img() {
-        return lbl_img;
-    }
-
-    public void setLbl_img(JLabel lbl_img) {
-        this.lbl_img = lbl_img;
-    }
-
     public JTextField getTxt_autor() {
         return txt_autor;
     }
@@ -78,14 +62,6 @@ public class pn_Busca extends javax.swing.JPanel {
 
     public void setTxt_preco(JTextField txt_preco) {
         this.txt_preco = txt_preco;
-    }
-
-    public JTextField getTxt_resumo() {
-        return txt_resumo;
-    }
-
-    public void setTxt_resumo(JTextField txt_resumo) {
-        this.txt_resumo = txt_resumo;
     }
 
     public JTextField getTxt_titulo() {
@@ -113,30 +89,21 @@ public class pn_Busca extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_img = new javax.swing.JLabel();
         txt_titulo = new javax.swing.JTextField();
-        txt_resumo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         lab = new javax.swing.JLabel();
         txt_autor = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txt_preco = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_adicionar = new javax.swing.JButton();
+        btn_detalhes = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lbl_img.setText("img");
-
         txt_titulo.setText("jTextField1");
 
-        txt_resumo.setText("jTextField1");
-
         jLabel1.setText("Titulo");
-
-        jLabel2.setText("Resumo");
 
         lab.setText("Autor");
 
@@ -146,12 +113,17 @@ public class pn_Busca extends javax.swing.JPanel {
 
         txt_preco.setText("jTextField1");
 
-        jButton1.setText("Adicionar ao carrinho");
-
-        jButton2.setText("Mais detalhes");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_adicionar.setText("Adicionar ao carrinho");
+        btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_adicionarActionPerformed(evt);
+            }
+        });
+
+        btn_detalhes.setText("Mais detalhes");
+        btn_detalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_detalhesActionPerformed(evt);
             }
         });
 
@@ -160,9 +132,7 @@ public class pn_Busca extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_img)
-                .addGap(45, 45, 45)
+                .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -174,25 +144,20 @@ public class pn_Busca extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(lab)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_preco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(20, 20, 20)))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_resumo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(10, 10, 10)))
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton1))
+                        .addComponent(btn_adicionar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btn_detalhes)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,49 +165,43 @@ public class pn_Busca extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(lab)
-                                .addComponent(jLabel3))
-                            .addComponent(jButton1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_resumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2)))
-                    .addComponent(lbl_img))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(lab)
+                        .addComponent(jLabel3))
+                    .addComponent(btn_adicionar))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_detalhes))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_detalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_detalhesActionPerformed
         MaisDetalhes detalhes = new MaisDetalhes();
         Home h = new Home();
-        
-        
         detalhes.setLiv(li);
         //detalhes
-        
         detalhes.show();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btn_detalhesActionPerformed
+
+    private void btn_adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adicionarActionPerformed
+        ControleCarrinho controle = new ControleCarrinho();
+        controle.adicionarItem(getLi().getIsbn(), "1");
+    }//GEN-LAST:event_btn_adicionarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btn_adicionar;
+    private javax.swing.JButton btn_detalhes;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lab;
-    private javax.swing.JLabel lbl_img;
     private javax.swing.JTextField txt_autor;
     private javax.swing.JTextField txt_preco;
-    private javax.swing.JTextField txt_resumo;
     private javax.swing.JTextField txt_titulo;
     // End of variables declaration//GEN-END:variables
 }

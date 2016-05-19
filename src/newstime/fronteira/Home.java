@@ -21,6 +21,7 @@ import newstime.excecao.BancoException;
  */
 public class Home extends javax.swing.JFrame {
     Livro l = new Livro();
+    Carrinho k = new Carrinho();
   
     public Livro getL() {
         return l;
@@ -111,6 +112,11 @@ public class Home extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jButton5.setText("Meu Carrinho");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jButton6.setText("Sair");
@@ -366,9 +372,7 @@ public class Home extends javax.swing.JFrame {
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
                 pn_pai.add(p1);
-                JOptionPane.showMessageDialog(null, "Teste " + ver.getTitulo());
                 p1.getTxt_titulo().setText(ver.getTitulo());
-                p1.getTxt_resumo().setText(ver.getResumo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
 
@@ -411,9 +415,7 @@ public class Home extends javax.swing.JFrame {
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
                 pn_pai.add(p1);
-                JOptionPane.showMessageDialog(null, "Teste " + ver.getTitulo());
                 p1.getTxt_titulo().setText(ver.getTitulo());
-                p1.getTxt_resumo().setText(ver.getResumo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
 
@@ -437,6 +439,10 @@ public class Home extends javax.swing.JFrame {
         UsuarioCadastrado userCad = new UsuarioCadastrado();
         userCad.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        k.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
     private void pequenoBug(){
         int x = this.getHeight();
             int y = this.getWidth();
@@ -454,27 +460,21 @@ public class Home extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Home().setVisible(true);
         });
     }
 

@@ -34,7 +34,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_preco" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btn_limpar" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -70,7 +70,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="lbl_preco" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                   <Component id="btn_mais" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_menos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_adicionar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
         <Property name="text" type="java.lang.String" value="Subtotal :  R$"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lbl_preco">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>

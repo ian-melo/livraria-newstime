@@ -5,6 +5,10 @@
  */
 package newstime.fronteira;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +46,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_itens = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_preco = new javax.swing.JLabel();
         btn_remover = new javax.swing.JButton();
         btn_adicionar = new javax.swing.JButton();
         btn_continuar = new javax.swing.JButton();
@@ -68,8 +72,8 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 18)); // NOI18N
         jLabel2.setText("Subtotal :  R$");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("120,00");
+        lbl_preco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_preco.setText("120,00");
 
         btn_remover.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         btn_remover.setText("Remover item selecionado");
@@ -136,7 +140,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3))
+                                .addComponent(lbl_preco))
                             .addComponent(btn_limpar))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -163,7 +167,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_preco, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_mais)
                     .addComponent(btn_menos)
                     .addComponent(btn_adicionar))
@@ -240,6 +244,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         //Itens
         Vector dados = new Vector();
         Vector item;
+        float subtotal = 0f;
 
         for (ItemPedido ix : Carrinho.getItens()) {
             item = new Vector();
@@ -247,6 +252,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
             item.add((ix.getSubtotal()/ix.getQuantidade())); //Divide subtotal por quantidade
             item.add(ix.getQuantidade());
             item.add(ix.getSubtotal());
+            subtotal += ix.getSubtotal(); //Soma subtotal para exibir
             dados.add(item);
         }
         
@@ -259,6 +265,10 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         tb_itens.getColumnModel().getColumn(1).setMaxWidth(67);
         tb_itens.getColumnModel().getColumn(2).setMaxWidth(67);
         tb_itens.getColumnModel().getColumn(3).setMaxWidth(67);
+        
+        //Vê o preço subtotal
+        NumberFormat formato_grana = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+        lbl_preco.setText(formato_grana.format(subtotal));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -270,8 +280,8 @@ public class CarrinhoCompras extends javax.swing.JFrame {
     private javax.swing.JButton btn_remover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_preco;
     private javax.swing.JTable tb_itens;
     // End of variables declaration//GEN-END:variables
 }

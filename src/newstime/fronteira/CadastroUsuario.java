@@ -455,9 +455,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_bairroActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //JOptionPane.showMessageDialog(null, txt_senha.getText());
-
         limpa();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -470,7 +469,6 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 || "".equals(txt_sobrenome.getText())
                 || "(  )     -    ".equals(txt_celular.getText())
                 || "".equals(txt_numero.getText())
-                || "".equals(txt_complemento.getText())
                 || "".equals(txt_bairro.getText())
                 || "Selecione...".equals(cmd_cidade.getSelectedItem().toString())
                 || "Selecione...".equals(cmd_estado.getSelectedItem().toString())

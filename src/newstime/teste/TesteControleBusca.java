@@ -18,8 +18,8 @@ public class TesteControleBusca {
         ArrayList<Livro> resultadosBusca = new ArrayList<>();
         try {
            
-            busca.buscarLivro("artes", 0, 1);
-            //controleB.buscarLivro("1", 1, 1);
+            busca.fazerBusca("artes", 0, 1);
+            //controleB.fazerBusca("1", 1, 1);
         } catch (BancoException ex) {
             Logger.getLogger(TesteControleBusca.class.getName()).log(Level.SEVERE, null, ex);
         }

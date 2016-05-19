@@ -31,21 +31,20 @@ public class ControleBusca {
      *
      * @param palChave A palavra chave que será enviada
      * @param criterio O criterio da busca A forma que será organizado
+     * @throws newstime.excecao.BancoException
      */
-    public void buscarLivro(String palChave, int criterio) throws BancoException {
+    public void fazerBusca(String palChave, int criterio) throws BancoException {
         BuscaLivro busca = new BuscaLivro();
         Livro l = new Livro();
         ArrayList<Livro> resultados = new ArrayList<>();
        
         /*
-        
          0 = Filtros
-         1 = Categoria
-         2 = Editora
-         3 = Título
-         4 = Autor
-         5 = ISBN
-             
+         1 = Editora
+         2 = Título
+         3 = Autor
+         4 = ISBN
+         5 = Categoria
          */
         if (criterio == 1) {
             resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.EDITORA));
@@ -54,8 +53,9 @@ public class ControleBusca {
         } else if (criterio == 3) {
             resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.AUTOR));
         } else if (criterio == 4) {
-            resultados = auxISBN(palChave);
-
+            resultados = buscarPorISBN(palChave);
+        } else if (criterio == 5) {
+            resultados = busca.buscarLivros(palChave, (BuscaLivro.CriterioBusca.CATEGORIA));
         } else {
             JOptionPane.showMessageDialog(null, "ERRO - Criterio de busca");
         }
@@ -74,7 +74,13 @@ public class ControleBusca {
         //JOptionPane.showMessageDialog(null, resultados);
     }
 
-    public ArrayList<Livro> auxISBN(String isbn) throws BancoException {
+    /**
+     * Busca o livro pelo ISBN
+     * @param isbn
+     * @return
+     * @throws BancoException 
+     */
+    public ArrayList<Livro> buscarPorISBN(String isbn) throws BancoException {
         BancoDados bd = new BancoDados();
         LivroDAO livroDAO = new LivroDAO(bd);
         AutorDAO autorDAO = new AutorDAO(bd);
@@ -95,14 +101,21 @@ public class ControleBusca {
         liOb.setAutor(autor);
         liOb.setEditora(editora);
         
-        ArrayList<Livro> livro = new ArrayList<Livro>();
-        livro.add(liOb);
+        ArrayList<Livro> livros = new ArrayList<>();
+        livros.add(liOb);
         
-        return livro;
+        return livros;
     }
 
-    /* - Organiza por ordem alfabetica - */
-    public void buscarLivro(String palChave, int criterio, int organizacao) throws BancoException {
+    /**
+     * Organiza por ordem definida
+     * @param palChave
+     * @param criterio
+     * @param organizacao
+     * @deprecated Tem falha
+     * @throws newstime.excecao.BancoException
+     */
+    public void fazerBusca(String palChave, int criterio, int organizacao) throws BancoException {
         BuscaLivro busca = new BuscaLivro();
         Livro l = new Livro();
         ArrayList<Livro> resultados = new ArrayList<>();
@@ -173,7 +186,7 @@ public class ControleBusca {
         } else {
             JOptionPane.showMessageDialog(null, "ERRO - Criterio de busca");
         }
-
+        
         resultadosBusca = resultados;
         /*
          for(Livro x:resultadosBusca) {
@@ -186,16 +199,21 @@ public class ControleBusca {
 
         //JOptionPane.showMessageDialog(null, resultados);
     }
-
+    
     /**
      * Vai retornar o livro q foi encontrado no buscalivro
+     * @deprecated Não tem uso
      */
     public void mostrarLivros() {
 
     }
-
+    
+    /**
+     * Busca por categoria
+     * @deprecated Não tem uso
+     * @param categoria 
+     */
     public void buscarCategoria(String categoria) {
         BuscaLivro busca = new BuscaLivro();
-        //busca.
     }
 }

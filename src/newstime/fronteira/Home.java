@@ -8,8 +8,6 @@ package newstime.fronteira;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import newstime.controle.ControleBusca;
 import newstime.entidade.Livro;
@@ -21,7 +19,8 @@ import newstime.excecao.BancoException;
  */
 public class Home extends javax.swing.JFrame {
     Livro l = new Livro();
-    Carrinho k = new Carrinho();
+    Carrinho telaCarrinho = new Carrinho();
+    CadastroUsuario telaCadUsu = new CadastroUsuario();
   
     public Livro getL() {
         return l;
@@ -49,20 +48,20 @@ public class Home extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_lojas = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btn_pedidos = new javax.swing.JButton();
+        btn_login = new javax.swing.JButton();
+        btn_cadastro = new javax.swing.JButton();
+        btn_carrinho = new javax.swing.JButton();
+        btn_sair = new javax.swing.JButton();
         cmb_criterios = new javax.swing.JComboBox<String>();
         txt_palChave = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<String>();
-        jComboBox3 = new javax.swing.JComboBox<String>();
+        btn_ok = new javax.swing.JButton();
+        btn_promocoes = new javax.swing.JButton();
+        btn_maisvendidos = new javax.swing.JButton();
+        cmb_livros = new javax.swing.JComboBox<String>();
+        cmb_digitais = new javax.swing.JComboBox<String>();
         cmb_categoria = new javax.swing.JComboBox<String>();
         scroll_15 = new javax.swing.JScrollPane();
         pn_pai = new javax.swing.JPanel();
@@ -85,75 +84,75 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newstime/fronteira/logo.PNG"))); // NOI18N
         jLabel1.setText("jLabel1");
 
-        jButton1.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton1.setText("Nossas Lojas");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_lojas.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_lojas.setText("Nossas Lojas");
+        btn_lojas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_lojasActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jLabel2.setText("Televendas (11) 4003-3390");
 
-        jButton2.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton2.setText("Meus Pedidos");
+        btn_pedidos.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_pedidos.setText("Meus Pedidos");
 
-        jButton3.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton3.setText("Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_login.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_login.setText("Login");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_loginActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton4.setText("Cadastre-se");
-
-        jButton5.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton5.setText("Meu Carrinho");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btn_cadastro.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_cadastro.setText("Cadastre-se");
+        btn_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btn_cadastroActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton6.setText("Sair");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btn_carrinho.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_carrinho.setText("Meu Carrinho");
+        btn_carrinho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btn_carrinhoActionPerformed(evt);
+            }
+        });
+
+        btn_sair.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_sair.setText("Sair");
+        btn_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_sairActionPerformed(evt);
             }
         });
 
         cmb_criterios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filtros", "Editora", "Título", "Autor", "ISBN" }));
 
-        jButton7.setText("OK");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btn_ok.setText("OK");
+        btn_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btn_okActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton8.setText("Promoções do dia");
+        btn_promocoes.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_promocoes.setText("Promoções do dia");
 
-        jButton9.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        jButton9.setText("Livros mais vendidos");
+        btn_maisvendidos.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        btn_maisvendidos.setText("Livros mais vendidos");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros", "Lançamentos", "Pré-Vendas", "Mais Vendidas" }));
+        cmb_livros.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros", "Lançamentos", "Pré-Vendas", "Mais Vendidas" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros Digitais", "Lançamentos", "Pré-Vendas", "Mais Vendidos" }));
+        cmb_digitais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros Digitais", "Lançamentos", "Pré-Vendas", "Mais Vendidos" }));
 
         cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "ADMINISTRAÇÃO", "AGROPECUÁRIA", "ARTES", "ÁUDIO LIVRO", "AUTO AJUDA", "CIÊNCIAS BIOLÓGICAS", "CIÊNCIAS EXATAS", "CIÊNCIAS HUMANAS", "CONTABILIDADE", "IDIOMA", "DICIONÁRIO", "DIDÁTICO", "DIREITO", "ECONOMIA", "ENGENHARIA TECNOLÓGICA", "ESPORTE", "GASTRONOMIA", "GEOGRAFIA HISTÓRICA", "INFORMÁTICA", "LINGUÍSTICA", "LITERATURA ESTRANGEIRA", "LITERATURA INFANTIL", "LITERATURA NACIONAL", "MEDICINA", "RELIGIÃO", "TURISMO" }));
         cmb_categoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmb_categoriaItemStateChanged(evt);
-            }
-        });
-        cmb_categoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmb_categoriaActionPerformed(evt);
             }
         });
 
@@ -186,35 +185,35 @@ public class Home extends javax.swing.JFrame {
                                 .addGap(165, 165, 165)
                                 .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmb_livros, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmb_digitais, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(cmb_criterios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txt_palChave, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton7))
+                                    .addComponent(btn_ok))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton1)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addComponent(btn_lojas)
+                                        .addComponent(btn_login, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jButton2)
+                                            .addComponent(btn_pedidos)
                                             .addGap(12, 12, 12))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(jButton4)
+                                            .addComponent(btn_cadastro)
                                             .addGap(18, 18, 18)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton5)
-                                        .addComponent(jButton6))))))
+                                        .addComponent(btn_carrinho)
+                                        .addComponent(btn_sair))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(btn_promocoes)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9)))
+                        .addComponent(btn_maisvendidos)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,26 +231,26 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5))
+                            .addComponent(btn_lojas)
+                            .addComponent(btn_pedidos)
+                            .addComponent(btn_carrinho))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4)
-                            .addComponent(jButton3)
-                            .addComponent(jButton6))
+                            .addComponent(btn_cadastro)
+                            .addComponent(btn_login)
+                            .addComponent(btn_sair))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmb_criterios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt_palChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7))))
+                            .addComponent(btn_ok))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton8)
-                        .addComponent(jButton9))
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jComboBox3)
+                        .addComponent(btn_promocoes)
+                        .addComponent(btn_maisvendidos))
+                    .addComponent(cmb_livros, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(cmb_digitais)
                     .addComponent(cmb_categoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scroll_15)
@@ -260,10 +259,6 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmb_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_categoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmb_categoriaActionPerformed
 
     private void cmb_categoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_categoriaItemStateChanged
         /*
@@ -300,12 +295,13 @@ public class Home extends javax.swing.JFrame {
             GridLayout gerente = new GridLayout(10, 1);//Mostra até 10 itens um em baixo do outro
             pn_pai.setLayout(gerente);
 
-            ControleBusca busca = new ControleBusca();
-            ArrayList<Livro> resultBusca = new ArrayList<>();
-
-            String categoria = null;
+            ControleBusca controleBusca = new ControleBusca();
+            ArrayList<Livro> resultBusca;
+            String categoria;
+            
             if(cmb_categoria.getSelectedIndex() == 0){
                 JOptionPane.showMessageDialog(rootPane, "Selecione uma categoria");
+                return;
             }else if(cmb_categoria.getSelectedIndex() == 1){
                 categoria = "ADMINISTRACAO";
             }else if(cmb_categoria.getSelectedIndex() == 2){
@@ -331,68 +327,69 @@ public class Home extends javax.swing.JFrame {
             }else if(cmb_categoria.getSelectedIndex() == 12){
                 categoria = "DIDATICO";
             }else if(cmb_categoria.getSelectedIndex() == 13){
-                categoria = "ECONOMIA";
+                categoria = "DIREITO";
             }else if(cmb_categoria.getSelectedIndex() == 14){
-                categoria = "ENG_TEC";
+                categoria = "ECONOMIA";
             }else if(cmb_categoria.getSelectedIndex() == 15){
-                categoria = "ESPORTE";
+                categoria = "ENG_TEC";
             }else if(cmb_categoria.getSelectedIndex() == 16){
-                categoria = "GASTRONOMIA";
+                categoria = "ESPORTE";
             }else if(cmb_categoria.getSelectedIndex() == 17){
-                categoria = "GEO_HIST";
+                categoria = "GASTRONOMIA";
             }else if(cmb_categoria.getSelectedIndex() == 18){
-                categoria = "INFORMATICA";
+                categoria = "GEO_HIST";
             }else if(cmb_categoria.getSelectedIndex() == 19){
-                categoria = "LINGUISTICA";
+                categoria = "INFORMATICA";
             }else if(cmb_categoria.getSelectedIndex() == 20){
-                categoria = "LITER_ESTR";
+                categoria = "LINGUISTICA";
             }else if(cmb_categoria.getSelectedIndex() == 21){
-                categoria = "LITER_INFA";
+                categoria = "LITER_ESTR";
             }else if(cmb_categoria.getSelectedIndex() == 22){
-                categoria = "LITER_NACIO";
+                categoria = "LITER_INFA";
             }else if(cmb_categoria.getSelectedIndex() == 23){
-                categoria = "MEDICINA";
+                categoria = "LITER_NACIO";
             }else if(cmb_categoria.getSelectedIndex() == 24){
-                categoria = "RELIGIAO";
+                categoria = "MEDICINA";
             }else if(cmb_categoria.getSelectedIndex() == 25){
+                categoria = "RELIGIAO";
+            }else if(cmb_categoria.getSelectedIndex() == 26){
                 categoria = "TURISMO";
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Erro ao buscar");
-                categoria = "TURISMO";
+                return;
             }
-
+            
             try {
-                busca.buscarLivro(categoria, 1);
+                controleBusca.fazerBusca(categoria, 5);
             } catch (BancoException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+                return;
             }
-
-            resultBusca = busca.getResultadosBusca();
-
+            
+            resultBusca = controleBusca.getResultadosBusca();
+            
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
                 pn_pai.add(p1);
                 p1.getTxt_titulo().setText(ver.getTitulo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
-
                 p1.setLi(ver);
-
             }
-            System.out.println(l.getIsbn());
-            System.out.println(l.getMargemLucro());
+            //System.out.println(l.getIsbn());
+            //System.out.println(l.getMargemLucro());
             //Atualiza form...pequeno erro grafico
             pequenoBug();//Corrige
         }
     }//GEN-LAST:event_cmb_categoriaItemStateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_lojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojasActionPerformed
         NossasLojas nossas = new NossasLojas();
 
         nossas.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_lojasActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btn_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_okActionPerformed
 
         pn_pai.removeAll();//Retira tudo do painel
         if ("".equals(txt_palChave.getText()) || " ".equals(txt_palChave.getText()) || "   ".equals(txt_palChave.getText()) ||cmb_criterios.getSelectedIndex() == 0) {
@@ -401,16 +398,17 @@ public class Home extends javax.swing.JFrame {
             GridLayout gerente = new GridLayout(10, 1);//Mostra até 10 itens um em baixo do outro
             pn_pai.setLayout(gerente);
 
-            ControleBusca busca = new ControleBusca();
-            ArrayList<Livro> resultBusca = new ArrayList<>();
-
+            ControleBusca controleBusca = new ControleBusca();
+            ArrayList<Livro> resultBusca;
+            
             try {
-                busca.buscarLivro(txt_palChave.getText(), cmb_criterios.getSelectedIndex());
+                controleBusca.fazerBusca(txt_palChave.getText(), cmb_criterios.getSelectedIndex());
             } catch (BancoException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+                return;
             }
-
-            resultBusca = busca.getResultadosBusca();
+            
+            resultBusca = controleBusca.getResultadosBusca();
 
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
@@ -418,31 +416,34 @@ public class Home extends javax.swing.JFrame {
                 p1.getTxt_titulo().setText(ver.getTitulo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
-
                 p1.setLi(ver);//envia objeto
 
             }
-            System.out.println(l.getIsbn());
-            System.out.println(l.getMargemLucro());
+            //System.out.println(l.getIsbn());
+            //System.out.println(l.getMargemLucro());
 
             //Atualiza form...pequeno erro grafico
             pequenoBug();//Corrige
 
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btn_okActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btn_sairActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         UsuarioCadastrado userCad = new UsuarioCadastrado();
         userCad.show();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btn_loginActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        k.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btn_carrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_carrinhoActionPerformed
+        telaCarrinho.setVisible(true);
+    }//GEN-LAST:event_btn_carrinhoActionPerformed
+
+    private void btn_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastroActionPerformed
+        telaCadUsu.setVisible(true);
+    }//GEN-LAST:event_btn_cadastroActionPerformed
     private void pequenoBug(){
         int x = this.getHeight();
             int y = this.getWidth();
@@ -453,7 +454,7 @@ public class Home extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -466,7 +467,7 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         //</editor-fold>
         
@@ -479,19 +480,19 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cadastro;
+    private javax.swing.JButton btn_carrinho;
+    private javax.swing.JButton btn_login;
+    private javax.swing.JButton btn_lojas;
+    private javax.swing.JButton btn_maisvendidos;
+    private javax.swing.JButton btn_ok;
+    private javax.swing.JButton btn_pedidos;
+    private javax.swing.JButton btn_promocoes;
+    private javax.swing.JButton btn_sair;
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_criterios;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> cmb_digitais;
+    private javax.swing.JComboBox<String> cmb_livros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;

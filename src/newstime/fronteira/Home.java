@@ -100,6 +100,11 @@ public class Home extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jButton3.setText("Login");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         jButton4.setText("Cadastre-se");
@@ -427,6 +432,11 @@ public class Home extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        UsuarioCadastrado userCad = new UsuarioCadastrado();
+        userCad.show();
+    }//GEN-LAST:event_jButton3ActionPerformed
     private void pequenoBug(){
         int x = this.getHeight();
             int y = this.getWidth();

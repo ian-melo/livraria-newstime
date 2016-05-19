@@ -67,6 +67,10 @@ public class Conta {
         EnderecoDAO eDao = new EnderecoDAO(banco);
         Endereco en = new Endereco();
         String senha = cliente.getSenha();
+        //Verifica se já está cadastrado
+        if(Conta.getCliente()!= null)
+            throw new NegocioException("Você já está logado");
+        
         //Busca o cliente
         try {
             cliente = cDao.buscar(cliente);

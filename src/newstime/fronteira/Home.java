@@ -19,7 +19,7 @@ import newstime.excecao.BancoException;
  */
 public class Home extends javax.swing.JFrame {
     Livro l = new Livro();
-    Carrinho telaCarrinho = new Carrinho();
+    CarrinhoCompras telaCarrinho = new CarrinhoCompras();
     CadastroUsuario telaCadUsu = new CadastroUsuario();
   
     public Livro getL() {
@@ -417,7 +417,6 @@ public class Home extends javax.swing.JFrame {
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
                 p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
                 p1.setLi(ver);//envia objeto
-
             }
             //System.out.println(l.getIsbn());
             //System.out.println(l.getMargemLucro());
@@ -439,6 +438,7 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_carrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_carrinhoActionPerformed
         telaCarrinho.setVisible(true);
+        telaCarrinho.preencherTabela();
     }//GEN-LAST:event_btn_carrinhoActionPerformed
 
     private void btn_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastroActionPerformed

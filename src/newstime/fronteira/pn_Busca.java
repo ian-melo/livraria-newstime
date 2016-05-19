@@ -8,6 +8,7 @@ package newstime.fronteira;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import newstime.controle.ControleCarrinho;
+import newstime.entidade.Carrinho;
 import newstime.entidade.Livro;
 
 /**
@@ -183,7 +184,6 @@ public class pn_Busca extends javax.swing.JPanel {
         ControleCarrinho controle = new ControleCarrinho();
         controle.adicionarItem(getLi().getIsbn(), "1");
     }//GEN-LAST:event_btn_adicionarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_adicionar;

@@ -1,5 +1,6 @@
 package newstime.controle;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import newstime.DAO.BancoDados;
 import newstime.DAO.LivroDAO;
@@ -16,13 +17,12 @@ import newstime.excecao.NegocioException;
 public class ControleCarrinho {
     
     
-    
-    
     /**
-     * 
+     * Exibe todos os itens do carrinho
+     * @return Todos os itens do carrinho
      */
-    public void exibirCarrinho(){
-        
+    public ArrayList<ItemPedido> exibirCarrinho(){
+        return Carrinho.getItens();
     }
     
     
@@ -49,7 +49,7 @@ public class ControleCarrinho {
     }
     
     /**
-     * 
+     * Altera o item do carrinho de compras
      * @param isbn
      * @param quantidade
      */
@@ -73,7 +73,7 @@ public class ControleCarrinho {
     }
     
     /**
-     * 
+     * Retira um item do carrinho de compras
      * @param isbn 
      */
     public void retirarItem(String isbn) {
@@ -91,7 +91,7 @@ public class ControleCarrinho {
     }
     
     /**
-     * 
+     * Limpa o carrinho de compras
      */
     public void limparCarrinho(){
         Carrinho.limparCarrinho();

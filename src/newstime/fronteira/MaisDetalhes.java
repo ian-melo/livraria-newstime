@@ -230,8 +230,8 @@ public class MaisDetalhes extends javax.swing.JFrame {
         SimpleDateFormat formaData = new SimpleDateFormat("dd/MM/yyyy");
         String cate = "";
         
-        txt_resumo.setText(this.liv.getResumo());
-        txt_sumario.setText(this.liv.getSumario());
+        txt_sumario.setText(this.liv.getResumo());
+        txt_resumo.setText(this.liv.getSumario());
         txt_autor.setText(this.liv.getAutor().getNome());
         txt_formato.setText(this.liv.getFormato().toString());
         txt_editora.setText(this.liv.getEditora().getNome());

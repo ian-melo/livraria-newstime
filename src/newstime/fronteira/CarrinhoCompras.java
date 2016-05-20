@@ -241,6 +241,8 @@ public class CarrinhoCompras extends javax.swing.JFrame {
 
     @SuppressWarnings("UseOfObsoleteCollectionType")
     public void preencherTabela() {
+        NumberFormat formato_grana = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+        
         //Cabeçalho
         Vector cabecalho = new Vector();
         cabecalho.add("Item");
@@ -256,9 +258,9 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         for (ItemPedido ix : Carrinho.getItens()) {
             item = new Vector();
             item.add(ix.getLivro().getTitulo());
-            item.add((ix.getSubtotal()/ix.getQuantidade())); //Divide subtotal por quantidade
+            item.add(formato_grana.format(ix.getSubtotal()/ix.getQuantidade())); //Divide subtotal por quantidade
             item.add(ix.getQuantidade());
-            item.add(ix.getSubtotal());
+            item.add(formato_grana.format(ix.getSubtotal()));
             subtotal += ix.getSubtotal(); //Soma subtotal para exibir
             dados.add(item);
         }
@@ -274,7 +276,6 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         tb_itens.getColumnModel().getColumn(3).setMaxWidth(120);
         
         //Vê o preço subtotal
-        NumberFormat formato_grana = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
         lbl_preco.setText(formato_grana.format(subtotal));
     }
     

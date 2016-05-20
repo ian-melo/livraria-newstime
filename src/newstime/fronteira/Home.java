@@ -7,7 +7,11 @@ package newstime.fronteira;
 
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import newstime.controle.ControleBusca;
 import newstime.entidade.Conta;
@@ -395,12 +399,14 @@ public final class Home extends javax.swing.JFrame {
             
             resultBusca = controleBusca.getResultadosBusca();
             
+            NumberFormat formato_grana = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+            
             for (Livro ver : resultBusca) {
                 newstime.fronteira.pn_Busca p1 = new newstime.fronteira.pn_Busca();
                 pn_pai.add(p1);
                 p1.getTxt_titulo().setText(ver.getTitulo());
                 p1.getTxt_autor().setText(ver.getAutor().getNome());
-                p1.getTxt_preco().setText(String.valueOf(ver.getPrecoVenda()));
+                p1.getTxt_preco().setText(formato_grana.format(ver.getPrecoVenda()));
                 p1.setLi(ver);
             }
             //System.out.println(l.getIsbn());

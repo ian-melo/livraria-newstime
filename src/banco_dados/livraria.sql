@@ -174,4 +174,6 @@ CREATE TABLE Venda( /*Dep. Pedido, Endereço, Pagamento, Entrega*/
 
 /*INSERIR FUNCIONÁRIO*/
 INSERT INTO Funcionario
-VALUES (NULL,'mariana_peixoto','abc123','Mariana Peixoto',FALSE);
+VALUES (NULL,'mariana_peixoto','abc123','Mariana Peixoto',FALSE),
+(NULL,'thiago','abc123','Thiago Castro',FALSE),
+(NULL,'admin','admin','Administrador',FALSE);

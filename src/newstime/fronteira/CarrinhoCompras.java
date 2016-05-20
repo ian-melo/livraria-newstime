@@ -30,6 +30,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
      */
     public CarrinhoCompras() {
         initComponents();
+        this.setTitle("Livraria Newstime");
         preencherTabela();
     }
 
@@ -53,6 +54,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         btn_menos = new javax.swing.JButton();
         btn_mais = new javax.swing.JButton();
         btn_limpar = new javax.swing.JButton();
+        lbl_sifra = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Broadway", 0, 18)); // NOI18N
         jLabel1.setText("Meu Carrinho");
@@ -70,7 +72,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tb_itens);
 
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 18)); // NOI18N
-        jLabel2.setText("Subtotal :  R$");
+        jLabel2.setText("Subtotal : ");
 
         lbl_preco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbl_preco.setText("120,00");
@@ -123,6 +125,9 @@ public class CarrinhoCompras extends javax.swing.JFrame {
             }
         });
 
+        lbl_sifra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbl_sifra.setText("R$");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,25 +142,26 @@ public class CarrinhoCompras extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_limpar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbl_sifra)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbl_preco))
-                            .addComponent(btn_limpar))
+                                .addComponent(lbl_preco)))
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
+                                .addComponent(btn_remover)
+                                .addGap(111, 111, 111)
+                                .addComponent(btn_continuar))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_menos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_mais, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(89, 89, 89)
-                                .addComponent(btn_adicionar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(btn_remover)
-                                .addGap(111, 111, 111)
-                                .addComponent(btn_continuar)))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                .addComponent(btn_adicionar)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +176,8 @@ public class CarrinhoCompras extends javax.swing.JFrame {
                     .addComponent(lbl_preco, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_mais)
                     .addComponent(btn_menos)
-                    .addComponent(btn_adicionar))
+                    .addComponent(btn_adicionar)
+                    .addComponent(lbl_sifra, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_remover)
@@ -282,6 +289,7 @@ public class CarrinhoCompras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_preco;
+    private javax.swing.JLabel lbl_sifra;
     private javax.swing.JTable tb_itens;
     // End of variables declaration//GEN-END:variables
 }

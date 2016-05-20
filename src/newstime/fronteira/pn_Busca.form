@@ -39,10 +39,14 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txt_preco" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txt_preco" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="67" max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btn_detalhes" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_adicionar" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -69,6 +73,7 @@
                       <Component id="txt_titulo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_autor" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_preco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="btn_detalhes" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -81,6 +86,10 @@
     <Component class="javax.swing.JTextField" name="txt_titulo">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -96,6 +105,10 @@
     <Component class="javax.swing.JTextField" name="txt_autor">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -106,6 +119,10 @@
     <Component class="javax.swing.JTextField" name="txt_preco">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="0" type="rgb"/>
+        </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_adicionar">
@@ -123,6 +140,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_detalhesActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="R$"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -24,6 +24,7 @@ public class GerenciaAdm extends javax.swing.JFrame {
      */
     public GerenciaAdm() {
         initComponents();
+        this.setTitle("Acesso");
         
         //Verifica se o funcionário está logado ou não, habilitando/desabilitando
         if(ContaRestrita.getFuncionario() == null)

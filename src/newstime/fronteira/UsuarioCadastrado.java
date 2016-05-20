@@ -21,6 +21,7 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
      */
     public UsuarioCadastrado() {
         initComponents();
+        this.setTitle("Login - Livraria Newstime");
     }
 
     /**
@@ -32,16 +33,11 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txt_email = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btn_logar = new javax.swing.JButton();
         txt_senha = new javax.swing.JPasswordField();
-
-        jLabel1.setFont(new java.awt.Font("Broadway", 0, 18)); // NOI18N
-        jLabel1.setText("Login");
-        jLabel1.setToolTipText("");
 
         jLabel2.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel2.setText("Email");
@@ -49,6 +45,7 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Broadway", 0, 12)); // NOI18N
         jLabel3.setText("Senha");
 
+        btn_logar.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         btn_logar.setText("Logar");
         btn_logar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,10 +60,6 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(185, 185, 185))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_email)
@@ -90,9 +83,7 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +122,6 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_logar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txt_email;

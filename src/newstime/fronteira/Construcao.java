@@ -16,6 +16,7 @@ public class Construcao extends javax.swing.JFrame {
      */
     public Construcao() {
         initComponents();
+        this.setTitle("Em construção...");
     }
 
     /**

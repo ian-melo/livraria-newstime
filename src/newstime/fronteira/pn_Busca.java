@@ -98,21 +98,28 @@ public class pn_Busca extends javax.swing.JPanel {
         txt_preco = new javax.swing.JTextField();
         btn_adicionar = new javax.swing.JButton();
         btn_detalhes = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txt_titulo.setText("jTextField1");
+        txt_titulo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txt_titulo.setEnabled(false);
 
         jLabel1.setText("Titulo");
 
         lab.setText("Autor");
 
         txt_autor.setText("jTextField1");
+        txt_autor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txt_autor.setEnabled(false);
 
         jLabel3.setText("Preço");
 
         txt_preco.setText("jTextField1");
+        txt_preco.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txt_preco.setEnabled(false);
 
         btn_adicionar.setText("Adicionar ao carrinho");
         btn_adicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +134,8 @@ public class pn_Busca extends javax.swing.JPanel {
                 btn_detalhesActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("R$");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -143,9 +152,12 @@ public class pn_Busca extends javax.swing.JPanel {
                     .addComponent(lab))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_detalhes, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_adicionar, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -166,7 +178,8 @@ public class pn_Busca extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txt_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txt_autor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
                     .addComponent(btn_detalhes))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -190,6 +203,7 @@ public class pn_Busca extends javax.swing.JPanel {
     private javax.swing.JButton btn_detalhes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lab;
     private javax.swing.JTextField txt_autor;
     private javax.swing.JTextField txt_preco;

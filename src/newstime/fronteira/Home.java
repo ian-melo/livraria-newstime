@@ -18,7 +18,7 @@ import newstime.excecao.BancoException;
  *
  * @author lukin
  */
-public class Home extends javax.swing.JFrame {
+public final class Home extends javax.swing.JFrame {
     Livro l = new Livro();
     CarrinhoCompras telaCarrinho = new CarrinhoCompras();
     CadastroUsuario telaCadUsu = new CadastroUsuario();
@@ -36,6 +36,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        desabilitarCliente();
     }
 
     /**
@@ -126,15 +127,17 @@ public class Home extends javax.swing.JFrame {
         });
 
         btn_sair.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
-        btn_sair.setText("Sair");
+        btn_sair.setText("Logout");
         btn_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sairActionPerformed(evt);
             }
         });
 
+        cmb_criterios.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         cmb_criterios.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Filtros", "Editora", "Título", "Autor", "ISBN" }));
 
+        btn_ok.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         btn_ok.setText("OK");
         btn_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,10 +151,13 @@ public class Home extends javax.swing.JFrame {
         btn_maisvendidos.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         btn_maisvendidos.setText("Livros mais vendidos");
 
+        cmb_livros.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         cmb_livros.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros", "Lançamentos", "Pré-Vendas", "Mais Vendidas" }));
 
-        cmb_digitais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Livros Digitais", "Lançamentos", "Pré-Vendas", "Mais Vendidos" }));
+        cmb_digitais.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
+        cmb_digitais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "E-Books", "Lançamentos", "Pré-Vendas", "Mais Vendidos" }));
 
+        cmb_categoria.setFont(new java.awt.Font("Broadway", 0, 14)); // NOI18N
         cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorias", "ADMINISTRAÇÃO", "AGROPECUÁRIA", "ARTES", "ÁUDIO LIVRO", "AUTO AJUDA", "CIÊNCIAS BIOLÓGICAS", "CIÊNCIAS EXATAS", "CIÊNCIAS HUMANAS", "CONTABILIDADE", "IDIOMA", "DICIONÁRIO", "DIDÁTICO", "DIREITO", "ECONOMIA", "ENGENHARIA TECNOLÓGICA", "ESPORTE", "GASTRONOMIA", "GEOGRAFIA HISTÓRICA", "INFORMÁTICA", "LINGUÍSTICA", "LITERATURA ESTRANGEIRA", "LITERATURA INFANTIL", "LITERATURA NACIONAL", "MEDICINA", "RELIGIÃO", "TURISMO" }));
         cmb_categoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -172,8 +178,8 @@ public class Home extends javax.swing.JFrame {
 
         scroll_15.setViewportView(pn_pai);
 
-        lbl_restrito.setForeground(new java.awt.Color(0, 0, 204));
-        lbl_restrito.setText(">>Acesso restrito<<");
+        lbl_restrito.setForeground(new java.awt.Color(150, 150, 150));
+        lbl_restrito.setText(">>Acesso restrito");
         lbl_restrito.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_restritoMouseClicked(evt);
@@ -194,40 +200,37 @@ public class Home extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(165, 165, 165)
-                                        .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmb_livros, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(cmb_digitais, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(btn_lojas)
+                                                .addComponent(btn_login, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(btn_pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btn_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGap(12, 12, 12)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(btn_carrinho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btn_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(cmb_criterios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txt_palChave, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btn_ok))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(btn_lojas)
-                                                .addComponent(btn_login, javax.swing.GroupLayout.Alignment.TRAILING))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(btn_pedidos)
-                                                    .addGap(12, 12, 12))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(btn_cadastro)
-                                                    .addGap(18, 18, 18)))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(btn_carrinho)
-                                                .addComponent(btn_sair))))))
+                                            .addComponent(btn_ok)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(137, 137, 137)
+                                        .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmb_livros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmb_digitais, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_promocoes)
+                                .addComponent(btn_promocoes, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_maisvendidos)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,19 +262,21 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(btn_sair))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmb_criterios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_palChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_ok))))
+                            .addComponent(cmb_criterios, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_palChave, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_ok, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_promocoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_promocoes)
-                        .addComponent(btn_maisvendidos))
-                    .addComponent(cmb_livros, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(cmb_digitais)
-                    .addComponent(cmb_categoria))
+                        .addComponent(cmb_digitais, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmb_livros, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_maisvendidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmb_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scroll_15)
+                .addComponent(scroll_15, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addGap(21, 21, 21)
                 .addComponent(lbl_restrito)
                 .addContainerGap())
@@ -449,11 +454,12 @@ public class Home extends javax.swing.JFrame {
 
     private void btn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sairActionPerformed
         Conta.deslogar();
+        desabilitarCliente();
     }//GEN-LAST:event_btn_sairActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         UsuarioCadastrado userCad = new UsuarioCadastrado();
-        userCad.show();
+        userCad.setVisible(true);
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void btn_carrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_carrinhoActionPerformed
@@ -473,6 +479,20 @@ public class Home extends javax.swing.JFrame {
             int y = this.getWidth();
             this.setSize(y - 1, x - 1);
             this.setSize(y, x);
+    }
+    
+    public static void habilitarCliente() {
+        btn_pedidos.setEnabled(true);
+        btn_login.setEnabled(false);
+        btn_cadastro.setEnabled(false);
+        btn_sair.setEnabled(true);
+    }
+    
+    public void desabilitarCliente() {
+        btn_pedidos.setEnabled(false);
+        btn_login.setEnabled(true);
+        btn_cadastro.setEnabled(true);
+        btn_sair.setEnabled(false);
     }
     /**
      * @param args the command line arguments
@@ -504,15 +524,15 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cadastro;
+    private static javax.swing.JButton btn_cadastro;
     private javax.swing.JButton btn_carrinho;
-    private javax.swing.JButton btn_login;
+    private static javax.swing.JButton btn_login;
     private javax.swing.JButton btn_lojas;
     private javax.swing.JButton btn_maisvendidos;
     private javax.swing.JButton btn_ok;
-    private javax.swing.JButton btn_pedidos;
+    private static javax.swing.JButton btn_pedidos;
     private javax.swing.JButton btn_promocoes;
-    private javax.swing.JButton btn_sair;
+    private static javax.swing.JButton btn_sair;
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_criterios;
     private javax.swing.JComboBox<String> cmb_digitais;

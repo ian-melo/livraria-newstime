@@ -123,6 +123,7 @@ public class UsuarioCadastrado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Seja bem vind"+trat+", " + Conta.getCliente().getNome());
             txt_email.setText("");
             txt_senha.setText("");
+            Home.habilitarCliente();
         } catch(FormatacaoIncorretaException | NegocioException | BancoException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

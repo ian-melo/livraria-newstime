@@ -9,7 +9,9 @@ import newstime.DAO.BancoDados;
 import newstime.DAO.EditoraDAO;
 import newstime.DAO.LivroDAO;
 import newstime.entidade.Autor;
+import newstime.entidade.ContaRestrita;
 import newstime.entidade.Editora;
+import newstime.entidade.Funcionario;
 import newstime.entidade.Livro;
 import newstime.excecao.BancoException;
 import newstime.excecao.FormatacaoIncorretaException;
@@ -114,9 +116,14 @@ public class ControleAdministracao {
      *
      * @param login
      * @param senha
+     * @throws newstime.excecao.BancoException
+     * @throws newstime.excecao.NegocioException
      */
-    public void verificaConta(String login, String senha) {
-
+    public void verificaConta(String login, String senha) throws BancoException, NegocioException {
+        Funcionario f = new Funcionario();
+        f.setLogin(login);
+        f.setSenha(senha);
+        ContaRestrita.logar(f);
     }
 
     /**

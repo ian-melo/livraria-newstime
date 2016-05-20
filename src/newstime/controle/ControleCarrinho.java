@@ -27,11 +27,20 @@ public class ControleCarrinho {
     
     
     /**
-     * 
+     * Adiciona um item ao carrinho de compras
      * @param isbn
      * @param quantidade 
      */
     public void adicionarItem(String isbn, String quantidade) {
+        //Verifica se já existe algum item no carrinho; se já, altera e sai
+        for(ItemPedido ix : Carrinho.getItens()) {
+            if(ix.getLivro().getIsbn().equals(isbn)) {
+                alterarItem(isbn,String.valueOf((Integer.parseInt(quantidade)+1)));
+                return;
+            }
+        }
+        
+        //Prossegue o processo normal
         BancoDados bd = new BancoDados();
         LivroDAO lDao = new LivroDAO(bd);
         

@@ -261,10 +261,10 @@ public class CarrinhoCompras extends javax.swing.JFrame {
         tb_itens.setModel(modeloTabela);
 
         //muda tamanho das colunas
-        tb_itens.getColumnModel().getColumn(0).setMaxWidth(504);
-        tb_itens.getColumnModel().getColumn(1).setMaxWidth(67);
-        tb_itens.getColumnModel().getColumn(2).setMaxWidth(67);
-        tb_itens.getColumnModel().getColumn(3).setMaxWidth(67);
+        tb_itens.getColumnModel().getColumn(0).setMaxWidth(450);
+        tb_itens.getColumnModel().getColumn(1).setMaxWidth(60);
+        tb_itens.getColumnModel().getColumn(2).setMaxWidth(75);
+        tb_itens.getColumnModel().getColumn(3).setMaxWidth(120);
         
         //Vê o preço subtotal
         NumberFormat formato_grana = new DecimalFormat ("#,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
